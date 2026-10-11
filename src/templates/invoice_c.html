@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Traditional Arabic", "Segoe UI", Tahoma, Arial, "DejaVu Sans", sans-serif;
+    font-size: 13px;
+    color: #000;
+    background: #fff;
+    margin: 0;
+    padding: 40px 48px;
+    width: 794px;
+  }
+
+  .head { text-align: center; margin-bottom: 6px; }
+  .head .co { font-size: 20px; font-weight: bold; }
+  .head .meta { font-size: 11px; color: #444; margin-top: 5px; line-height: 1.7; }
+
+  .rule { border-top: 2px solid #000; margin: 14px 0 4px 0; }
+  .rule-thin { border-top: 1px solid #000; margin-bottom: 16px; }
+
+  .title { text-align: center; font-size: 17px; font-weight: bold; margin-bottom: 18px; }
+
+  .info { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 12.5px; }
+  .info td { padding: 5px 4px; }
+  .info td.k { color: #444; width: 110px; }
+  .info td.v { font-weight: bold; }
+
+  table.items { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  table.items th {
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 7px 5px;
+    font-size: 12px;
+  }
+  table.items td {
+    border-bottom: 1px solid #ccc;
+    padding: 7px 5px;
+    text-align: center;
+    font-size: 12.5px;
+  }
+  table.items td.desc { text-align: right; }
+
+  table.totals { width: 62%; border-collapse: collapse; margin-right: auto; margin-bottom: 20px; }
+  table.totals td { padding: 7px 8px; font-size: 13px; }
+  table.totals td.r { text-align: left; direction: ltr; }
+  table.totals tr.grand td {
+    border-top: 1px solid #000;
+    border-bottom: 3px double #000;
+    font-weight: bold;
+    font-size: 14.5px;
+  }
+
+  .qr-wrap { text-align: center; margin-top: 10px; }
+  .qr-wrap img { width: 104px; height: 104px; }
+  .qr-wrap .cap { font-size: 10px; color: #555; margin-top: 4px; }
+
+  .foot {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 10.5px;
+    color: #555;
+    line-height: 1.8;
+  }
+  .sig {
+    margin-top: 26px;
+    width: 100%;
+  }
+  .sig td { width: 50%; text-align: center; font-size: 11px; color: #444; padding-top: 4px; }
+  .sig .ln { border-top: 1px solid #888; margin: 0 28px 5px 28px; height: 1px; }
+</style>
+</head>
+<body>
+
+  <div class="head">
+    <div class="co">{{ vendor_ar }}</div>
+    <div class="meta">
+      {{ vendor_district }} - {{ vendor_city_ar }} - المملكة العربية السعودية<br>
+      الرقم الضريبي: {{ vendor_vat_display }} &nbsp;&nbsp;|&nbsp;&nbsp; السجل التجاري: {{ vendor_cr_display }}<br>
+      هاتف: {{ vendor_phone_display }}
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <div class="rule-thin"></div>
+
+  <div class="title">فاتورة ضريبية</div>
+
+  <table class="info">
+    <tr>
+      <td class="k">رقم الفاتورة:</td>
+      <td class="v">{{ invoice_number_display }}</td>
+      <td class="k">تاريخ الإصدار:</td>
+      <td class="v">{{ issue_date_display }}</td>
+    </tr>
+    <tr>
+      <td class="k">اسم العميل:</td>
+      <td class="v">{{ buyer_ar }}</td>
+      <td class="k">تاريخ التوريد:</td>
+      <td class="v">{{ supply_date_display }}</td>
+    </tr>
+    <tr>
+      <td class="k">الرقم الضريبي للعميل:</td>
+      <td class="v">{{ buyer_vat_display }}</td>
+      <td class="k">طريقة الدفع:</td>
+      <td class="v">{{ payment_ar }}</td>
+    </tr>
+  </table>
+
+  <table class="items">
+    <thead>
+      <tr>
+        <th style="width:30px">م</th>
+        <th>البيان</th>
+        <th style="width:66px">الكمية</th>
+        <th style="width:78px">سعر الوحدة</th>
+        <th style="width:84px">المبلغ</th>
+        <th style="width:78px">الضريبة</th>
+        <th style="width:88px">الإجمالي</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for it in items %}
+      <tr>
+        <td>{{ it.idx_display }}</td>
+        <td class="desc">{{ it.desc_ar }}</td>
+        <td>{{ it.qty_display }} {{ it.unit_ar }}</td>
+        <td>{{ it.unit_price_display }}</td>
+        <td>{{ it.line_net_display }}</td>
+        <td>{{ it.line_vat_display }}</td>
+        <td>{{ it.line_total_display }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <table class="totals">
+    <tr>
+      <td>الإجمالي قبل الضريبة</td>
+      <td class="r">{{ subtotal_display }} {{ currency_label }}</td>
+    </tr>
+    <tr>
+      <td>ضريبة القيمة المضافة (15%)</td>
+      <td class="r">{{ vat_amount_display }} {{ currency_label }}</td>
+    </tr>
+    <tr class="grand">
+      <td>الإجمالي شامل الضريبة</td>
+      <td class="r">{{ total_amount_display }} {{ currency_label }}</td>
+    </tr>
+  </table>
+
+  <div class="qr-wrap">
+    <img src="{{ qr_data_uri }}" alt="QR">
+    <div class="cap">رمز الاستجابة السريعة</div>
+  </div>
+
+  <table class="sig">
+    <tr>
+      <td><div class="ln"></div>توقيع المورّد</td>
+      <td><div class="ln"></div>توقيع المستلم</td>
+    </tr>
+  </table>
+
+  <div class="foot">
+    هذه فاتورة ضريبية صادرة وفقاً لأحكام نظام ضريبة القيمة المضافة ولائحته التنفيذية
+  </div>
+
+</body>
+</html>

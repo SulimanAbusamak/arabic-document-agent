@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Tahoma, Arial, "DejaVu Sans", sans-serif;
+    font-size: 12px;
+    color: #1c1c1c;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    width: 794px;
+  }
+
+  .band {
+    background: #1f4e5f;
+    color: #fff;
+    padding: 20px 40px 16px 40px;
+  }
+  .band table { width: 100%; }
+  .band td { vertical-align: top; }
+  .brand { font-size: 17px; font-weight: bold; }
+  .brand .en { font-size: 11px; font-weight: normal; opacity: .85; direction: ltr; text-align: right; margin-top: 2px; }
+  .band .tiny { font-size: 10px; opacity: .8; margin-top: 5px; line-height: 1.6; }
+  .ttl { text-align: left; }
+  .ttl .ar { font-size: 22px; font-weight: bold; letter-spacing: 1px; }
+  .ttl .en { font-size: 11px; opacity: .85; letter-spacing: 2px; }
+  .qr-top { text-align: left; padding-top: 6px; }
+  .qr-top img { width: 86px; height: 86px; background: #fff; padding: 3px; }
+
+  .wrap { padding: 20px 40px 30px 40px; }
+
+  .strip { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .strip td {
+    background: #f4f7f8;
+    border-bottom: 2px solid #1f4e5f;
+    padding: 8px 10px;
+  }
+  .strip .lbl { display: block; font-size: 10px; color: #5a6b70; text-transform: uppercase; letter-spacing: .5px; }
+  .strip .val { font-size: 12.5px; font-weight: 600; }
+
+  .to {
+    border-right: 3px solid #1f4e5f;
+    padding: 2px 11px;
+    margin-bottom: 16px;
+    line-height: 1.65;
+  }
+  .to .hd { font-size: 10px; color: #5a6b70; letter-spacing: .5px; }
+  .to .nm { font-size: 13.5px; font-weight: bold; }
+  .to .sub { color: #555; font-size: 11px; }
+
+  table.items { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  table.items th {
+    background: #1f4e5f;
+    color: #fff;
+    padding: 8px 5px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  table.items th small { display: block; font-weight: normal; opacity: .8; font-size: 9px; }
+  table.items td { padding: 7px 5px; text-align: center; font-size: 11.5px; border-bottom: 1px solid #dfe6e8; }
+  table.items tr:nth-child(even) td { background: #fafcfc; }
+  table.items td.desc { text-align: right; }
+  table.items td.desc small { display: block; color: #777; font-size: 10px; direction: ltr; text-align: right; }
+
+  .sum { width: 100%; }
+  .sum td { vertical-align: top; }
+  table.totals { width: 100%; border-collapse: collapse; }
+  table.totals td { padding: 7px 10px; font-size: 12px; }
+  table.totals td.l { color: #444; }
+  table.totals td.r { text-align: left; direction: ltr; font-weight: 600; }
+  table.totals tr.line td { border-bottom: 1px solid #e3e8ea; }
+  table.totals tr.grand td {
+    background: #1f4e5f;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .en-sub { color: #7d8e93; font-size: 10px; font-weight: normal; }
+  table.totals tr.grand .en-sub { color: #cfe0e5; }
+
+  .note {
+    margin-top: 22px;
+    background: #f4f7f8;
+    padding: 9px 12px;
+    font-size: 10px;
+    color: #5a6b70;
+    line-height: 1.7;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+  <div class="band">
+    <table>
+      <tr>
+        <td style="width:46%">
+          <div class="brand">{{ vendor_ar }}
+            <div class="en">{{ vendor_en }}</div>
+          </div>
+          <div class="tiny">
+            الرقم الضريبي: <span style="direction:ltr;display:inline-block">{{ vendor_vat }}</span><br>
+            س.ت: <span style="direction:ltr;display:inline-block">{{ vendor_cr }}</span> &nbsp;|&nbsp;
+            <span style="direction:ltr;display:inline-block">{{ vendor_phone }}</span><br>
+            {{ vendor_district }}، {{ vendor_city_ar }}
+          </div>
+        </td>
+        <td class="ttl" style="width:34%">
+          <div class="ar">فاتورة ضريبية</div>
+          <div class="en">TAX INVOICE</div>
+        </td>
+        <td class="qr-top" style="width:20%">
+          <img src="{{ qr_data_uri }}" alt="QR">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="wrap">
+
+    <table class="strip">
+      <tr>
+        <td><span class="lbl">رقم الفاتورة / Invoice No.</span>
+            <span class="val" style="direction:ltr;display:inline-block">{{ invoice_number }}</span></td>
+        <td><span class="lbl">تاريخ الإصدار / Issue Date</span>
+            <span class="val">{{ issue_date_display }}</span></td>
+        <td><span class="lbl">تاريخ التوريد / Supply Date</span>
+            <span class="val">{{ supply_date_display }}</span></td>
+        <td><span class="lbl">طريقة الدفع / Payment</span>
+            <span class="val">{{ payment_ar }}</span></td>
+      </tr>
+    </table>
+
+    <div class="to">
+      <div class="hd">فاتورة إلى / BILL TO</div>
+      <div class="nm">{{ buyer_ar }}</div>
+      <div class="sub" style="direction:ltr;text-align:right">{{ buyer_en }}</div>
+      <div class="sub">الرقم الضريبي:
+        <span style="direction:ltr;display:inline-block">{{ buyer_vat }}</span>
+        &nbsp;|&nbsp; {{ buyer_city_ar }}</div>
+    </div>
+
+    <table class="items">
+      <thead>
+        <tr>
+          <th style="width:26px">#</th>
+          <th>البيان<small>Description</small></th>
+          <th style="width:54px">الكمية<small>Qty</small></th>
+          <th style="width:70px">السعر<small>Unit Price</small></th>
+          <th style="width:76px">الخاضع للضريبة<small>Taxable</small></th>
+          <th style="width:70px">الضريبة 15%<small>VAT</small></th>
+          <th style="width:80px">الإجمالي<small>Line Total</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for it in items %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td class="desc">{{ it.desc_ar }}<small>{{ it.desc_en }}</small></td>
+          <td>{{ it.qty }} {{ it.unit_ar }}</td>
+          <td>{{ it.unit_price }}</td>
+          <td>{{ it.line_net }}</td>
+          <td>{{ it.line_vat }}</td>
+          <td>{{ it.line_total }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <table class="sum">
+      <tr>
+        <td style="width:50%"></td>
+        <td style="width:50%">
+          <table class="totals">
+            <tr class="line">
+              <td class="l">الإجمالي قبل الضريبة <span class="en-sub">/ Subtotal</span></td>
+              <td class="r">{{ subtotal }} {{ currency_label }}</td>
+            </tr>
+            <tr class="line">
+              <td class="l">ضريبة القيمة المضافة 15% <span class="en-sub">/ VAT</span></td>
+              <td class="r">{{ vat_amount }} {{ currency_label }}</td>
+            </tr>
+            <tr class="grand">
+              <td class="l" style="color:#fff">الإجمالي المستحق <span class="en-sub">/ Total Due</span></td>
+              <td class="r">{{ total_amount }} {{ currency_label }}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <div class="note">
+      فاتورة ضريبية صادرة إلكترونياً وفقاً لمتطلبات هيئة الزكاة والضريبة والجمارك<br>
+      Electronically issued tax invoice in compliance with ZATCA e-invoicing requirements
+    </div>
+
+  </div>
+
+</body>
+</html>
