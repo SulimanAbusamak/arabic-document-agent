@@ -8,8 +8,12 @@ These exist so you can test the REFUSAL path. A system that confidently
 extracts wrong numbers from an unreadable scan is worse than useless in
 finance -- it silently corrupts records. Your agent should decline these.
 
-Degraded files are written alongside the originals with a _deg suffix,
-and registered in ground_truth.json with "_meta.degraded": true.
+Two severities:
+  phone_photo -- mild. Tilted, slightly soft. SHOULD still extract correctly.
+  bad_scan    -- heavy. Genuinely unreadable. SHOULD be refused.
+
+Both dev and test get both severities, so you can develop the refusal
+logic against dev and still have untouched test cases to measure on.
 """
 
 import json
@@ -23,8 +27,12 @@ ROOT = SRC_DIR.parent
 GROUND_TRUTH = ROOT / "data" / "ground_truth.json"
 
 SEED = 7
-N_DEGRADE_DEV = 3
-N_DEGRADE_TEST = 5
+
+# how many of each severity, per split
+PLAN = {
+    "dev":  {"phone_photo": 3, "bad_scan": 2},
+    "test": {"phone_photo": 2, "bad_scan": 3},
+}
 
 
 def phone_photo(img: Image.Image, rng: random.Random) -> Image.Image:
@@ -60,49 +68,60 @@ def bad_scan(img: Image.Image, rng: random.Random) -> Image.Image:
     return img
 
 
+MODES = {"phone_photo": phone_photo, "bad_scan": bad_scan}
+
+
 def main() -> None:
     rng = random.Random(SEED)
     gt = json.loads(GROUND_TRUTH.read_text(encoding="utf-8"))
 
-    dev_files = sorted(k for k in gt if k.startswith("dev_"))
-    test_files = sorted(k for k in gt if k.startswith("test_"))
+    for split, counts in PLAN.items():
+        # Only pick from CLEAN originals. Without this filter, a second run
+        # would degrade an already-degraded file (dev_004_deg.png also
+        # starts with "dev_") and you'd get blur on top of blur.
+        originals = sorted(
+            k for k in gt
+            if k.startswith(f"{split}_") and not gt[k]["_meta"].get("degraded")
+        )
 
-    targets = (
-        [(f, "phone_photo") for f in rng.sample(dev_files, N_DEGRADE_DEV)]
-        + [(f, "phone_photo") for f in rng.sample(test_files, 2)]
-        + [(f, "bad_scan") for f in rng.sample(test_files, N_DEGRADE_TEST - 2)]
-    )
+        # Sample everything in one go, so no invoice gets picked for two
+        # severities and silently overwritten.
+        picked = rng.sample(originals, sum(counts.values()))
 
-    for filename, mode in targets:
-        split = "dev" if filename.startswith("dev_") else "test"
-        folder = ROOT / "data" / "invoices" / split
-        src = folder / filename
-        if not src.exists():
-            continue
+        i = 0
+        for mode, n in counts.items():
+            for filename in picked[i:i + n]:
+                folder = ROOT / "data" / "invoices" / split
+                img = Image.open(folder / filename).convert("RGB")
+                damaged = MODES[mode](img, rng)
 
-        img = Image.open(src).convert("RGB")
-        damaged = phone_photo(img, rng) if mode == "phone_photo" else bad_scan(img, rng)
+                new_name = filename.replace(".png", "_deg.png")
+                damaged.save(folder / new_name, quality=60)
 
-        new_name = filename.replace(".png", "_deg.png")
-        damaged.save(folder / new_name, quality=60)
+                truth = json.loads(json.dumps(gt[filename]))  # deep copy
+                truth["_meta"]["degraded"] = True
+                truth["_meta"]["degradation"] = mode
+                truth["_meta"]["expect_refusal"] = (mode == "bad_scan")
+                truth["_meta"]["derived_from"] = filename
+                gt[new_name] = truth
 
-        truth = json.loads(json.dumps(gt[filename]))  # deep copy
-        truth["_meta"]["degraded"] = True
-        truth["_meta"]["degradation"] = mode
-        # a bad_scan is not expected to be extractable -- the agent should refuse
-        truth["_meta"]["expect_refusal"] = (mode == "bad_scan")
-        truth["_meta"]["derived_from"] = filename
-        gt[new_name] = truth
-
-        print(f"  {new_name}  ({mode})")
+                print(f"  {new_name:24s} {mode}")
+            i += n
 
     GROUND_TRUTH.write_text(json.dumps(gt, ensure_ascii=False, indent=2),
                             encoding="utf-8")
 
-    n_deg = sum(1 for v in gt.values() if v["_meta"].get("degraded"))
-    n_refuse = sum(1 for v in gt.values() if v["_meta"].get("expect_refusal"))
-    print(f"\n{n_deg} degraded invoices added ({n_refuse} expected to be refused)")
-    print(f"total dataset: {len(gt)} images")
+    def count(split, key=None):
+        items = [v for k, v in gt.items() if k.startswith(f"{split}_")]
+        if key is None:
+            return len(items)
+        return sum(1 for v in items if v["_meta"].get(key))
+
+    print(f"\n{'':6s} {'total':>6s} {'degraded':>9s} {'refusals':>9s}")
+    for split in ("dev", "test"):
+        print(f"{split:6s} {count(split):>6d} {count(split,'degraded'):>9d} "
+              f"{count(split,'expect_refusal'):>9d}")
+    print(f"\ntotal dataset: {len(gt)} images")
 
 
 if __name__ == "__main__":
