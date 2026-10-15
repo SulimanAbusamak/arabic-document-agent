@@ -6,7 +6,7 @@ often. PROMPT_VERSION is part of the cache key, so bumping it forces fresh
 API calls instead of silently reusing results from an older prompt.
 """
 
-PROMPT_VERSION = "v1"
+PROMPT_VERSION = "v2"   # v2: added vat_rate, read off the invoice
 
 EXTRACTION_PROMPT = """You are reading a Saudi Arabian tax invoice (فاتورة ضريبية).
 
@@ -20,6 +20,7 @@ Extract these fields and return ONLY a JSON object, with no other text:
   "invoice_number": "invoice number",
   "issue_date": "issue date, exactly as printed",
   "subtotal": "amount before VAT, exactly as printed",
+  "vat_rate": "the VAT percentage printed on the invoice, as a number (15 for 15%)",
   "vat_amount": "VAT amount, exactly as printed",
   "total_amount": "total including VAT, exactly as printed",
   "currency": "SAR",
@@ -44,5 +45,9 @@ Rules:
 
 4. Arabic invoices are read right to left. The supplier (المورّد) is usually
    at the top; the customer (العميل) is the party billed.
+
+5. For vat_rate, read the percentage actually printed on the document
+   (ضريبة القيمة المضافة ١٥٪ -> 15). Do not assume a rate. If the invoice
+   shows no rate at all, set it to null.
 
 Return the JSON object and nothing else."""

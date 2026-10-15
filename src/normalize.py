@@ -140,6 +140,56 @@ def parse_money(text) -> float | None:
         return None
 
 
+def fix_rtl_order(text: str) -> str:
+    """
+    Undo right-to-left reversal in a reference like an invoice number.
+
+        '1318-2026-INV' -> 'INV-2026-1318'
+
+    Arabic renders right to left, so a Latin-prefixed reference printed on
+    an Arabic invoice DISPLAYS with its segments in reverse order. A model
+    reading the page visually transcribes that reversed order.
+
+    Detection is deliberately narrow: only flip when the first segment is
+    all digits AND the last is all letters, which is the signature of a
+    reversed reference. A real date ('2026-03-05') or a dashed number
+    ('332-181-960') is left alone because its last segment is numeric.
+    """
+    if not text or "-" not in text:
+        return text
+    parts = str(text).split("-")
+    if len(parts) < 2:
+        return text
+    if parts[0].isdigit() and parts[-1].isalpha():
+        return "-".join(reversed(parts))
+    return text
+
+
+def parse_rate(text) -> float | None:
+    """
+    A VAT percentage as printed -> a fraction.
+
+        '15%'   -> 0.15
+        '١٥٪'   -> 0.15      (Arabic percent sign)
+        15      -> 0.15      (bare number, read as a percentage)
+        0.15    -> 0.15      (already a fraction, left alone)
+        '0%'    -> 0.0
+
+    The 0-1 vs 1-100 ambiguity is resolved by size: nothing above 1 can be
+    a fraction, and a real VAT rate is never 15000%.
+    """
+    if text is None:
+        return None
+    if isinstance(text, str):
+        text = text.replace("٪", "%")
+    value = parse_money(text)      # strips %, spaces, Arabic digits
+    if value is None:
+        return None
+    if value > 1:                  # 15 means 15%
+        value = value / 100
+    return round(value, 4)
+
+
 # --------------------------------------------------------------------------
 # Dates
 # --------------------------------------------------------------------------
@@ -228,6 +278,7 @@ def _build(day: int, month: int, year: int, raw: str) -> str | None:
 # --------------------------------------------------------------------------
 
 _MONEY_FIELDS = ("subtotal", "vat_amount", "total_amount")
+_RATE_FIELDS = ("vat_rate",)
 _DATE_FIELDS = ("issue_date", "supply_date", "due_date")
 _TEXT_FIELDS = ("vendor_name", "buyer_name")
 _ID_FIELDS = ("vendor_vat_number", "buyer_vat_number", "invoice_number")
@@ -246,6 +297,10 @@ def normalize_record(fields: dict) -> dict:
         if f in out:
             out[f] = parse_money(out[f])
 
+    for f in _RATE_FIELDS:
+        if f in out:
+            out[f] = parse_rate(out[f])
+
     for f in _DATE_FIELDS:
         if f in out:
             out[f] = parse_date(out[f])
@@ -254,7 +309,9 @@ def normalize_record(fields: dict) -> dict:
         if f in out and out[f] is not None:
             # IDs are digits: westernise, then keep only digits and dashes
             s = to_western_digits(out[f])
-            out[f] = re.sub(r"[^\w\-]", "", s).strip()
+            s = re.sub(r"[^\w\-]", "", s).strip()
+            # a reference read off an RTL page may have arrived backwards
+            out[f] = fix_rtl_order(s)
 
     for f in _TEXT_FIELDS:
         if f in out and out[f] is not None:

@@ -42,6 +42,37 @@ MODEL_STRONG = "claude-sonnet-5-5"
 
 MAX_TOKENS = 2000
 
+# --------------------------------------------------------------------------
+# Business rules
+#
+# Nothing here is hardcoded in the validation code -- change a number here
+# and every check follows. That is what makes the system work for Jordan
+# (16%) or a zero-rated invoice without touching any logic.
+# --------------------------------------------------------------------------
+
+# Rates we recognise. The rate is READ OFF each invoice, not assumed; this
+# set is only a sanity check that the extracted rate is plausible.
+#   0.00 zero-rated/exempt · 0.05 UAE · 0.15 Saudi · 0.16 Jordan
+KNOWN_VAT_RATES = {0.00, 0.05, 0.15, 0.16}
+
+# Fallback when an invoice does not print its rate at all.
+DEFAULT_VAT_RATE = 0.15
+
+# Saudi ZATCA tax identification numbers are 15 digits.
+VAT_NUMBER_LENGTH = 15
+
+# How far the arithmetic may be off before we call it wrong. Invoices round
+# each line item, so the sum of the parts can differ from the printed total
+# by a halala or two. More than this and a digit was misread.
+MONEY_TOLERANCE = 0.02
+
+# Below this, the document is treated as too illegible to trust.
+CONFIDENCE_FLOOR = 0.50
+
+# Approval thresholds, used by the agent on Day 4.
+AUTO_APPROVE_LIMIT = 5_000      # known vendor, clean checks -> approve
+ESCALATION_LIMIT = 50_000       # above this, a human always looks
+
 
 def require_api_key() -> str:
     """
