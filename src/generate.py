@@ -122,8 +122,13 @@ def build_record(rng: random.Random, index: int) -> dict:
     district_ar, _ = rng.choice(D.DISTRICTS)
     payment_ar, payment_en = rng.choice(D.PAYMENT_TERMS)
 
-    vendor_vat = D.saudi_vat_number(rng)
-    buyer_vat = D.saudi_vat_number(rng)
+    # The draws stay, even though the values are thrown away, so the random
+    # sequence is byte-identical to the original dataset -- every other field
+    # on every invoice stays exactly as it was. Only the VAT numbers change.
+    D.saudi_vat_number(rng)
+    D.saudi_vat_number(rng)
+    vendor_vat = D.stable_vat_number(vendor_ar)
+    buyer_vat = D.stable_vat_number(buyer_ar)
     vendor_cr = D.commercial_register(rng)
     vendor_phone = D.phone_number(rng)
 

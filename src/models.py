@@ -61,23 +61,22 @@ class Invoice(BaseModel):
 
     @field_validator("vendor_vat_number", "buyer_vat_number")
     @classmethod
-    def check_vat_number(cls, v: str | None) -> str | None:
+    def clean_vat_number(cls, v: str | None) -> str | None:
         """
-        Saudi TIN format: exactly 15 digits, first and last both 3.
+        Keep the digits. Store whatever came through.
 
-        A number that does not fit was almost certainly misread, so we reject
-        it rather than storing something that looks official but is wrong.
+        This used to REJECT anything that was not 15 digits, which was the
+        wrong place for that check. A malformed VAT number does not make the
+        record unusable -- the amounts, dates and names read fine -- and
+        rejecting here meant the arithmetic rules never ran at all. dev_022
+        had three problems and could only ever report one of them.
+
+        Format is a BUSINESS rule, so it moved to check_invoice(), where it
+        becomes a finding the agent weighs instead of a fatal error.
         """
         if v is None or v == "":
             return None
-        v = re.sub(r"\D", "", v)              # keep digits only
-        if len(v) != config.VAT_NUMBER_LENGTH:
-            raise ValueError(
-                f"VAT number must be {config.VAT_NUMBER_LENGTH} digits, got {len(v)}: {v}"
-            )
-        if not (v.startswith("3") and v.endswith("3")):
-            raise ValueError(f"Saudi VAT number must start and end with 3: {v}")
-        return v
+        return re.sub(r"\D", "", v) or None
 
     @field_validator("currency")
     @classmethod
@@ -137,7 +136,26 @@ def check_invoice(inv: Invoice) -> list[Issue]:
             detail=(f"rate {inv.vat_rate:.1%} is not a known rate "
                     f"({', '.join(f'{r:.0%}' for r in sorted(config.KNOWN_VAT_RATES))})"),
         ))
-
+        # --- VAT registration numbers must be the right shape ------------------
+    for label, number in (("supplier", inv.vendor_vat_number),
+                          ("buyer", inv.buyer_vat_number)):
+        if number is None:
+            continue
+        if len(number) != config.VAT_NUMBER_LENGTH:
+            issues.append(Issue(
+                rule=f"{label}_vat_number_length",
+                severity="error",
+                detail=(f"{label} VAT number must be "
+                        f"{config.VAT_NUMBER_LENGTH} digits, got "
+                        f"{len(number)}: {number}"),
+            ))
+        elif not (number.startswith("3") and number.endswith("3")):
+            issues.append(Issue(
+                rule=f"{label}_vat_number_format",
+                severity="error",
+                detail=(f"{label} VAT number must start and end with 3: "
+                        f"{number}"),
+            ))
     # --- missing fields ---------------------------------------------------
     if inv.vendor_vat_number is None:
         issues.append(Issue(

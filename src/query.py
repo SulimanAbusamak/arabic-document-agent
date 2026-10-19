@@ -111,12 +111,33 @@ def main() -> None:
             for k, v in raw.items():
                 mark = "  " if v not in (None, "", []) else "x "
                 print(f"      {mark}{k:20} {v}")
+    elif cmd == "decisions":
+        # Reasons are long sentences, so print them on their own lines
+        # instead of squeezing them into a table column.
+        rows = conn.execute("""
+            SELECT d.image, d.decision, d.source, d.reason, i.status
+            FROM decisions d
+            JOIN (SELECT image, MAX(id) AS id FROM decisions GROUP BY image) m
+              ON m.id = d.id
+            JOIN invoices i ON i.image = d.image
+            ORDER BY d.decision, d.image
+        """).fetchall()
+        want = args[1] if len(args) > 1 else None
+        for r in rows:
+            if want and r["decision"] != want:
+                continue
+            print(f"\n  {r['image']}  [{r['status']} -> "
+                  f"{r['decision']} by {r['source']}]")
+            print(f"      {r['reason']}")
+        print(f"\n  {len(rows)} decision(s)")
 
     elif cmd == "sql" and len(args) > 1:
         try:
             show(conn.execute(args[1]).fetchall())
         except sqlite3.Error as e:
             print(f"  SQL error: {e}")
+
+
 
     else:
         print(__doc__)

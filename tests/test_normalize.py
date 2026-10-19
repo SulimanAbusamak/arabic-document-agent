@@ -14,10 +14,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from normalize import (  # noqa: E402
+    fix_rtl_order,
     normalize_arabic,
     normalize_record,
     parse_date,
     parse_money,
+    parse_rate,
     to_western_digits,
 )
 
@@ -106,6 +108,46 @@ def test_arabic_spelling_variants_match():
 def test_different_vendors_do_not_match():
     """Normalising must not be so aggressive that real names collide."""
     assert normalize_arabic("مؤسسة النور") != normalize_arabic("مؤسسة الديار")
+
+
+# --------------------------------------------------------------------------
+def test_rate():
+    assert parse_rate("15%") == 0.15
+    assert parse_rate("١٥٪") == 0.15      # Arabic percent sign
+    assert parse_rate(15) == 0.15         # bare number means percent
+    assert parse_rate(0.15) == 0.15       # already a fraction
+    assert parse_rate("0%") == 0.0        # zero-rated
+    assert parse_rate("16 %") == 0.16     # Jordan
+    assert parse_rate(None) is None
+
+
+def test_rtl_reversed_reference():
+    """
+    An invoice number printed on an RTL page can be transcribed backwards.
+
+    Seen for real on dev_013.png: the model returned '1318-2026-INV' for an
+    invoice whose number is 'INV-2026-1318'.
+    """
+    assert fix_rtl_order("1318-2026-INV") == "INV-2026-1318"
+    assert fix_rtl_order("9563-2026-INV") == "INV-2026-9563"
+
+
+def test_rtl_leaves_everything_else_alone():
+    """
+    The narrow part. Over-eager reversal would corrupt dates and numbers,
+    which is worse than the bug it fixes.
+    """
+    assert fix_rtl_order("INV-2026-1318") == "INV-2026-1318"   # already right
+    assert fix_rtl_order("2026-03-05") == "2026-03-05"         # a date
+    assert fix_rtl_order("332-181-960-013-383") == "332-181-960-013-383"
+    assert fix_rtl_order("ABC-123") == "ABC-123"
+    assert fix_rtl_order("123456") == "123456"
+    assert fix_rtl_order("") == ""
+
+
+def test_rtl_fix_runs_inside_normalize_record():
+    out = normalize_record({"invoice_number": "1318-2026-INV"})
+    assert out["invoice_number"] == "INV-2026-1318"
 
 
 # --------------------------------------------------------------------------

@@ -7,6 +7,7 @@ belong to any real company.
 """
 
 import random
+import hashlib
 
 # ---------------------------------------------------------------------------
 # Vendors: (arabic_name, english_name)
@@ -88,6 +89,24 @@ def saudi_vat_number(rng: random.Random) -> str:
     This produces the right SHAPE, not a real registered number.
     """
     middle = "".join(str(rng.randint(0, 9)) for _ in range(13))
+    return "3" + middle + "3"
+
+
+def stable_vat_number(name: str) -> str:
+    """
+    One permanent VAT number per company, derived from its name.
+
+    A company has exactly one tax registration, for life. Drawing a random
+    one per invoice -- which is what saudi_vat_number does -- gave every
+    vendor a different tax ID on every invoice they sent, which made the
+    vendors table useless and the agent flag a mismatch on almost everything.
+
+    Hashing the name means the same company always produces the same number,
+    across runs, without needing to store a lookup table. Still structurally
+    valid ZATCA: 15 digits, starts with 3, ends with 3.
+    """
+    digest = hashlib.sha256(name.encode("utf-8")).hexdigest()
+    middle = "".join(str(int(c, 16) % 10) for c in digest[:13])
     return "3" + middle + "3"
 
 

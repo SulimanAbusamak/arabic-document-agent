@@ -40,7 +40,7 @@ API_KEY = os.getenv("ANTHROPIC_API_KEY")
 MODEL = "claude-haiku-5-5"
 MODEL_STRONG = "claude-sonnet-5-5"
 
-MAX_TOKENS = 2000
+MAX_TOKENS = 4000
 
 # --------------------------------------------------------------------------
 # Business rules
@@ -70,8 +70,8 @@ MONEY_TOLERANCE = 0.02
 CONFIDENCE_FLOOR = 0.50
 
 # Approval thresholds, used by the agent on Day 4.
-AUTO_APPROVE_LIMIT = 5_000      # known vendor, clean checks -> approve
-ESCALATION_LIMIT = 50_000       # above this, a human always looks
+AUTO_APPROVE_LIMIT = 15_000      # known vendor, clean checks -> approve
+ESCALATION_LIMIT = 120_000       # above this, a human always looks
 
 
 def require_api_key() -> str:

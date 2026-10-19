@@ -25,16 +25,21 @@ import prompts
 # --------------------------------------------------------------------------
 def cache_key(image_path: Path, model: str) -> str:
     """
-    A unique name for one (image, model, prompt) combination.
+    A unique name for one (image CONTENTS, model, prompt) combination.
 
-    The prompt version is included deliberately: change the prompt and you
-    get a different key, so you are never silently reading results produced
-    by an older prompt. That bug is very hard to spot after the fact.
+    Note it hashes the image's BYTES, not its filename. An earlier version
+    used the name, which meant regenerating the invoices produced identical
+    keys and every image silently returned a stale result -- a cache that
+    never invalidates is worse than no cache, because it fails quietly.
+
+    The prompt version is in there for the same reason: change the prompt
+    and you get a different key, so you are never reading results produced
+    by an older prompt.
     """
-    raw = f"{image_path.name}|{model}|{prompts.PROMPT_VERSION}"
+    image_hash = hashlib.md5(image_path.read_bytes()).hexdigest()
+    raw = f"{image_hash}|{model}|{prompts.PROMPT_VERSION}"
     digest = hashlib.md5(raw.encode()).hexdigest()[:10]
     return f"{image_path.stem}_{prompts.PROMPT_VERSION}_{digest}.json"
-
 
 def load_cached(key: str) -> dict | None:
     path = config.CACHE_DIR / key
@@ -127,6 +132,13 @@ def extract(image_path: Path, model: str | None = None,
             ],
         }],
     )
+    # Detect truncation explicitly. Without this a cut-off reply looks like
+    # a JSON parsing failure, and you go hunting in the wrong place.
+    if response.stop_reason == "max_tokens":
+        raise ValueError(
+            f"reply hit the {config.MAX_TOKENS}-token ceiling and was cut "
+            f"off mid-JSON -- raise config.MAX_TOKENS"
+        )
 
     reply = reply_text(response)
     fields = parse_json_reply(reply)

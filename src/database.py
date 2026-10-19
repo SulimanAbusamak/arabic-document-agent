@@ -76,6 +76,30 @@ CREATE INDEX IF NOT EXISTS idx_vendor_key ON invoices(vendor_name_key);
 CREATE INDEX IF NOT EXISTS idx_status     ON invoices(status);
 CREATE INDEX IF NOT EXISTS idx_issue_date ON invoices(issue_date);
 
+
+CREATE TABLE IF NOT EXISTS decisions (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    image          TEXT    NOT NULL,
+    decision       TEXT    NOT NULL,          -- approve | escalate | reject
+    reason         TEXT    NOT NULL,
+    source         TEXT    NOT NULL,          -- policy | agent
+    overridden     TEXT,                      -- set if policy vetoed the model
+    trace          TEXT,                      -- JSON list of tools called
+    turns          INTEGER DEFAULT 0,
+    input_tokens   INTEGER DEFAULT 0,
+    output_tokens  INTEGER DEFAULT 0,
+    model          TEXT,
+    decided_at     TEXT    NOT NULL
+);
+
+-- Deliberately NOT unique on image. The invoices table is unique per
+-- document because a document is a fact; a decision is a judgement, and one
+-- document can be judged more than once -- re-run after a prompt change, or
+-- escalated by the agent and later approved by a human. A column could only
+-- hold the latest; a table keeps the history.
+CREATE INDEX IF NOT EXISTS idx_dec_image    ON decisions(image);
+CREATE INDEX IF NOT EXISTS idx_dec_decision ON decisions(decision);
+
 CREATE TABLE IF NOT EXISTS vendors (
     vendor_name_key   TEXT PRIMARY KEY,
     display_name      TEXT NOT NULL,             -- real spelling, for humans
@@ -199,6 +223,29 @@ def rebuild_vendors(conn: sqlite3.Connection) -> int:
     )
     return conn.execute("SELECT COUNT(*) FROM vendors").fetchone()[0]
 
+def save_decision(conn: sqlite3.Connection, d) -> None:
+    """Record one agent or policy decision. Appends; never overwrites."""
+    conn.execute(
+        """
+        INSERT INTO decisions (
+            image, decision, reason, source, overridden,
+            trace, turns, input_tokens, output_tokens, model, decided_at
+        ) VALUES (?,?,?,?,?, ?,?,?,?,?,?)
+        """,
+        (
+            d.image, d.decision, d.reason, d.source, d.overridden,
+            json.dumps(d.trace, ensure_ascii=False),
+            d.turns, d.input_tokens, d.output_tokens,
+            config.MODEL,
+            datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        ),
+    )
+
+
+def decided_images(conn: sqlite3.Connection) -> set[str]:
+    """Which documents already have a decision, so a re-run can skip them."""
+    return {r["image"] for r in
+            conn.execute("SELECT DISTINCT image FROM decisions")}
 
 def load_batch_results(reset: bool = False) -> None:
     """Read batch_results.json into the database."""

@@ -6,10 +6,10 @@
     "invoice": {
       "vendor_name": "شركة الأفق للحلول الرقمية",
       "vendor_name_key": "شركه الافق للحلول الرقميه",
-      "vendor_vat_number": "332181960013383",
+      "vendor_vat_number": "352814215557993",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
       "buyer_name_key": "شركه الفيصل التجاريه المحدوده",
-      "buyer_vat_number": "390838637940263",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-8786",
       "issue_date": "2026-03-05",
       "subtotal": 19270.5,
@@ -23,15 +23,15 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة الأفق للحلول الرقمية",
-      "vendor_vat_number": "332181960013383",
+      "vendor_vat_number": "352814215557993",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
-      "buyer_vat_number": "390838637940263",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-8786",
-      "issue_date": "16/9/1447",
-      "subtotal": "19,270.50 SAR",
+      "issue_date": "16/9/1447 هـ",
+      "subtotal": "19,270.50",
       "vat_rate": 15,
-      "vat_amount": "2,890.57 SAR",
-      "total_amount": "22,161.07 SAR",
+      "vat_amount": "2,890.57",
+      "total_amount": "22,161.07",
       "currency": "SAR",
       "confidence": 0.93,
       "unreadable_fields": []
@@ -41,8 +41,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 558,
-      "from_cache": true
+      "output_tokens": 552,
+      "from_cache": false
     }
   },
   {
@@ -52,10 +52,10 @@
     "invoice": {
       "vendor_name": "مؤسسة ابن سينا للمستلزمات الطبية",
       "vendor_name_key": "موسسه ابن سينا للمستلزمات الطبيه",
-      "vendor_vat_number": "341316475255343",
+      "vendor_vat_number": "356264747562453",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
       "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "319283276483503",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2025-4340",
       "issue_date": "2026-03-13",
       "subtotal": 51610.78,
@@ -63,15 +63,15 @@
       "vat_amount": 7741.62,
       "total_amount": 59352.4,
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة ابن سينا للمستلزمات الطبية",
-      "vendor_vat_number": "341316475255343",
+      "vendor_vat_number": "356264747562453",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "319283276483503",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2025-4340",
       "issue_date": "2026-03-13",
       "subtotal": "51,610.78",
@@ -79,7 +79,7 @@
       "vat_amount": "7,741.62",
       "total_amount": "59,352.40",
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
@@ -87,8 +87,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 571,
-      "from_cache": true
+      "output_tokens": 564,
+      "from_cache": false
     }
   },
   {
@@ -109,7 +109,7 @@
       "vat_amount": "7,741.62 SAR",
       "total_amount": "59,352.40 SAR",
       "currency": "SAR",
-      "confidence": 0.5,
+      "confidence": 0.45,
       "unreadable_fields": [
         "vendor_name",
         "vendor_vat_number",
@@ -121,8 +121,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5514,
-      "output_tokens": 680,
-      "from_cache": true
+      "output_tokens": 795,
+      "from_cache": false
     }
   },
   {
@@ -132,10 +132,10 @@
     "invoice": {
       "vendor_name": "شركة واحة الرياض للخدمات",
       "vendor_name_key": "شركه واحه الرياض للخدمات",
-      "vendor_vat_number": "318451462704823",
+      "vendor_vat_number": "347139839648083",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "381489325288093",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-8728",
       "issue_date": "2026-03-06",
       "subtotal": 87163.34,
@@ -143,15 +143,15 @@
       "vat_amount": 13074.5,
       "total_amount": 100237.84,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة واحة الرياض للخدمات",
-      "vendor_vat_number": "318451462704823",
+      "vendor_vat_number": "347139839648083",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "381489325288093",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-8728",
       "issue_date": "2026-03-06",
       "subtotal": "87,163.34",
@@ -159,7 +159,7 @@
       "vat_amount": "13,074.50",
       "total_amount": "100,237.84",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
@@ -167,8 +167,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 198,
-      "from_cache": true
+      "output_tokens": 585,
+      "from_cache": false
     }
   },
   {
@@ -178,10 +178,10 @@
     "invoice": {
       "vendor_name": "شركة البيان لتقنية المعلومات",
       "vendor_name_key": "شركه البيان لتقنيه المعلومات",
-      "vendor_vat_number": "393010310518343",
+      "vendor_vat_number": "371417054300113",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
       "buyer_name_key": "شركه الفيصل التجاريه المحدوده",
-      "buyer_vat_number": "373829973763113",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2025-8787",
       "issue_date": "2026-08-18",
       "subtotal": 110815.52,
@@ -189,15 +189,15 @@
       "vat_amount": 16622.33,
       "total_amount": 127437.85,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة البيان لتقنية المعلومات",
-      "vendor_vat_number": "393010310518343",
+      "vendor_vat_number": "371417054300113",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
-      "buyer_vat_number": "373829973763113",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2025-8787",
       "issue_date": "2026-08-18",
       "subtotal": "110,815.52",
@@ -205,7 +205,7 @@
       "vat_amount": "16,622.33",
       "total_amount": "127,437.85",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
@@ -213,21 +213,21 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 537,
-      "from_cache": true
+      "output_tokens": 511,
+      "from_cache": false
     }
   },
   {
     "image": "dev_004.png",
-    "status": "ok",
+    "status": "flagged",
     "error": null,
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "360647468723433",
+      "vendor_vat_number": "35031805534423",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "309805009788203",
+      "buyer_vat_number": "338263443182503",
       "invoice_number": "INV-2026-9563",
       "issue_date": "2026-09-25",
       "subtotal": 22644.91,
@@ -238,13 +238,19 @@
       "confidence": 0.9,
       "unreadable_fields": []
     },
-    "issues": [],
+    "issues": [
+      {
+        "rule": "supplier_vat_number_length",
+        "severity": "error",
+        "detail": "supplier VAT number must be 15 digits, got 14: 35031805534423"
+      }
+    ],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "٣٦٠٦٤٧٤٦٨٧٢٣٤٣٣",
+      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "٣٠٩٨٠٥٠٠٩٧٨٨٢٠٣",
-      "invoice_number": "INV-٢٠٢٦-٩٥٦٣",
+      "buyer_vat_number": "٣٣٨٢٦٣٤٤٣١٨٢٥٠٣",
+      "invoice_number": "٩٥٦٣-٢٠٢٦-INV",
       "issue_date": "٢٥/٠٩/٢٠٢٦",
       "subtotal": "٢٢,٦٤٤.٩١",
       "vat_rate": 15,
@@ -259,8 +265,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 1227,
-      "from_cache": true
+      "output_tokens": 1351,
+      "from_cache": false
     }
   },
   {
@@ -270,10 +276,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "360646468723433",
+      "vendor_vat_number": "350318055344233",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "309805009788203",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2026-9563",
       "issue_date": "2026-09-25",
       "subtotal": 22644.91,
@@ -287,10 +293,10 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "٣٦٠٦٤٦٤٦٨٧٢٣٤٣٣",
+      "vendor_vat_number": "350318055344233",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "٣٠٩٨٠٥٠٠٩٧٨٨٢٠٣",
-      "invoice_number": "INV-٢٠٢٦-٩٥٦٣",
+      "buyer_vat_number": "٣٣٨٢٦٢٤٤٢١٨٢٥٠٣",
+      "invoice_number": "٩٥٦٣-٢٠٢٦-INV",
       "issue_date": "٢٥/٠٩/٢٠٢٦",
       "subtotal": "٢٢,٦٤٤.٩١",
       "vat_rate": 15,
@@ -305,8 +311,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 1274,
-      "from_cache": true
+      "output_tokens": 1199,
+      "from_cache": false
     }
   },
   {
@@ -316,10 +322,10 @@
     "invoice": {
       "vendor_name": "مؤسسة ابن سينا للمستلزمات الطبية",
       "vendor_name_key": "موسسه ابن سينا للمستلزمات الطبيه",
-      "vendor_vat_number": "325135427849803",
+      "vendor_vat_number": "356264747562453",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
       "buyer_name_key": "شركه الفيصل التجاريه المحدوده",
-      "buyer_vat_number": "384124118244933",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-2648",
       "issue_date": "2026-08-15",
       "subtotal": 37483.85,
@@ -327,23 +333,23 @@
       "vat_amount": 5622.58,
       "total_amount": 43106.43,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة ابن سينا للمستلزمات الطبية",
-      "vendor_vat_number": "325135427849803",
+      "vendor_vat_number": "356264747562453",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
-      "buyer_vat_number": "384124118244933",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-2648",
       "issue_date": "2/3/1448 هـ",
-      "subtotal": "37,483.85",
+      "subtotal": "37,483.85 SAR",
       "vat_rate": 15,
-      "vat_amount": "5,622.58",
-      "total_amount": "43,106.43",
+      "vat_amount": "5,622.58 SAR",
+      "total_amount": "43,106.43 SAR",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
@@ -351,8 +357,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 210,
-      "from_cache": true
+      "output_tokens": 633,
+      "from_cache": false
     }
   },
   {
@@ -362,10 +368,10 @@
     "invoice": {
       "vendor_name": "مؤسسة النور للتوريدات",
       "vendor_name_key": "موسسه النور للتوريدات",
-      "vendor_vat_number": "358692322602563",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة نجد للصناعات",
       "buyer_name_key": "شركه نجد للصناعات",
-      "buyer_vat_number": "334216073375433",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2025-4280",
       "issue_date": "2026-04-02",
       "subtotal": 15569.31,
@@ -373,15 +379,15 @@
       "vat_amount": 2335.4,
       "total_amount": 17904.71,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة النور للتوريدات",
-      "vendor_vat_number": "358692322602563",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة نجد للصناعات",
-      "buyer_vat_number": "334216073375433",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2025-4280",
       "issue_date": "2026-04-02",
       "subtotal": "15,569.31",
@@ -389,7 +395,7 @@
       "vat_amount": "2,335.40",
       "total_amount": "17,904.71",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "meta": {
@@ -397,8 +403,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 589,
-      "from_cache": true
+      "output_tokens": 191,
+      "from_cache": false
     }
   },
   {
@@ -408,10 +414,10 @@
     "invoice": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
       "vendor_name_key": "موسسه جده للتبريد والتكييف",
-      "vendor_vat_number": "356159514846563",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "348236629946803",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-4650",
       "issue_date": "2026-09-21",
       "subtotal": 68298.01,
@@ -419,15 +425,15 @@
       "vat_amount": 10244.7,
       "total_amount": 78542.71,
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
-      "vendor_vat_number": "356159514846563",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "348236629946803",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-4650",
       "issue_date": "2026-09-21",
       "subtotal": "68,298.01",
@@ -435,7 +441,7 @@
       "vat_amount": "10,244.70",
       "total_amount": "78,542.71",
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
@@ -443,8 +449,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 495,
-      "from_cache": true
+      "output_tokens": 514,
+      "from_cache": false
     }
   },
   {
@@ -454,10 +460,10 @@
     "invoice": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
       "vendor_name_key": "موسسه جده للتبريد والتكييف",
-      "vendor_vat_number": "301632870831723",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "378895798687273",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2026-8850",
       "issue_date": "2026-02-11",
       "subtotal": 15430.09,
@@ -465,15 +471,15 @@
       "vat_amount": 2314.51,
       "total_amount": 17744.6,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
-      "vendor_vat_number": "301632870831723",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "378895798687273",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2026-8850",
       "issue_date": "11/02/2026",
       "subtotal": "15,430.09",
@@ -481,7 +487,7 @@
       "vat_amount": "2,314.51",
       "total_amount": "17,744.60",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
@@ -489,8 +495,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 573,
-      "from_cache": true
+      "output_tokens": 199,
+      "from_cache": false
     }
   },
   {
@@ -500,10 +506,10 @@
     "invoice": {
       "vendor_name": "شركة واحة الرياض للخدمات",
       "vendor_name_key": "شركه واحه الرياض للخدمات",
-      "vendor_vat_number": "396705466889373",
+      "vendor_vat_number": "347139839648083",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
       "buyer_name_key": "شركه الفيصل التجاريه المحدوده",
-      "buyer_vat_number": "334670656272983",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-5356",
       "issue_date": "2026-06-22",
       "subtotal": 6966.89,
@@ -517,15 +523,15 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة واحة الرياض للخدمات",
-      "vendor_vat_number": "396705466889373",
+      "vendor_vat_number": "347139839648083",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
-      "buyer_vat_number": "334670656272983",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-5356",
       "issue_date": "7/1/1448 هـ",
-      "subtotal": "6,966.89",
+      "subtotal": "6,966.89 SAR",
       "vat_rate": 15,
-      "vat_amount": "1,045.03",
-      "total_amount": "8,011.92",
+      "vat_amount": "1,045.03 SAR",
+      "total_amount": "8,011.92 SAR",
       "currency": "SAR",
       "confidence": 0.95,
       "unreadable_fields": []
@@ -535,8 +541,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 623,
-      "from_cache": true
+      "output_tokens": 688,
+      "from_cache": false
     }
   },
   {
@@ -546,10 +552,10 @@
     "invoice": {
       "vendor_name": "مؤسسة النور للتوريدات",
       "vendor_name_key": "موسسه النور للتوريدات",
-      "vendor_vat_number": "332719374529913",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
       "buyer_name_key": "شركه الفيصل التجاريه المحدوده",
-      "buyer_vat_number": "324190496631933",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-1730",
       "issue_date": "2026-08-10",
       "subtotal": 167787.27,
@@ -557,15 +563,15 @@
       "vat_amount": 25168.09,
       "total_amount": 192955.36,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة النور للتوريدات",
-      "vendor_vat_number": "332719374529913",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
-      "buyer_vat_number": "324190496631933",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-1730",
       "issue_date": "10/08/2026",
       "subtotal": "167,787.27",
@@ -573,7 +579,7 @@
       "vat_amount": "25,168.09",
       "total_amount": "192,955.36",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
@@ -581,8 +587,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 559,
-      "from_cache": true
+      "output_tokens": 524,
+      "from_cache": false
     }
   },
   {
@@ -592,10 +598,10 @@
     "invoice": {
       "vendor_name": "مؤسسة النور للتوريدات",
       "vendor_name_key": "موسسه النور للتوريدات",
-      "vendor_vat_number": "332719374529913",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
       "buyer_name_key": "شركه الفيصل التجاريه المحدوده",
-      "buyer_vat_number": "324190496631933",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-1730",
       "issue_date": "2026-08-10",
       "subtotal": 167787.27,
@@ -609,15 +615,15 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة النور للتوريدات",
-      "vendor_vat_number": "332719374529913",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
-      "buyer_vat_number": "324190496631933",
+      "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-1730",
       "issue_date": "10/08/2026",
-      "subtotal": "ر.س 167,787.27",
+      "subtotal": "167,787.27",
       "vat_rate": 15,
-      "vat_amount": "ر.س 25,168.09",
-      "total_amount": "ر.س 192,955.36",
+      "vat_amount": "25,168.09",
+      "total_amount": "192,955.36",
       "currency": "SAR",
       "confidence": 0.9,
       "unreadable_fields": []
@@ -627,8 +633,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5548,
-      "output_tokens": 744,
-      "from_cache": true
+      "output_tokens": 680,
+      "from_cache": false
     }
   },
   {
@@ -638,10 +644,10 @@
     "invoice": {
       "vendor_name": "شركة البيان لتقنية المعلومات",
       "vendor_name_key": "شركه البيان لتقنيه المعلومات",
-      "vendor_vat_number": "399650752735453",
+      "vendor_vat_number": "371417054300113",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
       "buyer_name_key": "شركه الفيصل التجاريه المحدوده",
-      "buyer_vat_number": "349480831367833",
+      "buyer_vat_number": "333741061365353",
       "invoice_number": "INV-2026-6972",
       "issue_date": "2026-06-19",
       "subtotal": 143910.31,
@@ -649,15 +655,15 @@
       "vat_amount": 21586.55,
       "total_amount": 165496.86,
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة البيان لتقنية المعلومات",
-      "vendor_vat_number": "٣٩٩٦٥٠٧٥٢٧٣٥٤٥٣",
+      "vendor_vat_number": "٣٧١٤١٧٠٥٤٣٠٠١١٣",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
-      "buyer_vat_number": "٣٤٩٤٨٠٨٣١٣٦٧٨٣٣",
+      "buyer_vat_number": "٣٣٣٧٤١٠٦١٣٦٥٣٥٣",
       "invoice_number": "٦٩٧٢-٢٠٢٦-INV",
       "issue_date": "١٩/٠٦/٢٠٢٦",
       "subtotal": "١٤٣,٩١٠.٣١",
@@ -665,7 +671,7 @@
       "vat_amount": "٢١,٥٨٦.٥٥",
       "total_amount": "١٦٥,٤٩٦.٨٦",
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "meta": {
@@ -673,8 +679,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 996,
-      "from_cache": true
+      "output_tokens": 1058,
+      "from_cache": false
     }
   },
   {
@@ -684,10 +690,10 @@
     "invoice": {
       "vendor_name": "شركة المراعي الحديثة للنقل",
       "vendor_name_key": "شركه المراعي الحديثه للنقل",
-      "vendor_vat_number": "335240824008423",
+      "vendor_vat_number": "350046006100303",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "371094777520473",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-9934",
       "issue_date": "2026-04-26",
       "subtotal": 58559.53,
@@ -701,9 +707,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة المراعي الحديثة للنقل",
-      "vendor_vat_number": "335240824008423",
+      "vendor_vat_number": "350046006100303",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "371094777520473",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-9934",
       "issue_date": "2026-04-26",
       "subtotal": "58,559.53",
@@ -719,8 +725,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 530,
-      "from_cache": true
+      "output_tokens": 465,
+      "from_cache": false
     }
   },
   {
@@ -730,10 +736,10 @@
     "invoice": {
       "vendor_name": "شركة المراعي الحديثة للنقل",
       "vendor_name_key": "شركه المراعي الحديثه للنقل",
-      "vendor_vat_number": "335240824008423",
+      "vendor_vat_number": "350046006100303",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "371094777520473",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-9934",
       "issue_date": "2026-04-26",
       "subtotal": 58559.53,
@@ -741,15 +747,15 @@
       "vat_amount": 8783.93,
       "total_amount": 67343.46,
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة المراعي الحديثة للنقل",
-      "vendor_vat_number": "335240824008423",
+      "vendor_vat_number": "350046006100303",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "371094777520473",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-9934",
       "issue_date": "2026-04-26",
       "subtotal": "58,559.53",
@@ -757,7 +763,7 @@
       "vat_amount": "8,783.93",
       "total_amount": "67,343.46",
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
@@ -765,26 +771,42 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5548,
-      "output_tokens": 599,
-      "from_cache": true
+      "output_tokens": 539,
+      "from_cache": false
     }
   },
   {
     "image": "dev_013.png",
-    "status": "unusable",
-    "error": "validation failed: vendor_vat_number: Value error, VAT number must be 15 digits, got 14: 30679740344713",
-    "invoice": null,
+    "status": "ok",
+    "error": null,
+    "invoice": {
+      "vendor_name": "شركة الأفق للحلول الرقمية",
+      "vendor_name_key": "شركه الافق للحلول الرقميه",
+      "vendor_vat_number": "352814215557993",
+      "buyer_name": "شركة الفيصل التجارية المحدودة",
+      "buyer_name_key": "شركه الفيصل التجاريه المحدوده",
+      "buyer_vat_number": "333741061365253",
+      "invoice_number": "INV-2026-1318",
+      "issue_date": "2026-01-21",
+      "subtotal": 14461.66,
+      "vat_rate": 0.15,
+      "vat_amount": 2169.25,
+      "total_amount": 16630.91,
+      "currency": "SAR",
+      "confidence": 0.85,
+      "unreadable_fields": []
+    },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة الأفق للحلول الرقمية",
-      "vendor_vat_number": "٣٠٦٧٩٧٤٠٣٤٤٧١٣",
+      "vendor_vat_number": "٣٥٢٨١٤٢١٥٥٥٧٩٩٣",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
-      "buyer_vat_number": "٣٣٤٩٣٦١٨٣٣٤٢١٠٣",
+      "buyer_vat_number": "٣٣٣٧٤١٠٦١٣٦٥٢٥٣",
       "invoice_number": "1318-2026-INV",
       "issue_date": "٢١/٠١/٢٠٢٦",
       "subtotal": "١٤,٤٦١.٦٦",
       "vat_rate": 15,
-      "vat_amount": "٢,١٦٩.٣٥",
+      "vat_amount": "٢,١٦٩.٢٥",
       "total_amount": "١٦,٦٣٠.٩١",
       "currency": "SAR",
       "confidence": 0.85,
@@ -795,8 +817,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 1260,
-      "from_cache": true
+      "output_tokens": 1656,
+      "from_cache": false
     }
   },
   {
@@ -806,10 +828,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "317565512567463",
+      "vendor_vat_number": "350318055344223",
       "buyer_name": "شركة نجد للصناعات",
       "buyer_name_key": "شركه نجد للصناعات",
-      "buyer_vat_number": "380715451680873",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-1990",
       "issue_date": "2026-01-15",
       "subtotal": 64565.06,
@@ -823,9 +845,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "317565512567463",
+      "vendor_vat_number": "350318055344223",
       "buyer_name": "شركة نجد للصناعات",
-      "buyer_vat_number": "380715451680873",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-1990",
       "issue_date": "15 يناير 2026",
       "subtotal": "64,565.06 SAR",
@@ -841,8 +863,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 241,
-      "from_cache": true
+      "output_tokens": 236,
+      "from_cache": false
     }
   },
   {
@@ -852,10 +874,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "339821465840443",
+      "vendor_vat_number": "350318055344223",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
       "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "399727875588673",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2026-0607",
       "issue_date": "2026-03-06",
       "subtotal": 27497.81,
@@ -863,15 +885,15 @@
       "vat_amount": 4124.67,
       "total_amount": 31622.48,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "339821465840443",
+      "vendor_vat_number": "350318055344223",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "399727875588673",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2026-0607",
       "issue_date": "2026-03-06",
       "subtotal": "27,497.81",
@@ -879,7 +901,7 @@
       "vat_amount": "4,124.67",
       "total_amount": "31,622.48",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
@@ -887,8 +909,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 535,
-      "from_cache": true
+      "output_tokens": 599,
+      "from_cache": false
     }
   },
   {
@@ -898,10 +920,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الشرق الأوسط للمعدات",
       "vendor_name_key": "موسسه الشرق الاوسط للمعدات",
-      "vendor_vat_number": "391343161172403",
+      "vendor_vat_number": "376586313894243",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "305045562386923",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-7623",
       "issue_date": "2026-05-28",
       "subtotal": 40754.64,
@@ -909,15 +931,15 @@
       "vat_amount": 6113.2,
       "total_amount": 46867.84,
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الشرق الأوسط للمعدات",
-      "vendor_vat_number": "391343161172403",
+      "vendor_vat_number": "376586313894243",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "305045562386923",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-7623",
       "issue_date": "28/05/2026",
       "subtotal": "40,754.64",
@@ -925,7 +947,7 @@
       "vat_amount": "6,113.20",
       "total_amount": "46,867.84",
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
@@ -933,8 +955,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 530,
-      "from_cache": true
+      "output_tokens": 546,
+      "from_cache": false
     }
   },
   {
@@ -944,10 +966,10 @@
     "invoice": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
       "vendor_name_key": "موسسه جده للتبريد والتكييف",
-      "vendor_vat_number": "309097439533943",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "شركة نجد للصناعات",
       "buyer_name_key": "شركه نجد للصناعات",
-      "buyer_vat_number": "321047095214563",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-1887",
       "issue_date": "2026-08-28",
       "subtotal": 10466.07,
@@ -961,9 +983,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
-      "vendor_vat_number": "309097439533943",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "شركة نجد للصناعات",
-      "buyer_vat_number": "321047095214563",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-1887",
       "issue_date": "2026-08-28",
       "subtotal": "10,466.07",
@@ -979,8 +1001,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 572,
-      "from_cache": true
+      "output_tokens": 196,
+      "from_cache": false
     }
   },
   {
@@ -990,10 +1012,10 @@
     "invoice": {
       "vendor_name": "شركة الراجحي للمقاولات",
       "vendor_name_key": "شركه الراجحي للمقاولات",
-      "vendor_vat_number": "351370985931743",
+      "vendor_vat_number": "320074267451033",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "361200471138263",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-7265",
       "issue_date": "2026-08-16",
       "subtotal": 76302.89,
@@ -1001,15 +1023,15 @@
       "vat_amount": 11445.43,
       "total_amount": 87748.32,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة الراجحي للمقاولات",
-      "vendor_vat_number": "351370985931743",
+      "vendor_vat_number": "320074267451033",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "361200471138263",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-7265",
       "issue_date": "2026-08-16",
       "subtotal": "76,302.89",
@@ -1017,7 +1039,7 @@
       "vat_amount": "11,445.43",
       "total_amount": "87,748.32",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
@@ -1025,8 +1047,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 556,
-      "from_cache": true
+      "output_tokens": 519,
+      "from_cache": false
     }
   },
   {
@@ -1036,10 +1058,10 @@
     "invoice": {
       "vendor_name": "شركة البيان لتقنية المعلومات",
       "vendor_name_key": "شركه البيان لتقنيه المعلومات",
-      "vendor_vat_number": "329318393352903",
+      "vendor_vat_number": "371417054300113",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "342284210205393",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-8255",
       "issue_date": "2026-04-24",
       "subtotal": 48034.18,
@@ -1047,15 +1069,15 @@
       "vat_amount": 7205.13,
       "total_amount": 55239.31,
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة البيان لتقنية المعلومات",
-      "vendor_vat_number": "329318393352903",
+      "vendor_vat_number": "371417054300113",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "342284210205393",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-8255",
       "issue_date": "2026-04-24",
       "subtotal": "48,034.18",
@@ -1063,7 +1085,7 @@
       "vat_amount": "7,205.13",
       "total_amount": "55,239.31",
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
@@ -1071,8 +1093,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 556,
-      "from_cache": true
+      "output_tokens": 471,
+      "from_cache": false
     }
   },
   {
@@ -1082,10 +1104,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "371159212499853",
+      "vendor_vat_number": "350318055344223",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "369847896118363",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2026-1100",
       "issue_date": "2026-02-16",
       "subtotal": 1524.16,
@@ -1099,9 +1121,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "371159212499853",
+      "vendor_vat_number": "350318055344223",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "369847896118363",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2026-1100",
       "issue_date": "2026-02-16",
       "subtotal": "1,524.16",
@@ -1117,8 +1139,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 463,
-      "from_cache": true
+      "output_tokens": 470,
+      "from_cache": false
     }
   },
   {
@@ -1164,10 +1186,10 @@
       "buyer_vat_number": null,
       "invoice_number": "INV-2026-1100",
       "issue_date": "2026-02-16",
-      "subtotal": "1,524.16",
+      "subtotal": "1,524.16 SAR",
       "vat_rate": 15,
-      "vat_amount": "228.62",
-      "total_amount": "1,752.78",
+      "vat_amount": "228.62 SAR",
+      "total_amount": "1,752.78 SAR",
       "currency": "SAR",
       "confidence": 0.6,
       "unreadable_fields": [
@@ -1180,8 +1202,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5548,
-      "output_tokens": 718,
-      "from_cache": true
+      "output_tokens": 884,
+      "from_cache": false
     }
   },
   {
@@ -1191,10 +1213,10 @@
     "invoice": {
       "vendor_name": "مؤسسة النور للتوريدات",
       "vendor_name_key": "موسسه النور للتوريدات",
-      "vendor_vat_number": "365604945198323",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "373158514936893",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-1141",
       "issue_date": "2026-03-14",
       "subtotal": 57129.01,
@@ -1202,15 +1224,15 @@
       "vat_amount": 8569.35,
       "total_amount": 65698.36,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة النور للتوريدات",
-      "vendor_vat_number": "365604945198323",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "373158514936893",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-1141",
       "issue_date": "14/03/2026",
       "subtotal": "57,129.01",
@@ -1218,7 +1240,7 @@
       "vat_amount": "8,569.35",
       "total_amount": "65,698.36",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
@@ -1226,8 +1248,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 593,
-      "from_cache": true
+      "output_tokens": 405,
+      "from_cache": false
     }
   },
   {
@@ -1237,25 +1259,25 @@
     "invoice": {
       "vendor_name": "مؤسسة الشرق الأوسط للمعدات",
       "vendor_name_key": "موسسه الشرق الاوسط للمعدات",
-      "vendor_vat_number": "302290147679763",
+      "vendor_vat_number": "376586313894243",
       "buyer_name": "شركة نجد للصناعات",
       "buyer_name_key": "شركه نجد للصناعات",
-      "buyer_vat_number": "343815614978403",
+      "buyer_vat_number": "389983003496933",
       "invoice_number": "INV-2026-2879",
       "issue_date": "2026-03-08",
       "subtotal": 82625.41,
       "vat_rate": 0.15,
       "vat_amount": 13393.81,
-      "total_amount": 95019.32,
+      "total_amount": 95019.33,
       "currency": "SAR",
-      "confidence": 0.7,
+      "confidence": 0.75,
       "unreadable_fields": []
     },
     "issues": [
       {
         "rule": "total_equals_subtotal_plus_vat",
         "severity": "error",
-        "detail": "82625.41 + 13393.81 = 96019.22, but total says 95019.32"
+        "detail": "82625.41 + 13393.81 = 96019.22, but total says 95019.33"
       },
       {
         "rule": "vat_matches_rate",
@@ -1265,17 +1287,17 @@
     ],
     "raw_fields": {
       "vendor_name": "مؤسسة الشرق الأوسط للمعدات",
-      "vendor_vat_number": "٣٠٢٢٩٠١٤٧٦٧٩٧٦٣",
+      "vendor_vat_number": "٣٧٦٥٨٦٣١٣٨٩٤٢٤٣",
       "buyer_name": "شركة نجد للصناعات",
-      "buyer_vat_number": "٣٤٣٨١٥٦١٤٩٧٨٤٠٣",
+      "buyer_vat_number": "٣٨٩٩٨٣٠٠٣٤٩٦٩٣٣",
       "invoice_number": "٢٨٧٩-٢٠٢٦-INV",
       "issue_date": "٠٨-٠٣-٢٠٢٦",
       "subtotal": "٨٢,٦٢٥.٤١",
       "vat_rate": 15,
       "vat_amount": "١٣,٣٩٣.٨١",
-      "total_amount": "٩٥,٠١٩.٣٢",
+      "total_amount": "٩٥,٠١٩.٣٣",
       "currency": "SAR",
-      "confidence": 0.7,
+      "confidence": 0.75,
       "unreadable_fields": []
     },
     "meta": {
@@ -1283,8 +1305,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 1728,
-      "from_cache": true
+      "output_tokens": 1473,
+      "from_cache": false
     }
   },
   {
@@ -1294,10 +1316,10 @@
     "invoice": {
       "vendor_name": "مؤسسة النور للتوريدات",
       "vendor_name_key": "موسسه النور للتوريدات",
-      "vendor_vat_number": "316136968164533",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة نجد للصناعات",
       "buyer_name_key": "شركه نجد للصناعات",
-      "buyer_vat_number": "352181883552313",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-2474",
       "issue_date": "2026-08-14",
       "subtotal": 51856.1,
@@ -1311,9 +1333,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة النور للتوريدات",
-      "vendor_vat_number": "316136968164533",
+      "vendor_vat_number": "325905643809563",
       "buyer_name": "شركة نجد للصناعات",
-      "buyer_vat_number": "352181883552313",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-2474",
       "issue_date": "14/08/2026",
       "subtotal": "51,856.10",
@@ -1329,8 +1351,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 530,
-      "from_cache": true
+      "output_tokens": 223,
+      "from_cache": false
     }
   },
   {
@@ -1340,10 +1362,10 @@
     "invoice": {
       "vendor_name": "شركة الراجحي للمقاولات",
       "vendor_name_key": "شركه الراجحي للمقاولات",
-      "vendor_vat_number": "398079359782073",
+      "vendor_vat_number": "320074267451033",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "315182037788923",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-4129",
       "issue_date": "2026-03-18",
       "subtotal": 22376.55,
@@ -1357,9 +1379,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة الراجحي للمقاولات",
-      "vendor_vat_number": "398079359782073",
+      "vendor_vat_number": "320074267451033",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "315182037788923",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-4129",
       "issue_date": "18 مارس 2026",
       "subtotal": "22,376.55",
@@ -1375,8 +1397,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 505,
-      "from_cache": true
+      "output_tokens": 469,
+      "from_cache": false
     }
   },
   {
@@ -1386,10 +1408,10 @@
     "invoice": {
       "vendor_name": "شركة الأفق للحلول الرقمية",
       "vendor_name_key": "شركه الافق للحلول الرقميه",
-      "vendor_vat_number": "386528168505423",
+      "vendor_vat_number": "352814215557993",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "335733221418883",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-6732",
       "issue_date": "2026-07-06",
       "subtotal": 42386.75,
@@ -1397,15 +1419,15 @@
       "vat_amount": 6358.01,
       "total_amount": 48744.76,
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة الأفق للحلول الرقمية",
-      "vendor_vat_number": "386528168505423",
+      "vendor_vat_number": "352814215557993",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "335733221418883",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-6732",
       "issue_date": "21/1/1448 هـ",
       "subtotal": "42,386.75",
@@ -1413,7 +1435,7 @@
       "vat_amount": "6,358.01",
       "total_amount": "48,744.76",
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
@@ -1421,21 +1443,21 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 514,
-      "from_cache": true
+      "output_tokens": 599,
+      "from_cache": false
     }
   },
   {
     "image": "test_026.png",
-    "status": "ok",
+    "status": "flagged",
     "error": null,
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "374688623924073",
+      "vendor_vat_number": "35031805534423",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
       "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "358181412478263",
+      "buyer_vat_number": "313183560269143",
       "invoice_number": "INV-2025-5222",
       "issue_date": "2026-02-20",
       "subtotal": 11998.4,
@@ -1443,15 +1465,21 @@
       "vat_amount": 1799.76,
       "total_amount": 13798.16,
       "currency": "SAR",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "unreadable_fields": []
     },
-    "issues": [],
+    "issues": [
+      {
+        "rule": "supplier_vat_number_length",
+        "severity": "error",
+        "detail": "supplier VAT number must be 15 digits, got 14: 35031805534423"
+      }
+    ],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "٣٧٤٦٨٨٦٢٣٩٢٤٠٧٣",
+      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "٣٥٨١٨١٤١٢٤٧٨٢٦٣",
+      "buyer_vat_number": "٣١٣١٨٣٥٦٠٢٦٩١٤٣",
       "invoice_number": "٥٢٢٢-٢٠٢٥-INV",
       "issue_date": "٢٠-٠٢-٢٠٢٦",
       "subtotal": "١١,٩٩٨.٤٠",
@@ -1459,7 +1487,7 @@
       "vat_amount": "١,٧٩٩.٧٦",
       "total_amount": "١٣,٧٩٨.١٦",
       "currency": "SAR",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "unreadable_fields": []
     },
     "meta": {
@@ -1467,8 +1495,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 1575,
-      "from_cache": true
+      "output_tokens": 1493,
+      "from_cache": false
     }
   },
   {
@@ -1478,12 +1506,12 @@
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "374688623924073",
+      "vendor_vat_number": "35031805534423",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
       "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "358181412478263",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2025-5222",
-      "issue_date": null,
+      "issue_date": "2002-02-26",
       "subtotal": 11998.4,
       "vat_rate": 0.15,
       "vat_amount": 1799.76,
@@ -1494,18 +1522,18 @@
     },
     "issues": [
       {
-        "rule": "missing_issue_date",
-        "severity": "warning",
-        "detail": "could not read an issue date"
+        "rule": "supplier_vat_number_length",
+        "severity": "error",
+        "detail": "supplier VAT number must be 15 digits, got 14: 35031805534423"
       }
     ],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "٣٧٤٦٨٨٦٢٣٩٢٤٠٧٣",
+      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "٣٥٨١٨١٤١٢٤٧٨٢٦٣",
+      "buyer_vat_number": "٣١٢١٨٣٥٦٠٢٦٩١٤٣",
       "invoice_number": "٥٢٢٢-٢٠٢٥-INV",
-      "issue_date": "٢٠٠٢-٢-٢٠٢٦",
+      "issue_date": "٢٦-٠٢-٢٠٠٢",
       "subtotal": "١١,٩٩٨.٤٠",
       "vat_rate": 15,
       "vat_amount": "١,٧٩٩.٧٦",
@@ -1519,8 +1547,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5467,
-      "output_tokens": 1807,
-      "from_cache": true
+      "output_tokens": 2411,
+      "from_cache": false
     }
   },
   {
@@ -1530,10 +1558,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الخليج للتجارة",
       "vendor_name_key": "موسسه الخليج للتجاره",
-      "vendor_vat_number": "314341036971173",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "398089324609533",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-7703",
       "issue_date": "2026-01-23",
       "subtotal": 54478.11,
@@ -1547,9 +1575,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الخليج للتجارة",
-      "vendor_vat_number": "314341036971173",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "398089324609533",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-7703",
       "issue_date": "23/01/2026",
       "subtotal": "54,478.11",
@@ -1565,8 +1593,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 225,
-      "from_cache": true
+      "output_tokens": 198,
+      "from_cache": false
     }
   },
   {
@@ -1576,10 +1604,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الخليج للتجارة",
       "vendor_name_key": "موسسه الخليج للتجاره",
-      "vendor_vat_number": "314341036971173",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "398089324609533",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-7703",
       "issue_date": "2026-01-23",
       "subtotal": 54478.11,
@@ -1587,15 +1615,15 @@
       "vat_amount": 8171.72,
       "total_amount": 62649.83,
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الخليج للتجارة",
-      "vendor_vat_number": "314341036971173",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "398089324609533",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-7703",
       "issue_date": "23/01/2026",
       "subtotal": "54,478.11",
@@ -1603,7 +1631,7 @@
       "vat_amount": "8,171.72",
       "total_amount": "62,649.83",
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "meta": {
@@ -1611,8 +1639,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5548,
-      "output_tokens": 675,
-      "from_cache": true
+      "output_tokens": 580,
+      "from_cache": false
     }
   },
   {
@@ -1622,10 +1650,10 @@
     "invoice": {
       "vendor_name": "شركة الأفق للحلول الرقمية",
       "vendor_name_key": "شركه الافق للحلول الرقميه",
-      "vendor_vat_number": "321704303054863",
+      "vendor_vat_number": "352814215557993",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
       "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "387403450541563",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2026-9871",
       "issue_date": "2026-04-03",
       "subtotal": 27687.38,
@@ -1633,15 +1661,15 @@
       "vat_amount": 4153.11,
       "total_amount": 31840.49,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة الأفق للحلول الرقمية",
-      "vendor_vat_number": "321704303054863",
+      "vendor_vat_number": "352814215557993",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "387403450541563",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2026-9871",
       "issue_date": "03/04/2026",
       "subtotal": "27,687.38",
@@ -1649,7 +1677,7 @@
       "vat_amount": "4,153.11",
       "total_amount": "31,840.49",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "meta": {
@@ -1657,8 +1685,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 562,
-      "from_cache": true
+      "output_tokens": 729,
+      "from_cache": false
     }
   },
   {
@@ -1668,10 +1696,10 @@
     "invoice": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
       "vendor_name_key": "موسسه جده للتبريد والتكييف",
-      "vendor_vat_number": "316582029702133",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "شركة نجد للصناعات",
       "buyer_name_key": "شركه نجد للصناعات",
-      "buyer_vat_number": "355690927557193",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-4265",
       "issue_date": "2026-08-17",
       "subtotal": 120232.48,
@@ -1685,9 +1713,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
-      "vendor_vat_number": "316582029702133",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "شركة نجد للصناعات",
-      "buyer_vat_number": "355690927557193",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-4265",
       "issue_date": "2026-08-17",
       "subtotal": "120,232.48",
@@ -1703,8 +1731,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 223,
-      "from_cache": true
+      "output_tokens": 484,
+      "from_cache": false
     }
   },
   {
@@ -1714,10 +1742,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الخليج للتجارة",
       "vendor_name_key": "موسسه الخليج للتجاره",
-      "vendor_vat_number": "332370589578293",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
       "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "311467866912513",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2025-4983",
       "issue_date": "2026-03-26",
       "subtotal": 56503.94,
@@ -1731,9 +1759,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الخليج للتجارة",
-      "vendor_vat_number": "332370589578293",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "311467866912513",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2025-4983",
       "issue_date": "2026-03-26",
       "subtotal": "56,503.94",
@@ -1749,8 +1777,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 198,
-      "from_cache": true
+      "output_tokens": 594,
+      "from_cache": false
     }
   },
   {
@@ -1760,10 +1788,10 @@
     "invoice": {
       "vendor_name": "مجموعة الفيصل التجارية",
       "vendor_name_key": "مجموعه الفيصل التجاريه",
-      "vendor_vat_number": "399229959001093",
+      "vendor_vat_number": "308030023550633",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "343969078447363",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-6533",
       "issue_date": "2026-03-08",
       "subtotal": 38436.57,
@@ -1771,15 +1799,15 @@
       "vat_amount": 5765.49,
       "total_amount": 44202.06,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مجموعة الفيصل التجارية",
-      "vendor_vat_number": "399229959001093",
+      "vendor_vat_number": "308030023550633",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "343969078447363",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2026-6533",
       "issue_date": "19/9/1447 هـ",
       "subtotal": "38,436.57",
@@ -1787,7 +1815,7 @@
       "vat_amount": "5,765.49",
       "total_amount": "44,202.06",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
@@ -1795,8 +1823,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 645,
-      "from_cache": true
+      "output_tokens": 680,
+      "from_cache": false
     }
   },
   {
@@ -1806,10 +1834,10 @@
     "invoice": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
       "vendor_name_key": "موسسه جده للتبريد والتكييف",
-      "vendor_vat_number": "374701687339503",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "شركة نجد للصناعات",
       "buyer_name_key": "شركه نجد للصناعات",
-      "buyer_vat_number": "304797480162453",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-1947",
       "issue_date": "2026-03-07",
       "subtotal": 31886.66,
@@ -1823,9 +1851,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
-      "vendor_vat_number": "374701687339503",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "شركة نجد للصناعات",
-      "buyer_vat_number": "304797480162453",
+      "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-1947",
       "issue_date": "07/03/2026",
       "subtotal": "31,886.66",
@@ -1842,7 +1870,7 @@
       "prompt_version": "v2",
       "input_tokens": 5386,
       "output_tokens": 196,
-      "from_cache": true
+      "from_cache": false
     }
   },
   {
@@ -1852,10 +1880,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "395369495888793",
+      "vendor_vat_number": "350318055344233",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
       "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "347055169409743",
+      "buyer_vat_number": "313183560269143",
       "invoice_number": "INV-2025-0311",
       "issue_date": "2026-08-14",
       "subtotal": 55755.76,
@@ -1863,23 +1891,23 @@
       "vat_amount": 8363.36,
       "total_amount": 64119.13,
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "٣٩٥٣٦٩٤٩٥٨٨٨٧٩٣",
+      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣٣",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "٣٤٧٠٥٥١٦٩٤٠٩٧٤٣",
-      "invoice_number": "INV-٢٠٢٥-٠٣١١",
+      "buyer_vat_number": "٣١٣١٨٣٥٦٠٢٦٩١٤٣",
+      "invoice_number": "٠٣١١-٢٠٢٥-INV",
       "issue_date": "١٤/٠٨/٢٠٢٦",
       "subtotal": "٥٥,٧٥٥.٧٦",
       "vat_rate": 15,
       "vat_amount": "٨,٣٦٣.٣٦",
       "total_amount": "٦٤,١١٩.١٣",
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "meta": {
@@ -1887,8 +1915,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 1679,
-      "from_cache": true
+      "output_tokens": 1310,
+      "from_cache": false
     }
   },
   {
@@ -1898,10 +1926,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الخليج للتجارة",
       "vendor_name_key": "موسسه الخليج للتجاره",
-      "vendor_vat_number": "349733484344373",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "357584419866523",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-1790",
       "issue_date": "2026-05-03",
       "subtotal": 5888.46,
@@ -1915,9 +1943,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الخليج للتجارة",
-      "vendor_vat_number": "349733484344373",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "357584419866523",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-1790",
       "issue_date": "2026-05-03",
       "subtotal": "5,888.46",
@@ -1933,8 +1961,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 225,
-      "from_cache": true
+      "output_tokens": 193,
+      "from_cache": false
     }
   },
   {
@@ -1944,10 +1972,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الخليج للتجارة",
       "vendor_name_key": "موسسه الخليج للتجاره",
-      "vendor_vat_number": "349733484344373",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "357584419866523",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-1790",
       "issue_date": "2026-05-03",
       "subtotal": 5888.46,
@@ -1955,15 +1983,15 @@
       "vat_amount": 883.27,
       "total_amount": 6771.73,
       "currency": "SAR",
-      "confidence": 0.65,
+      "confidence": 0.6,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الخليج للتجارة",
-      "vendor_vat_number": "349733484344373",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "357584419866523",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-1790",
       "issue_date": "2026-05-03",
       "subtotal": "5,888.46",
@@ -1971,7 +1999,7 @@
       "vat_amount": "883.27",
       "total_amount": "6,771.73",
       "currency": "SAR",
-      "confidence": 0.65,
+      "confidence": 0.6,
       "unreadable_fields": []
     },
     "meta": {
@@ -1979,8 +2007,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5467,
-      "output_tokens": 644,
-      "from_cache": true
+      "output_tokens": 576,
+      "from_cache": false
     }
   },
   {
@@ -1990,10 +2018,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الشرق الأوسط للمعدات",
       "vendor_name_key": "موسسه الشرق الاوسط للمعدات",
-      "vendor_vat_number": "382677345401933",
+      "vendor_vat_number": "376586313894243",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "380262067240043",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-5418",
       "issue_date": "2026-03-25",
       "subtotal": 20981.7,
@@ -2007,9 +2035,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الشرق الأوسط للمعدات",
-      "vendor_vat_number": "382677345401933",
+      "vendor_vat_number": "376586313894243",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "380262067240043",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-5418",
       "issue_date": "25/03/2026",
       "subtotal": "20,981.70",
@@ -2025,8 +2053,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 584,
-      "from_cache": true
+      "output_tokens": 586,
+      "from_cache": false
     }
   },
   {
@@ -2039,7 +2067,7 @@
       "vendor_name": null,
       "vendor_vat_number": null,
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "380262067240043",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-5418",
       "issue_date": "25/03/2026",
       "subtotal": "20,981.70 SAR",
@@ -2047,7 +2075,7 @@
       "vat_amount": "3,147.26 SAR",
       "total_amount": "24,128.96 SAR",
       "currency": "SAR",
-      "confidence": 0.55,
+      "confidence": 0.45,
       "unreadable_fields": [
         "vendor_name",
         "vendor_vat_number"
@@ -2058,8 +2086,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5377,
-      "output_tokens": 674,
-      "from_cache": true
+      "output_tokens": 750,
+      "from_cache": false
     }
   },
   {
@@ -2069,10 +2097,10 @@
     "invoice": {
       "vendor_name": "شركة واحة الرياض للخدمات",
       "vendor_name_key": "شركه واحه الرياض للخدمات",
-      "vendor_vat_number": "332753046374543",
+      "vendor_vat_number": "347139839648083",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "399045301742683",
+      "buyer_vat_number": "389071683772933",
       "invoice_number": "INV-2026-8807",
       "issue_date": "2026-04-22",
       "subtotal": 122243.82,
@@ -2086,9 +2114,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة واحة الرياض للخدمات",
-      "vendor_vat_number": "٣٣٢٧٥٣٠٤٦٣٧٤٥٤٣",
+      "vendor_vat_number": "٣٤٧١٣٩٨٣٩٦٤٨٠٨٣",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "٣٩٩٠٤٥٣٠١٧٤٢٦٨٣",
+      "buyer_vat_number": "٣٨٩٠٧١٦٨٣٧٧٢٩٣٣",
       "invoice_number": "٨٨٠٧-٢٠٢٦-INV",
       "issue_date": "٢٢ أبريل ٢٠٢٦",
       "subtotal": "١٢٢,٢٤٣.٨٢",
@@ -2104,8 +2132,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 953,
-      "from_cache": true
+      "output_tokens": 975,
+      "from_cache": false
     }
   },
   {
@@ -2115,10 +2143,10 @@
     "invoice": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
       "vendor_name_key": "موسسه جده للتبريد والتكييف",
-      "vendor_vat_number": "307286790874063",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "340391065180173",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-2925",
       "issue_date": "2026-10-03",
       "subtotal": 91629.24,
@@ -2126,15 +2154,15 @@
       "vat_amount": 13744.39,
       "total_amount": 105373.63,
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
-      "vendor_vat_number": "307286790874063",
+      "vendor_vat_number": "315750081453513",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "340391065180173",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-2925",
       "issue_date": "2026-10-03",
       "subtotal": "91,629.24",
@@ -2142,7 +2170,7 @@
       "vat_amount": "13,744.39",
       "total_amount": "105,373.63",
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
@@ -2150,8 +2178,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 512,
-      "from_cache": true
+      "output_tokens": 539,
+      "from_cache": false
     }
   },
   {
@@ -2161,10 +2189,10 @@
     "invoice": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
       "vendor_name_key": "موسسه جده للتبريد والتكييف",
-      "vendor_vat_number": "307286790874063",
-      "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
-      "buyer_vat_number": "340391065180173",
+      "vendor_vat_number": "315750081453513",
+      "buyer_name": "شركة نبوك للتنمية الزراعية",
+      "buyer_name_key": "شركه نبوك للتنميه الزراعيه",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-2925",
       "issue_date": "2026-10-03",
       "subtotal": 91629.24,
@@ -2178,9 +2206,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
-      "vendor_vat_number": "307286790874063",
-      "buyer_name": "شركة تبوك للتنمية الزراعية",
-      "buyer_vat_number": "340391065180173",
+      "vendor_vat_number": "315750081453513",
+      "buyer_name": "شركة نبوك للتنمية الزراعية",
+      "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-2925",
       "issue_date": "2026-10-03",
       "subtotal": "91,629.24",
@@ -2196,8 +2224,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5509,
-      "output_tokens": 1003,
-      "from_cache": true
+      "output_tokens": 774,
+      "from_cache": false
     }
   },
   {
@@ -2207,10 +2235,10 @@
     "invoice": {
       "vendor_name": "شركة الأفق للحلول الرقمية",
       "vendor_name_key": "شركه الافق للحلول الرقميه",
-      "vendor_vat_number": "311907903067383",
+      "vendor_vat_number": "352814215557993",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "330284395995343",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-5643",
       "issue_date": "2026-07-15",
       "subtotal": 74865.59,
@@ -2218,15 +2246,15 @@
       "vat_amount": 11229.84,
       "total_amount": 86095.43,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة الأفق للحلول الرقمية",
-      "vendor_vat_number": "311907903067383",
+      "vendor_vat_number": "352814215557993",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "330284395995343",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2025-5643",
       "issue_date": "1/2/1448 هـ",
       "subtotal": "74,865.59",
@@ -2234,7 +2262,7 @@
       "vat_amount": "11,229.84",
       "total_amount": "86,095.43",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
@@ -2242,8 +2270,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 200,
-      "from_cache": true
+      "output_tokens": 700,
+      "from_cache": false
     }
   },
   {
@@ -2253,10 +2281,10 @@
     "invoice": {
       "vendor_name": "مؤسسة الخليج للتجارة",
       "vendor_name_key": "موسسه الخليج للتجاره",
-      "vendor_vat_number": "388263435175183",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "330469901398373",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2026-6237",
       "issue_date": "2026-08-27",
       "subtotal": 84714.24,
@@ -2264,15 +2292,15 @@
       "vat_amount": 12707.14,
       "total_amount": 97421.38,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الخليج للتجارة",
-      "vendor_vat_number": "388263435175183",
+      "vendor_vat_number": "303428562825403",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "330469901398373",
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2026-6237",
       "issue_date": "2026-08-27",
       "subtotal": "84,714.24",
@@ -2280,7 +2308,7 @@
       "vat_amount": "12,707.14",
       "total_amount": "97,421.38",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "meta": {
@@ -2288,8 +2316,8 @@
       "model": "claude-haiku-5-5",
       "prompt_version": "v2",
       "input_tokens": 5386,
-      "output_tokens": 195,
-      "from_cache": true
+      "output_tokens": 430,
+      "from_cache": false
     }
   }
 ]
