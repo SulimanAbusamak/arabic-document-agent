@@ -132,9 +132,17 @@ def build_record(rng: random.Random, index: int) -> dict:
     vendor_cr = D.commercial_register(rng)
     vendor_phone = D.phone_number(rng)
 
-    invoice_number = f"INV-{rng.randint(2025, 2026)}-{rng.randint(1, 9999):04d}"
-
+        # The year in an invoice number is the year it was issued -- it is not
+    # independent of the date, which is what the first version assumed. Half
+    # the invoices ended up carrying a 2025 prefix on a 2026 date, and the
+    # agent correctly flagged every one of them as inconsistent.
+    #
+    # The discarded draw keeps the random sequence identical, so nothing else
+    # about any invoice changes.
+    rng.randint(2025, 2026)
+    serial = rng.randint(1, 9999)
     issue = date(2026, 1, 1) + timedelta(days=rng.randint(0, 280))
+    invoice_number = f"INV-{issue.year}-{serial:04d}"
     supply = issue - timedelta(days=rng.randint(0, 10))
 
     # ---- line items -------------------------------------------------------
