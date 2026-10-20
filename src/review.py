@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import sys
 import time
-from pathlib import Path
 
 import config
 from agent import AgentDecision, run_agent
@@ -60,8 +59,9 @@ def main() -> None:
         decisions.append(d)
 
         where = "policy" if d.source == "policy" else f"agent/{d.turns}"
-        print(f"  [{n:>2}/{len(todo)}] {d.decision.upper():8} "
-              f"{where:9} {d.image}")
+        note = "  <- recovered by retry" if result.recovered else ""
+        print(f"  [{n:>2}/{len(todo)}] {d.decision.upper():18} "
+              f"{where:9} {path.name}{note}")
 
     elapsed = time.time() - started
 
@@ -111,7 +111,13 @@ def show_summary(conn) -> None:
         FROM ({latest}) GROUP BY decision, source
         ORDER BY decision, source
     """):
-        print(f"    {r['decision']:9} {r['source']:7} {r['n']:>3}")
+        print(f"    {r['decision']:18} {r['source']:7} {r['n']:>3}")
+
+    print("\n    approve             pay it")
+    print("    escalate            a person here must look at it")
+    print("    rescan              we cannot read it -- fetch a better copy")
+    print("    return_to_supplier  set by a human after review, never by "
+          "the system")
 
     # The interesting cross-tab: what the pipeline thought, against what was
     # decided. A 'flagged' invoice that got approved is worth a hard look.
@@ -122,14 +128,30 @@ def show_summary(conn) -> None:
         GROUP BY i.status, d.decision
         ORDER BY i.status, d.decision
     """):
-        print(f"    {r['status']:9} -> {r['decision']:9} {r['n']:>3}")
+        print(f"    {r['status']:9} -> {r['decision']:18} {r['n']:>3}")
+
+    # Did the retry change any outcomes? A document recovered from flagged to
+    # ok should now be approvable, and that is the whole payoff of the
+    # cascade expressed as decisions rather than as accuracy.
+    rows = conn.execute(f"""
+        SELECT i.retried, i.recovered, d.decision, COUNT(*) AS n
+        FROM ({latest}) d JOIN invoices i ON i.image = d.image
+        WHERE i.retried = 1
+        GROUP BY i.retried, i.recovered, d.decision
+        ORDER BY i.recovered DESC, d.decision
+    """).fetchall()
+    if rows:
+        print("\n  documents that needed a second opinion:")
+        for r in rows:
+            tag = "recovered" if r["recovered"] else "not recovered"
+            print(f"    {tag:15} -> {r['decision']:18} {r['n']:>3}")
 
     row = conn.execute(f"""
         SELECT COUNT(*) AS n, SUM(input_tokens) AS ti, SUM(output_tokens) AS t_o
         FROM ({latest}) WHERE source = 'agent'
     """).fetchone()
     if row["n"]:
-        total = ((row["ti"] or 0) * 0.10 + (row["t_o"] or 0) * 0.50) / 1e6
+        total = config.call_cost(config.MODEL, row["ti"] or 0, row["t_o"] or 0)
         print(f"\n  agent runs   {row['n']}   total ${total:.4f}   "
               f"(${total / row['n']:.4f} each)")
 

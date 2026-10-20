@@ -9,7 +9,7 @@ Two kinds of tool live here, and the split is deliberate:
          Gather context. Safe to call, call as often as you like, change
          nothing. The agent uses these to answer "is this normal?"
 
-  WRITE  approve, escalate, reject
+  WRITE  approve, escalate, rescan
          End the conversation. Exactly one of these runs per invoice, and
          it is the recorded outcome.
 
@@ -167,21 +167,25 @@ SCHEMAS = [
         },
     },
     {
-        "name": "reject",
+        "name": "rescan",
         "description": (
-            "Return this invoice to the supplier. Final. Use it when the "
-            "document itself cannot be processed: required fields missing or "
-            "illegible, or a malformed VAT registration number. Rejection is "
-            "about the document being unusable, not about the amount being "
-            "suspicious -- a suspicious but readable invoice is an escalate."
+            "Send this document back to be scanned again. Final. Use it when "
+            "the document itself cannot be worked with: a required field is "
+            "missing or illegible. This is about the IMAGE being unusable, "
+            "not about the invoice being wrong -- a readable invoice whose "
+            "numbers look suspicious is an escalate, because only a person "
+            "holding the original can tell a supplier's mistake from a "
+            "misreading on our side. Never accuse the supplier."
         ),
         "input_schema": {
             "type": "object",
             "properties": {
                 "reason": {
                     "type": "string",
-                    "description": "One sentence the supplier can act on: "
-                                   "what is missing or unreadable.",
+                    "description": "One sentence: which field could not be "
+                                   "read, and enough detail (invoice number, "
+                                   "date, amount) for someone to find the "
+                                   "original document.",
                 },
             },
             "required": ["reason"],
@@ -190,7 +194,11 @@ SCHEMAS = [
 ]
 
 TOOL_NAMES = [s["name"] for s in SCHEMAS]
-DECISION_TOOLS = {"approve", "escalate", "reject"}
+DECISION_TOOLS = {"approve", "escalate", "rescan"}
+# No return_to_supplier here, deliberately. That outcome exists, but a human
+# sets it after reviewing an escalation -- the agent is never allowed to
+# accuse a supplier, because a failed arithmetic check is just as likely to
+# be our own misread digit (see the note in agent.py).
 
 
 # --------------------------------------------------------------------------
@@ -398,9 +406,9 @@ def escalate(reason: str) -> dict:
     return {"decision": "escalate", "reason": reason}
 
 
-def reject(reason: str) -> dict:
+def rescan(reason: str) -> dict:
     """Terminal."""
-    return {"decision": "reject", "reason": reason}
+    return {"decision": "rescan", "reason": reason}
 
 
 # --------------------------------------------------------------------------
@@ -452,7 +460,7 @@ def run_tool(conn: sqlite3.Connection, name: str, args: dict,
             if not reason or not str(reason).strip():
                 return {"error": f"{name} needs a reason"}
             return {"approve": approve, "escalate": escalate,
-                    "reject": reject}[name](str(reason).strip())
+                    "rescan": rescan}[name](str(reason).strip())
 
         return {"error": f"unknown tool '{name}'. Available: "
                          f"{', '.join(TOOL_NAMES)}"}
@@ -498,7 +506,7 @@ def main() -> None:
         ("get_vendor_history", {"vendor_name": real_name, "limit": 3}, None),
         ("approve",            {"reason": "checks passed, amount typical"}, None),
         ("escalate",           {"reason": "94,018 SAR vs 14,200 average"}, None),
-        ("reject",             {"reason": "VAT number unreadable"}, None),
+        ("rescan",             {"reason": "VAT number unreadable"}, None),
         # the malformed calls -- these must return errors, not explode
         ("search_vendor",      {}, None),
         ("approve",            {"reason": "  "}, None),

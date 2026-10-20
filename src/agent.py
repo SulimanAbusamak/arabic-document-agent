@@ -45,7 +45,30 @@ import tools
 from database import connect
 from pipeline import Result, find_image, process
 
-Decision = Literal["approve", "escalate", "reject"]
+Decision = Literal["approve", "escalate", "rescan", "return_to_supplier"]
+
+# Four outcomes, not three, and the split is about WHO has to act:
+#
+#   approve             pay it.
+#   escalate            a person here must look at it.
+#   rescan              we cannot read the paper. OUR problem -- fetch a
+#                       better copy. No contact with the supplier.
+#   return_to_supplier  the invoice itself is wrong. THEIR problem -- ask
+#                       for a corrected one.
+#
+# Note what is NOT here: nothing in the system ever decides
+# return_to_supplier on its own. It is set by a human after an escalation,
+# and the reason is this project's own evaluation:
+#
+#   dev_022's arithmetic did not reconcile. The obvious reading is that the
+#   supplier made a mistake. The ground truth says otherwise -- OUR read was
+#   wrong, Haiku saw ١٢ as ١٣, and Sonnet later read it correctly.
+#
+# Had the system auto-returned on a failed arithmetic check, it would have
+# written to a Saudi company accusing them of an error we had made. From
+# inside the pipeline the two cases are indistinguishable: "subtotal + VAT
+# does not equal total" means either their invoice is wrong or we misread a
+# digit, and only someone holding the original can tell which.
 
 # A run that has not decided after this many round trips is a run that is
 # going in circles. Cap it: an unbounded while-loop against a paid API is
@@ -63,7 +86,12 @@ cannot see the original document -- the extracted fields and the validation \
 findings are all you have, so if something important is missing or \
 unreadable, say so rather than guessing.
 
-Your job is to reach exactly one decision: approve, escalate or reject.
+Your job is to reach exactly one decision: approve, escalate or rescan.
+
+Never accuse the supplier of an error. If the numbers on an invoice do not \
+reconcile, that is just as likely to be a digit misread on our side as a \
+mistake on theirs, and you cannot see the original document to tell the \
+difference. Escalate instead, and say what does not add up.
 
 How to weigh things:
 
@@ -120,32 +148,75 @@ class AgentDecision:
 # --------------------------------------------------------------------------
 # The hard rules -- code, not judgement
 # --------------------------------------------------------------------------
+def reference(raw: dict) -> str:
+    """
+    Identify a document from whatever was legible, for a human to find it.
+
+    A rejected invoice is not a blank page. On dev_001_deg the supplier name
+    was unreadable and SEVEN other fields read perfectly -- the number, the
+    date, all three amounts. A reason that says only "validation failed"
+    throws all of that away and leaves a clerk with nothing to search for.
+    """
+    bits = []
+    if raw.get("invoice_number"):
+        bits.append(f"invoice {raw['invoice_number']}")
+    if raw.get("issue_date"):
+        bits.append(f"dated {raw['issue_date']}")
+    if raw.get("total_amount"):
+        bits.append(f"total {raw['total_amount']}")
+    if raw.get("vendor_name"):
+        bits.append(f"from {raw['vendor_name']}")
+    elif raw.get("buyer_name"):
+        bits.append(f"addressed to {raw['buyer_name']}")
+    return ", ".join(bits) if bits else "no identifying field was legible"
+
+
 def policy_check(result: Result, conn) -> AgentDecision | None:
     """
     Settle the cases that are not the model's to decide.
 
     Returns a finished AgentDecision, or None meaning "this one needs
     judgement -- hand it to the agent". Every path here is free: no API
-    call, so roughly half the batch never costs anything.
+    call, so roughly a third of the batch never costs anything.
     """
     inv = result.invoice
+    raw = result.raw_fields or {}
 
-    # 1. The document could not be validated at all. Nothing to judge.
+    # 1. The document could not be read. Ours to fix, not the supplier's.
     if result.status == "unusable" or inv is None:
+        unreadable = raw.get("unreadable_fields") or []
+        what = (", ".join(unreadable) if unreadable
+                else (result.error or "unknown"))
+
+        # Two independent models failing is a stronger claim than one: it
+        # says the ink is not there, rather than that we used a weak model.
+        confidence = (
+            "Two models were tried and neither could read it, so a better "
+            "copy is needed rather than a better model."
+            if result.retried else
+            "A second model was not attempted."
+        )
         return AgentDecision(
-            image=result.image, decision="reject", source="policy",
-            reason=f"Document could not be processed: {result.error}",
+            image=result.image, decision="rescan", source="policy",
+            reason=(f"Could not be read: {what}. {reference(raw)}. "
+                    f"{confidence} Request a clearer copy."),
         )
 
-    # 2. Validation found a hard error. The numbers on this document
-    #    contradict each other, so it cannot be paid as read, whatever it
-    #    looks like otherwise.
+    # 2. Validation found a hard error: the numbers on the document do not
+    #    agree with each other. Escalate -- and say plainly that this could
+    #    be their mistake OR ours, because it could be either and the
+    #    system has no way to tell.
     errors = [i for i in result.issues if i.severity == "error"]
     if errors:
         detail = "; ".join(i.detail for i in errors)
+        tried = (" A second model was already tried and did not resolve it."
+                 if result.retried else "")
         return AgentDecision(
             image=result.image, decision="escalate", source="policy",
-            reason=f"Validation error, needs human verification: {detail}",
+            reason=(f"Amounts do not reconcile: {detail}. This is either an "
+                    f"error on the invoice or a misread digit on our side -- "
+                    f"compare against the original before contacting the "
+                    f"supplier.{tried}"),
         )
 
     total = inv.total_amount or 0

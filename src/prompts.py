@@ -6,7 +6,12 @@ often. PROMPT_VERSION is part of the cache key, so bumping it forces fresh
 API calls instead of silently reusing results from an older prompt.
 """
 
-PROMPT_VERSION = "v2"   # v2: added vat_rate, read off the invoice
+PROMPT_VERSION = "v3"
+# v2: added vat_rate, read off the invoice
+# v3: rule 6, on repeated adjacent Arabic-Indic digits. Measured on the dev
+#     set: vendor and buyer VAT numbers sat at 86.7%, and every single
+#     failure was the same thing -- a doubled ٣٣ transcribed as one ٣,
+#     giving 14 digits where there should be 15.
 
 EXTRACTION_PROMPT = """You are reading a Saudi Arabian tax invoice (فاتورة ضريبية).
 
@@ -49,5 +54,15 @@ Rules:
 5. For vat_rate, read the percentage actually printed on the document
    (ضريبة القيمة المضافة ١٥٪ -> 15). Do not assume a rate. If the invoice
    shows no rate at all, set it to null.
+
+6. Repeated adjacent digits are easy to miss in Arabic-Indic numerals: ٣٣,
+   ٢٢ and ٠٠ can look like a single digit at this resolution. Saudi VAT
+   registration numbers are always 15 digits long, so count the digits you
+   have transcribed for each VAT number. If you count 14, look again for a
+   doubled digit you may have read as one.
+
+   Do NOT add a digit to make the count reach 15. If you look again and
+   still read 14 digits, return the 14 you can actually see. A short number
+   that is honest can be caught downstream; an invented digit cannot.
 
 Return the JSON object and nothing else."""

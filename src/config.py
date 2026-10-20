@@ -41,6 +41,36 @@ MODEL = "claude-haiku-5-5"
 MODEL_STRONG = "claude-sonnet-5-5"
 
 MAX_TOKENS = 4000
+# --- retry on failure -----------------------------------------------------
+# When the cheap model cannot read a document, try once more with a stronger
+# one before giving up on it. A cheap-first cascade: Haiku reads everything,
+# Sonnet only ever sees the few documents Haiku failed on.
+#
+# Enlarging the image was the obvious other lever and it is not available.
+# These models look at images up to 2576 px on the long edge; our invoices
+# are already 2246, so there is ~15% of headroom and anything bigger gets
+# downscaled by the API before the model sees it. Cropping to the totals
+# region would work -- fewer pixels of page, all of them useful -- but that
+# is a bigger change.
+RETRY_MODEL = MODEL_STRONG
+
+# Per-million-token prices, per model. A single hardcoded pair was wrong the
+# moment a second model entered the system -- and wrong in the dangerous
+# direction, understating the bill.
+#
+# Note Haiku 5.5 is tiered: prompts over 100,000 tokens cost $0.50/$2.50
+# instead. Our calls are ~5,000 tokens so this never applies, but an agent
+# loop that ran long enough would cross it.
+PRICING = {
+    "claude-haiku-5-5":  {"in": 0.10, "out": 0.50},
+    "claude-sonnet-5-5": {"in": 2.00, "out": 10.00},
+}
+
+
+def call_cost(model: str, tokens_in: int, tokens_out: int) -> float:
+    """What one API call cost, in dollars."""
+    p = PRICING.get(model, PRICING[MODEL])
+    return (tokens_in * p["in"] + tokens_out * p["out"]) / 1_000_000
 
 # --------------------------------------------------------------------------
 # Business rules

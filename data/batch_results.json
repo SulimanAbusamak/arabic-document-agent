@@ -17,7 +17,7 @@
       "vat_amount": 2890.57,
       "total_amount": 22161.07,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
@@ -28,22 +28,27 @@
       "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-8786",
       "issue_date": "16/9/1447 هـ",
-      "subtotal": "19,270.50",
+      "subtotal": "19,270.50 SAR",
       "vat_rate": 15,
-      "vat_amount": "2,890.57",
-      "total_amount": "22,161.07",
+      "vat_amount": "2,890.57 SAR",
+      "total_amount": "22,161.07 SAR",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_000.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 552,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 659,
+      "cost": 0.0008886,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_001.png",
@@ -63,7 +68,7 @@
       "vat_amount": 7741.62,
       "total_amount": 59352.4,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "issues": [],
@@ -79,17 +84,22 @@
       "vat_amount": "7,741.62",
       "total_amount": "59,352.40",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_001.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 564,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 635,
+      "cost": 0.0008766000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_001_deg.png",
@@ -109,7 +119,7 @@
       "vat_amount": "7,741.62 SAR",
       "total_amount": "59,352.40 SAR",
       "currency": "SAR",
-      "confidence": 0.45,
+      "confidence": 0.4,
       "unreadable_fields": [
         "vendor_name",
         "vendor_vat_number",
@@ -119,11 +129,16 @@
     "meta": {
       "image": "dev_001_deg.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5514,
-      "output_tokens": 795,
+      "prompt_version": "v3",
+      "input_tokens": 5719,
+      "output_tokens": 770,
+      "cost": 0.0009569,
       "from_cache": false
-    }
+    },
+    "retried": true,
+    "recovered": false,
+    "first_status": "unusable",
+    "first_error": "validation failed: vendor_name: Input should be a valid string"
   },
   {
     "image": "dev_002.png",
@@ -165,11 +180,16 @@
     "meta": {
       "image": "dev_002.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 585,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 596,
+      "cost": 0.0008571000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_003.png",
@@ -189,7 +209,7 @@
       "vat_amount": 16622.33,
       "total_amount": 127437.85,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "issues": [],
@@ -205,29 +225,34 @@
       "vat_amount": "16,622.33",
       "total_amount": "127,437.85",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_003.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 511,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 564,
+      "cost": 0.0008411,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_004.png",
-    "status": "flagged",
+    "status": "ok",
     "error": null,
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "35031805534423",
+      "vendor_vat_number": "350318055344333",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": "338263443182503",
+      "buyer_vat_number": "338263442182503",
       "invoice_number": "INV-2026-9563",
       "issue_date": "2026-09-25",
       "subtotal": 22644.91,
@@ -235,39 +260,38 @@
       "vat_amount": 3396.74,
       "total_amount": 26041.65,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
-    "issues": [
-      {
-        "rule": "supplier_vat_number_length",
-        "severity": "error",
-        "detail": "supplier VAT number must be 15 digits, got 14: 35031805534423"
-      }
-    ],
+    "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣",
+      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٣٣٣",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": "٣٣٨٢٦٣٤٤٣١٨٢٥٠٣",
-      "invoice_number": "٩٥٦٣-٢٠٢٦-INV",
+      "buyer_vat_number": "٣٣٨٢٦٣٤٤٢١٨٢٥٠٣",
+      "invoice_number": "INV-٢٠٢٦-٩٥٦٣",
       "issue_date": "٢٥/٠٩/٢٠٢٦",
       "subtotal": "٢٢,٦٤٤.٩١",
       "vat_rate": 15,
       "vat_amount": "٣,٣٩٦.٧٤",
       "total_amount": "٢٦,٠٤١.٦٥",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_004.png",
-      "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 1351,
+      "model": "claude-sonnet-5-5",
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 1301,
+      "cost": 0.024192,
       "from_cache": false
-    }
+    },
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "first_error": null
   },
   {
     "image": "dev_004_deg.png",
@@ -287,33 +311,38 @@
       "vat_amount": 3396.74,
       "total_amount": 26041.65,
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "350318055344233",
+      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣٣",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_vat_number": "٣٣٨٢٦٢٤٤٢١٨٢٥٠٣",
-      "invoice_number": "٩٥٦٣-٢٠٢٦-INV",
+      "invoice_number": "INV-٢٠٢٦-٩٥٦٣",
       "issue_date": "٢٥/٠٩/٢٠٢٦",
       "subtotal": "٢٢,٦٤٤.٩١",
       "vat_rate": 15,
       "vat_amount": "٣,٣٩٦.٧٤",
       "total_amount": "٢٦,٠٤١.٦٥",
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_004_deg.png",
-      "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 1199,
+      "model": "claude-sonnet-5-5",
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 1028,
+      "cost": 0.021462,
       "from_cache": false
-    }
+    },
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "first_error": null
   },
   {
     "image": "dev_005.png",
@@ -344,10 +373,10 @@
       "buyer_vat_number": "333741061365253",
       "invoice_number": "INV-2026-2648",
       "issue_date": "2/3/1448 هـ",
-      "subtotal": "37,483.85 SAR",
+      "subtotal": "37,483.85",
       "vat_rate": 15,
-      "vat_amount": "5,622.58 SAR",
-      "total_amount": "43,106.43 SAR",
+      "vat_amount": "5,622.58",
+      "total_amount": "43,106.43",
       "currency": "SAR",
       "confidence": 0.93,
       "unreadable_fields": []
@@ -355,11 +384,16 @@
     "meta": {
       "image": "dev_005.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 633,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 618,
+      "cost": 0.0008681,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_006.png",
@@ -379,7 +413,7 @@
       "vat_amount": 2335.4,
       "total_amount": 17904.71,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -395,17 +429,22 @@
       "vat_amount": "2,335.40",
       "total_amount": "17,904.71",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_006.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 191,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 661,
+      "cost": 0.0008896,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_007.png",
@@ -447,11 +486,16 @@
     "meta": {
       "image": "dev_007.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 514,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 648,
+      "cost": 0.0008831,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_008.png",
@@ -471,7 +515,7 @@
       "vat_amount": 2314.51,
       "total_amount": 17744.6,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -487,17 +531,22 @@
       "vat_amount": "2,314.51",
       "total_amount": "17,744.60",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_008.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 199,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 627,
+      "cost": 0.0008726000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_009.png",
@@ -517,7 +566,7 @@
       "vat_amount": 1045.03,
       "total_amount": 8011.92,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -533,17 +582,22 @@
       "vat_amount": "1,045.03 SAR",
       "total_amount": "8,011.92 SAR",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_009.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 688,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 727,
+      "cost": 0.0009226,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_010.png",
@@ -563,7 +617,7 @@
       "vat_amount": 25168.09,
       "total_amount": 192955.36,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "issues": [],
@@ -579,17 +633,22 @@
       "vat_amount": "25,168.09",
       "total_amount": "192,955.36",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_010.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 524,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 526,
+      "cost": 0.0008221,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_010_deg.png",
@@ -609,7 +668,7 @@
       "vat_amount": 25168.09,
       "total_amount": 192955.36,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.85,
       "unreadable_fields": []
     },
     "issues": [],
@@ -625,17 +684,22 @@
       "vat_amount": "25,168.09",
       "total_amount": "192,955.36",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.85,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_010_deg.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5548,
-      "output_tokens": 680,
+      "prompt_version": "v3",
+      "input_tokens": 5753,
+      "output_tokens": 618,
+      "cost": 0.0008843000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_011.png",
@@ -661,9 +725,9 @@
     "issues": [],
     "raw_fields": {
       "vendor_name": "شركة البيان لتقنية المعلومات",
-      "vendor_vat_number": "٣٧١٤١٧٠٥٤٣٠٠١١٣",
+      "vendor_vat_number": "371417054300113",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
-      "buyer_vat_number": "٣٣٣٧٤١٠٦١٣٦٥٣٥٣",
+      "buyer_vat_number": "333741061365353",
       "invoice_number": "٦٩٧٢-٢٠٢٦-INV",
       "issue_date": "١٩/٠٦/٢٠٢٦",
       "subtotal": "١٤٣,٩١٠.٣١",
@@ -677,11 +741,16 @@
     "meta": {
       "image": "dev_011.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 1058,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 1026,
+      "cost": 0.0010720999999999999,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_012.png",
@@ -723,11 +792,16 @@
     "meta": {
       "image": "dev_012.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 465,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 667,
+      "cost": 0.0008926,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_012_deg.png",
@@ -747,7 +821,7 @@
       "vat_amount": 8783.93,
       "total_amount": 67343.46,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "issues": [],
@@ -763,17 +837,22 @@
       "vat_amount": "8,783.93",
       "total_amount": "67,343.46",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_012_deg.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5548,
-      "output_tokens": 539,
+      "prompt_version": "v3",
+      "input_tokens": 5753,
+      "output_tokens": 773,
+      "cost": 0.0009618000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_013.png",
@@ -793,7 +872,7 @@
       "vat_amount": 2169.25,
       "total_amount": 16630.91,
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.97,
       "unreadable_fields": []
     },
     "issues": [],
@@ -802,24 +881,29 @@
       "vendor_vat_number": "٣٥٢٨١٤٢١٥٥٥٧٩٩٣",
       "buyer_name": "شركة الفيصل التجارية المحدودة",
       "buyer_vat_number": "٣٣٣٧٤١٠٦١٣٦٥٢٥٣",
-      "invoice_number": "1318-2026-INV",
+      "invoice_number": "INV-٢٠٢٦-١٣١٨",
       "issue_date": "٢١/٠١/٢٠٢٦",
       "subtotal": "١٤,٤٦١.٦٦",
       "vat_rate": 15,
       "vat_amount": "٢,١٦٩.٢٥",
       "total_amount": "١٦,٦٣٠.٩١",
       "currency": "SAR",
-      "confidence": 0.85,
+      "confidence": 0.97,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_013.png",
-      "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 1656,
+      "model": "claude-sonnet-5-5",
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 978,
+      "cost": 0.020962,
       "from_cache": false
-    }
+    },
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "first_error": null
   },
   {
     "image": "dev_014.png",
@@ -850,10 +934,10 @@
       "buyer_vat_number": "389983003496923",
       "invoice_number": "INV-2026-1990",
       "issue_date": "15 يناير 2026",
-      "subtotal": "64,565.06 SAR",
+      "subtotal": "64,565.06",
       "vat_rate": 15,
-      "vat_amount": "9,684.76 SAR",
-      "total_amount": "74,249.82 SAR",
+      "vat_amount": "9,684.76",
+      "total_amount": "74,249.82",
       "currency": "SAR",
       "confidence": 0.95,
       "unreadable_fields": []
@@ -861,11 +945,16 @@
     "meta": {
       "image": "dev_014.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 236,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 585,
+      "cost": 0.0008516,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_015.png",
@@ -885,7 +974,7 @@
       "vat_amount": 4124.67,
       "total_amount": 31622.48,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -901,17 +990,22 @@
       "vat_amount": "4,124.67",
       "total_amount": "31,622.48",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_015.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 599,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 596,
+      "cost": 0.0008571000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_016.png",
@@ -931,7 +1025,7 @@
       "vat_amount": 6113.2,
       "total_amount": 46867.84,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -947,17 +1041,22 @@
       "vat_amount": "6,113.20",
       "total_amount": "46,867.84",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_016.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 546,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 560,
+      "cost": 0.0008391000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_017.png",
@@ -977,7 +1076,7 @@
       "vat_amount": 1569.91,
       "total_amount": 12035.98,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -993,17 +1092,22 @@
       "vat_amount": "1,569.91",
       "total_amount": "12,035.98",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_017.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 196,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 706,
+      "cost": 0.0009121,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_018.png",
@@ -1023,7 +1127,7 @@
       "vat_amount": 11445.43,
       "total_amount": 87748.32,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1039,17 +1143,22 @@
       "vat_amount": "11,445.43",
       "total_amount": "87,748.32",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.9,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_018.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 519,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 688,
+      "cost": 0.0009031,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_019.png",
@@ -1069,7 +1178,7 @@
       "vat_amount": 7205.13,
       "total_amount": 55239.31,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1085,17 +1194,22 @@
       "vat_amount": "7,205.13",
       "total_amount": "55,239.31",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_019.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 471,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 564,
+      "cost": 0.0008411,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_020.png",
@@ -1115,7 +1229,7 @@
       "vat_amount": 228.62,
       "total_amount": 1752.78,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1131,29 +1245,34 @@
       "vat_amount": "228.62",
       "total_amount": "1,752.78",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_020.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 470,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 634,
+      "cost": 0.0008761,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_020_deg.png",
-    "status": "flagged",
+    "status": "ok",
     "error": null,
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": null,
+      "vendor_vat_number": "310318055344223",
       "buyer_name": "مجموعة الحرمين القابضة",
       "buyer_name_key": "مجموعه الحرمين القابضه",
-      "buyer_vat_number": null,
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2026-1100",
       "issue_date": "2026-02-16",
       "subtotal": 1524.16,
@@ -1162,28 +1281,14 @@
       "total_amount": 1752.78,
       "currency": "SAR",
       "confidence": 0.6,
-      "unreadable_fields": [
-        "vendor_vat_number",
-        "buyer_vat_number"
-      ]
+      "unreadable_fields": []
     },
-    "issues": [
-      {
-        "rule": "missing_vendor_vat",
-        "severity": "warning",
-        "detail": "no supplier VAT number -- required on a Saudi tax invoice"
-      },
-      {
-        "rule": "unreadable_fields",
-        "severity": "warning",
-        "detail": "model could not read: vendor_vat_number, buyer_vat_number"
-      }
-    ],
+    "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": null,
+      "vendor_vat_number": "310318055344223",
       "buyer_name": "مجموعة الحرمين القابضة",
-      "buyer_vat_number": null,
+      "buyer_vat_number": "338262442182503",
       "invoice_number": "INV-2026-1100",
       "issue_date": "2026-02-16",
       "subtotal": "1,524.16 SAR",
@@ -1192,19 +1297,21 @@
       "total_amount": "1,752.78 SAR",
       "currency": "SAR",
       "confidence": 0.6,
-      "unreadable_fields": [
-        "vendor_vat_number",
-        "buyer_vat_number"
-      ]
+      "unreadable_fields": []
     },
     "meta": {
       "image": "dev_020_deg.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5548,
-      "output_tokens": 884,
+      "prompt_version": "v3",
+      "input_tokens": 5753,
+      "output_tokens": 694,
+      "cost": 0.0009223,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_021.png",
@@ -1224,7 +1331,7 @@
       "vat_amount": 8569.35,
       "total_amount": 65698.36,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1240,21 +1347,26 @@
       "vat_amount": "8,569.35",
       "total_amount": "65,698.36",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_021.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 405,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 508,
+      "cost": 0.0008131,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_022.png",
-    "status": "flagged",
+    "status": "ok",
     "error": null,
     "invoice": {
       "vendor_name": "مؤسسة الشرق الأوسط للمعدات",
@@ -1267,24 +1379,13 @@
       "issue_date": "2026-03-08",
       "subtotal": 82625.41,
       "vat_rate": 0.15,
-      "vat_amount": 13393.81,
-      "total_amount": 95019.33,
+      "vat_amount": 12393.81,
+      "total_amount": 95019.22,
       "currency": "SAR",
-      "confidence": 0.75,
+      "confidence": 0.8,
       "unreadable_fields": []
     },
-    "issues": [
-      {
-        "rule": "total_equals_subtotal_plus_vat",
-        "severity": "error",
-        "detail": "82625.41 + 13393.81 = 96019.22, but total says 95019.33"
-      },
-      {
-        "rule": "vat_matches_rate",
-        "severity": "error",
-        "detail": "82625.41 x 15% = 12393.81, but VAT says 13393.81"
-      }
-    ],
+    "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الشرق الأوسط للمعدات",
       "vendor_vat_number": "٣٧٦٥٨٦٣١٣٨٩٤٢٤٣",
@@ -1294,20 +1395,25 @@
       "issue_date": "٠٨-٠٣-٢٠٢٦",
       "subtotal": "٨٢,٦٢٥.٤١",
       "vat_rate": 15,
-      "vat_amount": "١٣,٣٩٣.٨١",
-      "total_amount": "٩٥,٠١٩.٣٣",
+      "vat_amount": "١٢,٣٩٣.٨١",
+      "total_amount": "٩٥,٠١٩.٢٢",
       "currency": "SAR",
-      "confidence": 0.75,
+      "confidence": 0.8,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_022.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 1473,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 1987,
+      "cost": 0.0015526,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_023.png",
@@ -1327,7 +1433,7 @@
       "vat_amount": 7778.41,
       "total_amount": 59634.51,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1343,17 +1449,22 @@
       "vat_amount": "7,778.41",
       "total_amount": "59,634.51",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "meta": {
       "image": "dev_023.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 223,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 537,
+      "cost": 0.0008276000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "dev_024.png",
@@ -1395,11 +1506,16 @@
     "meta": {
       "image": "dev_024.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 469,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 574,
+      "cost": 0.0008461,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_025.png",
@@ -1441,23 +1557,79 @@
     "meta": {
       "image": "test_025.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 599,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 807,
+      "cost": 0.0009626,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_026.png",
-    "status": "flagged",
+    "status": "ok",
     "error": null,
     "invoice": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
       "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "35031805534423",
+      "vendor_vat_number": "350318055344233",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
       "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "313183560269143",
+      "buyer_vat_number": "312183560269143",
+      "invoice_number": "INV-2025-5222",
+      "issue_date": "2026-02-20",
+      "subtotal": 11998.4,
+      "vat_rate": 0.15,
+      "vat_amount": 1799.76,
+      "total_amount": 13798.16,
+      "currency": "SAR",
+      "confidence": 0.9,
+      "unreadable_fields": []
+    },
+    "issues": [],
+    "raw_fields": {
+      "vendor_name": "مؤسسة الديار للمواد الغذائية",
+      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣٣",
+      "buyer_name": "مؤسسة الصفوة للاستثمار",
+      "buyer_vat_number": "٣١٢١٨٣٥٦٠٢٦٩١٤٣",
+      "invoice_number": "INV-٢٠٢٥-٥٢٢٢",
+      "issue_date": "٢٠٢٦-٠٢-٢٠",
+      "subtotal": "١١,٩٩٨.٤٠",
+      "vat_rate": 15,
+      "vat_amount": "١,٧٩٩.٧٦",
+      "total_amount": "١٣,٧٩٨.١٦",
+      "currency": "SAR",
+      "confidence": 0.9,
+      "unreadable_fields": []
+    },
+    "meta": {
+      "image": "test_026.png",
+      "model": "claude-sonnet-5-5",
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 2946,
+      "cost": 0.040642,
+      "from_cache": false
+    },
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "first_error": null
+  },
+  {
+    "image": "test_026_deg.png",
+    "status": "ok",
+    "error": null,
+    "invoice": {
+      "vendor_name": "مؤسسة الديار للمواد الغذائية",
+      "vendor_name_key": "موسسه الديار للمواد الغذاييه",
+      "vendor_vat_number": "350318055344223",
+      "buyer_name": "مؤسسة الصفوة للاستثمار",
+      "buyer_name_key": "موسسه الصفوه للاستثمار",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2025-5222",
       "issue_date": "2026-02-20",
       "subtotal": 11998.4,
@@ -1468,20 +1640,14 @@
       "confidence": 0.85,
       "unreadable_fields": []
     },
-    "issues": [
-      {
-        "rule": "supplier_vat_number_length",
-        "severity": "error",
-        "detail": "supplier VAT number must be 15 digits, got 14: 35031805534423"
-      }
-    ],
+    "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣",
+      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٢٣",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "٣١٣١٨٣٥٦٠٢٦٩١٤٣",
-      "invoice_number": "٥٢٢٢-٢٠٢٥-INV",
-      "issue_date": "٢٠-٠٢-٢٠٢٦",
+      "buyer_vat_number": "٣١٢١٨٣٥٦٠٢٦٩١٤٣",
+      "invoice_number": "INV-٢٠٢٥-٥٢٢٢",
+      "issue_date": "٢٠٢٦-٠٢-٢٠",
       "subtotal": "١١,٩٩٨.٤٠",
       "vat_rate": 15,
       "vat_amount": "١,٧٩٩.٧٦",
@@ -1491,65 +1657,18 @@
       "unreadable_fields": []
     },
     "meta": {
-      "image": "test_026.png",
-      "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 1493,
-      "from_cache": false
-    }
-  },
-  {
-    "image": "test_026_deg.png",
-    "status": "flagged",
-    "error": null,
-    "invoice": {
-      "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_name_key": "موسسه الديار للمواد الغذاييه",
-      "vendor_vat_number": "35031805534423",
-      "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "312183560269143",
-      "invoice_number": "INV-2025-5222",
-      "issue_date": "2002-02-26",
-      "subtotal": 11998.4,
-      "vat_rate": 0.15,
-      "vat_amount": 1799.76,
-      "total_amount": 13798.16,
-      "currency": "SAR",
-      "confidence": 0.7,
-      "unreadable_fields": []
-    },
-    "issues": [
-      {
-        "rule": "supplier_vat_number_length",
-        "severity": "error",
-        "detail": "supplier VAT number must be 15 digits, got 14: 35031805534423"
-      }
-    ],
-    "raw_fields": {
-      "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣",
-      "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "٣١٢١٨٣٥٦٠٢٦٩١٤٣",
-      "invoice_number": "٥٢٢٢-٢٠٢٥-INV",
-      "issue_date": "٢٦-٠٢-٢٠٠٢",
-      "subtotal": "١١,٩٩٨.٤٠",
-      "vat_rate": 15,
-      "vat_amount": "١,٧٩٩.٧٦",
-      "total_amount": "١٣,٧٩٨.١٦",
-      "currency": "SAR",
-      "confidence": 0.7,
-      "unreadable_fields": []
-    },
-    "meta": {
       "image": "test_026_deg.png",
-      "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5467,
-      "output_tokens": 2411,
+      "model": "claude-sonnet-5-5",
+      "prompt_version": "v3",
+      "input_tokens": 5672,
+      "output_tokens": 2861,
+      "cost": 0.039954,
       "from_cache": false
-    }
+    },
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "first_error": null
   },
   {
     "image": "test_027.png",
@@ -1569,7 +1688,7 @@
       "vat_amount": 8171.72,
       "total_amount": 62649.83,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1585,17 +1704,22 @@
       "vat_amount": "8,171.72",
       "total_amount": "62,649.83",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_027.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 198,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 680,
+      "cost": 0.0008991,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_027_deg.png",
@@ -1615,7 +1739,7 @@
       "vat_amount": 8171.72,
       "total_amount": 62649.83,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1631,17 +1755,22 @@
       "vat_amount": "8,171.72",
       "total_amount": "62,649.83",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.92,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_027_deg.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5548,
-      "output_tokens": 580,
+      "prompt_version": "v3",
+      "input_tokens": 5753,
+      "output_tokens": 564,
+      "cost": 0.0008573000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_028.png",
@@ -1661,7 +1790,7 @@
       "vat_amount": 4153.11,
       "total_amount": 31840.49,
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1677,17 +1806,22 @@
       "vat_amount": "4,153.11",
       "total_amount": "31,840.49",
       "currency": "SAR",
-      "confidence": 0.92,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_028.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 729,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 568,
+      "cost": 0.0008431000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_029.png",
@@ -1707,7 +1841,7 @@
       "vat_amount": 18034.87,
       "total_amount": 138267.35,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1723,17 +1857,22 @@
       "vat_amount": "18,034.87",
       "total_amount": "138,267.35",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_029.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 484,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 581,
+      "cost": 0.0008496,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_030.png",
@@ -1753,7 +1892,7 @@
       "vat_amount": 8475.59,
       "total_amount": 64979.53,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1769,17 +1908,22 @@
       "vat_amount": "8,475.59",
       "total_amount": "64,979.53",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_030.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 594,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 536,
+      "cost": 0.0008271,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_031.png",
@@ -1799,7 +1943,7 @@
       "vat_amount": 5765.49,
       "total_amount": 44202.06,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1815,17 +1959,22 @@
       "vat_amount": "5,765.49",
       "total_amount": "44,202.06",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_031.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 680,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 674,
+      "cost": 0.0008961,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_032.png",
@@ -1845,7 +1994,7 @@
       "vat_amount": 4783.0,
       "total_amount": 36669.66,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1861,17 +2010,22 @@
       "vat_amount": "4,783.00",
       "total_amount": "36,669.66",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_032.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 196,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 550,
+      "cost": 0.0008341,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_033.png",
@@ -1883,7 +2037,7 @@
       "vendor_vat_number": "350318055344233",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
       "buyer_name_key": "موسسه الصفوه للاستثمار",
-      "buyer_vat_number": "313183560269143",
+      "buyer_vat_number": "312183560269143",
       "invoice_number": "INV-2025-0311",
       "issue_date": "2026-08-14",
       "subtotal": 55755.76,
@@ -1891,33 +2045,38 @@
       "vat_amount": 8363.36,
       "total_amount": 64119.13,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.85,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة الديار للمواد الغذائية",
-      "vendor_vat_number": "٣٥٠٣١٨٠٥٥٣٤٤٢٣٣",
+      "vendor_vat_number": "350318055344233",
       "buyer_name": "مؤسسة الصفوة للاستثمار",
-      "buyer_vat_number": "٣١٣١٨٣٥٦٠٢٦٩١٤٣",
-      "invoice_number": "٠٣١١-٢٠٢٥-INV",
+      "buyer_vat_number": "312183560269143",
+      "invoice_number": "INV-٢٠٢٥-٠٣١١",
       "issue_date": "١٤/٠٨/٢٠٢٦",
       "subtotal": "٥٥,٧٥٥.٧٦",
       "vat_rate": 15,
       "vat_amount": "٨,٣٦٣.٣٦",
       "total_amount": "٦٤,١١٩.١٣",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.85,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_033.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 1310,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 1128,
+      "cost": 0.0011231,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_034.png",
@@ -1937,7 +2096,7 @@
       "vat_amount": 883.27,
       "total_amount": 6771.73,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -1953,17 +2112,22 @@
       "vat_amount": "883.27",
       "total_amount": "6,771.73",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_034.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 193,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 526,
+      "cost": 0.0008221,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_034_deg.png",
@@ -2005,11 +2169,16 @@
     "meta": {
       "image": "test_034_deg.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5467,
-      "output_tokens": 576,
+      "prompt_version": "v3",
+      "input_tokens": 5672,
+      "output_tokens": 600,
+      "cost": 0.0008672,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_035.png",
@@ -2029,7 +2198,7 @@
       "vat_amount": 3147.26,
       "total_amount": 24128.96,
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "issues": [],
@@ -2045,17 +2214,22 @@
       "vat_amount": "3,147.26",
       "total_amount": "24,128.96",
       "currency": "SAR",
-      "confidence": 0.95,
+      "confidence": 0.93,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_035.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 586,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 534,
+      "cost": 0.0008261000000000001,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_035_deg.png",
@@ -2075,7 +2249,7 @@
       "vat_amount": "3,147.26 SAR",
       "total_amount": "24,128.96 SAR",
       "currency": "SAR",
-      "confidence": 0.45,
+      "confidence": 0.55,
       "unreadable_fields": [
         "vendor_name",
         "vendor_vat_number"
@@ -2084,11 +2258,16 @@
     "meta": {
       "image": "test_035_deg.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5377,
-      "output_tokens": 750,
+      "prompt_version": "v3",
+      "input_tokens": 5582,
+      "output_tokens": 729,
+      "cost": 0.0009227,
       "from_cache": false
-    }
+    },
+    "retried": true,
+    "recovered": false,
+    "first_status": "unusable",
+    "first_error": "validation failed: vendor_name: Input should be a valid string"
   },
   {
     "image": "test_036.png",
@@ -2108,7 +2287,7 @@
       "vat_amount": 18336.57,
       "total_amount": 140580.39,
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.85,
       "unreadable_fields": []
     },
     "issues": [],
@@ -2117,24 +2296,29 @@
       "vendor_vat_number": "٣٤٧١٣٩٨٣٩٦٤٨٠٨٣",
       "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_vat_number": "٣٨٩٠٧١٦٨٣٧٧٢٩٣٣",
-      "invoice_number": "٨٨٠٧-٢٠٢٦-INV",
+      "invoice_number": "INV-٢٠٢٦-٨٨٠٧",
       "issue_date": "٢٢ أبريل ٢٠٢٦",
       "subtotal": "١٢٢,٢٤٣.٨٢",
       "vat_rate": 15,
       "vat_amount": "١٨,٣٣٦.٥٧",
       "total_amount": "١٤٠,٥٨٠.٣٩",
       "currency": "SAR",
-      "confidence": 0.9,
+      "confidence": 0.85,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_036.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 975,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 1487,
+      "cost": 0.0013026,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_037.png",
@@ -2154,7 +2338,7 @@
       "vat_amount": 13744.39,
       "total_amount": 105373.63,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
@@ -2170,17 +2354,22 @@
       "vat_amount": "13,744.39",
       "total_amount": "105,373.63",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_037.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 539,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 595,
+      "cost": 0.0008566,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_037_deg.png",
@@ -2190,8 +2379,8 @@
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
       "vendor_name_key": "موسسه جده للتبريد والتكييف",
       "vendor_vat_number": "315750081453513",
-      "buyer_name": "شركة نبوك للتنمية الزراعية",
-      "buyer_name_key": "شركه نبوك للتنميه الزراعيه",
+      "buyer_name": "شركة تبوك للتنمية الزراعية",
+      "buyer_name_key": "شركه تبوك للتنميه الزراعيه",
       "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-2925",
       "issue_date": "2026-10-03",
@@ -2200,14 +2389,14 @@
       "vat_amount": 13744.39,
       "total_amount": 105373.63,
       "currency": "SAR",
-      "confidence": 0.6,
+      "confidence": 0.8,
       "unreadable_fields": []
     },
     "issues": [],
     "raw_fields": {
       "vendor_name": "مؤسسة جدة للتبريد والتكييف",
       "vendor_vat_number": "315750081453513",
-      "buyer_name": "شركة نبوك للتنمية الزراعية",
+      "buyer_name": "شركة تبوك للتنمية الزراعية",
       "buyer_vat_number": "389071683772923",
       "invoice_number": "INV-2025-2925",
       "issue_date": "2026-10-03",
@@ -2216,17 +2405,22 @@
       "vat_amount": "13,744.39",
       "total_amount": "105,373.63",
       "currency": "SAR",
-      "confidence": 0.6,
+      "confidence": 0.8,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_037_deg.png",
-      "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5509,
-      "output_tokens": 774,
+      "model": "claude-sonnet-5-5",
+      "prompt_version": "v3",
+      "input_tokens": 5714,
+      "output_tokens": 578,
+      "cost": 0.017208,
       "from_cache": false
-    }
+    },
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "first_error": null
   },
   {
     "image": "test_038.png",
@@ -2246,7 +2440,7 @@
       "vat_amount": 11229.84,
       "total_amount": 86095.43,
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "issues": [],
@@ -2262,17 +2456,22 @@
       "vat_amount": "11,229.84",
       "total_amount": "86,095.43",
       "currency": "SAR",
-      "confidence": 0.93,
+      "confidence": 0.95,
       "unreadable_fields": []
     },
     "meta": {
       "image": "test_038.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 700,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 727,
+      "cost": 0.0009226,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   },
   {
     "image": "test_039.png",
@@ -2314,10 +2513,15 @@
     "meta": {
       "image": "test_039.png",
       "model": "claude-haiku-5-5",
-      "prompt_version": "v2",
-      "input_tokens": 5386,
-      "output_tokens": 430,
+      "prompt_version": "v3",
+      "input_tokens": 5591,
+      "output_tokens": 612,
+      "cost": 0.0008651,
       "from_cache": false
-    }
+    },
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "first_error": null
   }
 ]

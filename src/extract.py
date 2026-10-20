@@ -151,6 +151,11 @@ def extract(image_path: Path, model: str | None = None,
             "prompt_version": prompts.PROMPT_VERSION,
             "input_tokens": response.usage.input_tokens,
             "output_tokens": response.usage.output_tokens,
+            # Priced here, where the model is known for certain. Anything
+            # downstream that re-derives this has to guess which model made
+            # the call, and will guess wrong the moment there are two.
+            "cost": config.call_cost(model, response.usage.input_tokens,
+                                     response.usage.output_tokens),
         },
         "_raw_reply": reply,
         "_from_cache": False,

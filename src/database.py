@@ -66,6 +66,13 @@ CREATE TABLE IF NOT EXISTS invoices (
     raw_fields        TEXT,                      -- JSON
     fields_read       INTEGER DEFAULT 0,         -- how many came back non-null
 
+    -- The second opinion. Worth storing rather than just printing, because
+    -- "which documents needed the expensive model" is the question that
+    -- decides whether the cascade is worth keeping.
+    retried           INTEGER DEFAULT 0,      -- a stronger model was asked
+    recovered         INTEGER DEFAULT 0,      -- ...and its read was better
+    first_status      TEXT,                   -- what the cheap model produced
+
     model             TEXT,
     prompt_version    TEXT,
     processed_at      TEXT NOT NULL
@@ -170,8 +177,9 @@ def save_result(conn: sqlite3.Connection, result: dict) -> None:
             subtotal, vat_rate, vat_amount, total_amount, currency,
             confidence, issues, issue_count, error_count,
             raw_fields, fields_read,
+            retried, recovered, first_status,
             model, prompt_version, processed_at
-        ) VALUES (?,?,?, ?,?,?, ?,?, ?,?, ?,?,?,?,?, ?,?,?,?, ?,?, ?,?,?)
+        ) VALUES (?,?,?, ?,?,?, ?,?, ?,?, ?,?,?,?,?, ?,?,?,?, ?,?, ?,?,?, ?,?,?)
         """,
         (
             result["image"], result["status"], result.get("error"),
@@ -188,6 +196,9 @@ def save_result(conn: sqlite3.Connection, result: dict) -> None:
             sum(1 for i in issues if i.get("severity") == "error"),
             json.dumps(raw, ensure_ascii=False),
             fields_read,
+            int(bool(result.get("retried"))),
+            int(bool(result.get("recovered"))),
+            result.get("first_status"),
             meta.get("model"), meta.get("prompt_version"),
             datetime.now(timezone.utc).isoformat(timespec="seconds"),
         ),
