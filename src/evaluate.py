@@ -121,6 +121,22 @@ def compare(truth: dict, got: dict | None) -> dict[str, bool]:
     return {f: fn(truth[f], got.get(f))
             for f, fn in FIELDS.items() if f in truth}
 
+def line_item_check(truth: dict, got: dict | None) -> bool | None:
+    """
+    Did we find the right NUMBER of item rows?
+
+    Not the text -- comparing Arabic descriptions against ground truth needs
+    fuzzy matching rules of its own, and that is a different project. But the
+    row count is objective and free, and it answers the question that
+    matters for the embeddings: did we capture the items at all, or quietly
+    return an empty list?
+    """
+    if got is None:
+        return False
+    expected = truth.get("line_item_count")
+    if expected is None:
+        return None
+    return len(got.get("line_items") or []) == expected
 
 # --------------------------------------------------------------------------
 # Loading
@@ -170,6 +186,7 @@ def score_all(truth: dict, results: list[dict], split: str) -> list[dict]:
             "retried": bool(r.get("retried")),
             "recovered": bool(r.get("recovered")),
             "first_status": r.get("first_status"),
+            "line_items_ok": line_item_check(t, pipeline_fields),
         })
     return rows
 
@@ -404,6 +421,11 @@ def main() -> None:
     field_table(rows, "model", "MODEL ACCURACY  (what Claude read)")
     field_table(rows, "pipeline",
                 "PIPELINE ACCURACY  (what reached the database)")
+    checked = [r for r in rows if r["line_items_ok"] is not None]
+    if checked:
+        ok = sum(1 for r in checked if r["line_items_ok"])
+        print(f"\n  line item row count correct: {ok}/{len(checked)} "
+              f"({100 * ok / len(checked):.1f}%)")
 
     print(f"\n{'-' * 56}")
     print("WHERE IT FAILS")

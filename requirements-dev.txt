@@ -1,0 +1,5 @@
+-r requirements.txt
+jinja2==3.1.6
+qrcode==8.2
+pillow==12.3.0
+playwright==1.63.0

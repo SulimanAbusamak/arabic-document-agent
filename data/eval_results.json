@@ -1,13 +1,13 @@
 [
   {
-    "image": "test_025.png",
+    "image": "dev_000.png",
     "status": "ok",
     "meta": {
-      "template": "invoice_a",
+      "template": "invoice_b",
       "bilingual": true,
       "arabic_indic_digits": false,
       "date_style": "hijri",
-      "split": "test"
+      "split": "dev"
     },
     "pipeline": {
       "vendor_name": true,
@@ -36,259 +36,18 @@
     "read_by": "claude-haiku-5-5",
     "retried": false,
     "recovered": false,
-    "first_status": null
+    "first_status": null,
+    "line_items_ok": true
   },
   {
-    "image": "test_026.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_c",
-      "bilingual": false,
-      "arabic_indic_digits": true,
-      "date_style": "iso",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": false,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": false,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-sonnet-5-5",
-    "retried": true,
-    "recovered": true,
-    "first_status": "flagged"
-  },
-  {
-    "image": "test_026_deg.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_c",
-      "bilingual": false,
-      "arabic_indic_digits": true,
-      "date_style": "iso",
-      "split": "test",
-      "degraded": true,
-      "degradation": "phone_photo",
-      "expect_refusal": false,
-      "derived_from": "test_026.png"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-sonnet-5-5",
-    "retried": true,
-    "recovered": true,
-    "first_status": "flagged"
-  },
-  {
-    "image": "test_027.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_b",
-      "bilingual": true,
-      "arabic_indic_digits": false,
-      "date_style": "slash",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_027_deg.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_b",
-      "bilingual": true,
-      "arabic_indic_digits": false,
-      "date_style": "slash",
-      "split": "test",
-      "degraded": true,
-      "degradation": "phone_photo",
-      "expect_refusal": false,
-      "derived_from": "test_027.png"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_028.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_b",
-      "bilingual": true,
-      "arabic_indic_digits": false,
-      "date_style": "slash",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_029.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_a",
-      "bilingual": true,
-      "arabic_indic_digits": false,
-      "date_style": "iso",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_030.png",
+    "image": "dev_001.png",
     "status": "ok",
     "meta": {
       "template": "invoice_b",
       "bilingual": true,
       "arabic_indic_digits": false,
       "date_style": "iso",
-      "split": "test"
+      "split": "dev"
     },
     "pipeline": {
       "vendor_name": true,
@@ -317,259 +76,22 @@
     "read_by": "claude-haiku-5-5",
     "retried": false,
     "recovered": false,
-    "first_status": null
+    "first_status": null,
+    "line_items_ok": true
   },
   {
-    "image": "test_031.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_c",
-      "bilingual": false,
-      "arabic_indic_digits": false,
-      "date_style": "hijri",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_032.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_a",
-      "bilingual": true,
-      "arabic_indic_digits": false,
-      "date_style": "slash",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_033.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_c",
-      "bilingual": false,
-      "arabic_indic_digits": true,
-      "date_style": "slash",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": false,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": false,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_034.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_a",
-      "bilingual": true,
-      "arabic_indic_digits": false,
-      "date_style": "iso",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_034_deg.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_a",
-      "bilingual": true,
-      "arabic_indic_digits": false,
-      "date_style": "iso",
-      "split": "test",
-      "degraded": true,
-      "degradation": "bad_scan",
-      "expect_refusal": true,
-      "derived_from": "test_034.png"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_035.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_b",
-      "bilingual": true,
-      "arabic_indic_digits": false,
-      "date_style": "slash",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_035_deg.png",
+    "image": "dev_001_deg.png",
     "status": "unusable",
     "meta": {
       "template": "invoice_b",
       "bilingual": true,
       "arabic_indic_digits": false,
-      "date_style": "slash",
-      "split": "test",
+      "date_style": "iso",
+      "split": "dev",
       "degraded": true,
       "degradation": "bad_scan",
       "expect_refusal": true,
-      "derived_from": "test_035.png"
+      "derived_from": "dev_001.png"
     },
     "pipeline": {
       "vendor_name": false,
@@ -587,7 +109,7 @@
       "vendor_name": false,
       "vendor_vat_number": false,
       "buyer_name": true,
-      "buyer_vat_number": true,
+      "buyer_vat_number": false,
       "invoice_number": true,
       "issue_date": true,
       "subtotal": true,
@@ -598,21 +120,102 @@
     "read_by": "claude-haiku-5-5",
     "retried": true,
     "recovered": false,
-    "first_status": "unusable"
+    "first_status": "unusable",
+    "line_items_ok": false
   },
   {
-    "image": "test_036.png",
+    "image": "dev_002.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_003.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_c",
+      "bilingual": false,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_004.png",
     "status": "ok",
     "meta": {
       "template": "invoice_c",
       "bilingual": false,
       "arabic_indic_digits": true,
-      "date_style": "arabic_month",
-      "split": "test"
+      "date_style": "slash",
+      "split": "dev"
     },
     "pipeline": {
       "vendor_name": true,
-      "vendor_vat_number": true,
+      "vendor_vat_number": false,
       "buyer_name": true,
       "buyer_vat_number": false,
       "invoice_number": true,
@@ -624,7 +227,7 @@
     },
     "model": {
       "vendor_name": true,
-      "vendor_vat_number": true,
+      "vendor_vat_number": false,
       "buyer_name": true,
       "buyer_vat_number": false,
       "invoice_number": true,
@@ -634,63 +237,349 @@
       "total_amount": true,
       "currency": true
     },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
+    "read_by": "claude-sonnet-5-5",
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "line_items_ok": true
   },
   {
-    "image": "test_037.png",
+    "image": "dev_004_deg.png",
     "status": "ok",
     "meta": {
       "template": "invoice_c",
       "bilingual": false,
-      "arabic_indic_digits": false,
-      "date_style": "iso",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_037_deg.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_c",
-      "bilingual": false,
-      "arabic_indic_digits": false,
-      "date_style": "iso",
-      "split": "test",
+      "arabic_indic_digits": true,
+      "date_style": "slash",
+      "split": "dev",
       "degraded": true,
-      "degradation": "bad_scan",
-      "expect_refusal": true,
-      "derived_from": "test_037.png"
+      "degradation": "phone_photo",
+      "expect_refusal": false,
+      "derived_from": "dev_004.png"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": false,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": false,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-sonnet-5-5",
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_005.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "hijri",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_006.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_007.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_008.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "slash",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_009.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_a",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "hijri",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_010.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_c",
+      "bilingual": false,
+      "arabic_indic_digits": false,
+      "date_style": "slash",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_010_deg.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_c",
+      "bilingual": false,
+      "arabic_indic_digits": false,
+      "date_style": "slash",
+      "split": "dev",
+      "degraded": true,
+      "degradation": "phone_photo",
+      "expect_refusal": false,
+      "derived_from": "dev_010.png"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_011.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_c",
+      "bilingual": false,
+      "arabic_indic_digits": true,
+      "date_style": "slash",
+      "split": "dev"
     },
     "pipeline": {
       "vendor_name": true,
@@ -719,56 +608,18 @@
     "read_by": "claude-sonnet-5-5",
     "retried": true,
     "recovered": true,
-    "first_status": "flagged"
+    "first_status": "flagged",
+    "line_items_ok": true
   },
   {
-    "image": "test_038.png",
-    "status": "ok",
-    "meta": {
-      "template": "invoice_a",
-      "bilingual": true,
-      "arabic_indic_digits": false,
-      "date_style": "hijri",
-      "split": "test"
-    },
-    "pipeline": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "model": {
-      "vendor_name": true,
-      "vendor_vat_number": true,
-      "buyer_name": true,
-      "buyer_vat_number": true,
-      "invoice_number": true,
-      "issue_date": true,
-      "subtotal": true,
-      "vat_amount": true,
-      "total_amount": true,
-      "currency": true
-    },
-    "read_by": "claude-haiku-5-5",
-    "retried": false,
-    "recovered": false,
-    "first_status": null
-  },
-  {
-    "image": "test_039.png",
+    "image": "dev_012.png",
     "status": "ok",
     "meta": {
       "template": "invoice_a",
       "bilingual": true,
       "arabic_indic_digits": false,
       "date_style": "iso",
-      "split": "test"
+      "split": "dev"
     },
     "pipeline": {
       "vendor_name": true,
@@ -797,6 +648,575 @@
     "read_by": "claude-haiku-5-5",
     "retried": false,
     "recovered": false,
-    "first_status": null
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_012_deg.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_a",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev",
+      "degraded": true,
+      "degradation": "phone_photo",
+      "expect_refusal": false,
+      "derived_from": "dev_012.png"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_013.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_c",
+      "bilingual": false,
+      "arabic_indic_digits": true,
+      "date_style": "slash",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-sonnet-5-5",
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_014.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_a",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "arabic_month",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_015.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_016.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "slash",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_017.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_018.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_c",
+      "bilingual": false,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_019.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_020.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_020_deg.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "iso",
+      "split": "dev",
+      "degraded": true,
+      "degradation": "bad_scan",
+      "expect_refusal": true,
+      "derived_from": "dev_020.png"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_021.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_b",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "slash",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_022.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_c",
+      "bilingual": false,
+      "arabic_indic_digits": true,
+      "date_style": "iso",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-sonnet-5-5",
+    "retried": true,
+    "recovered": true,
+    "first_status": "flagged",
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_023.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_a",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "slash",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
+  },
+  {
+    "image": "dev_024.png",
+    "status": "ok",
+    "meta": {
+      "template": "invoice_a",
+      "bilingual": true,
+      "arabic_indic_digits": false,
+      "date_style": "arabic_month",
+      "split": "dev"
+    },
+    "pipeline": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "model": {
+      "vendor_name": true,
+      "vendor_vat_number": true,
+      "buyer_name": true,
+      "buyer_vat_number": true,
+      "invoice_number": true,
+      "issue_date": true,
+      "subtotal": true,
+      "vat_amount": true,
+      "total_amount": true,
+      "currency": true
+    },
+    "read_by": "claude-haiku-5-5",
+    "retried": false,
+    "recovered": false,
+    "first_status": null,
+    "line_items_ok": true
   }
 ]

@@ -284,6 +284,37 @@ _TEXT_FIELDS = ("vendor_name", "buyer_name")
 _ID_FIELDS = ("vendor_vat_number", "buyer_vat_number", "invoice_number")
 
 
+def normalize_line_items(items) -> list[dict]:
+    """
+    Clean each row of the items table.
+
+    Without this the whole invoice dies. Claude transcribes exactly what is
+    printed, so a quantity arrives as '٢٠' and a price as '٤٥,٠٠٠.٠٠' --
+    and Pydantic cannot make a float out of either, so building the Invoice
+    raises and a perfectly readable document becomes 'unusable'.
+
+    Rows that are entirely empty are dropped. A row with an unreadable
+    number keeps its description and loses the number: the description is
+    what we actually want these for.
+    """
+    if not isinstance(items, list):
+        return []
+
+    out = []
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        row = {
+            "description": (" ".join(str(item["description"]).split())
+                            if item.get("description") else None),
+            "quantity": parse_money(item.get("quantity")),
+            "unit_price": parse_money(item.get("unit_price")),
+            "line_total": parse_money(item.get("line_total")),
+        }
+        if any(v is not None for v in row.values()):
+            out.append(row)
+    return out
+
 def normalize_record(fields: dict) -> dict:
     """
     Run a whole extracted record through the right converter per field.
@@ -318,4 +349,7 @@ def normalize_record(fields: dict) -> dict:
             out[f] = " ".join(str(out[f]).split())   # tidy whitespace only
             out[f + "_key"] = normalize_arabic(out[f])
 
+    if "line_items" in out:
+        out["line_items"] = normalize_line_items(out["line_items"])
+        
     return out

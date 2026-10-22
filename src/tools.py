@@ -1,13 +1,19 @@
 """
-The six things the agent is allowed to do.
+The eight things the agent is allowed to do.
 
     python src/tools.py          # test every tool by hand, no API calls
 
 Two kinds of tool live here, and the split is deliberate:
 
-  READ   search_vendor, get_vendor_history, check_duplicate
+  READ   search_vendor, check_duplicate, get_vendor_history,
+         find_similar_invoices, find_similar_vendors
          Gather context. Safe to call, call as often as you like, change
          nothing. The agent uses these to answer "is this normal?"
+
+         The last two search by MEANING rather than by exact match, and
+         they exist because exact matching is blind to the cases that
+         matter: the same job billed twice under a different number, and
+         the same company under a different trading name.
 
   WRITE  approve, escalate, rescan
          End the conversation. Exactly one of these runs per invoice, and
@@ -26,6 +32,7 @@ schema too, or the model will never know it exists.
 
 from __future__ import annotations
 
+import json
 import sqlite3
 
 from database import connect
@@ -94,6 +101,62 @@ SCHEMAS = [
                 },
             },
             "required": ["vendor_name", "invoice_number"],
+        },
+    },
+    {
+        "name": "find_similar_invoices",
+        "description": (
+            "Search this supplier's invoice history for work described "
+            "similarly to the invoice under review, by meaning rather than "
+            "by exact wording. Returns matches with a similarity score from "
+            "0 to 1, plus each one's invoice number, date and total. "
+            "This catches what check_duplicate cannot: the same job billed "
+            "twice under a different invoice number and reworded, e.g. "
+            "'تركيب شبكات داخلية' and 'أعمال تمديد شبكات'. "
+            "IMPORTANT -- a high score alone is not a duplicate. Recurring "
+            "work scores high every time it recurs: a monthly maintenance "
+            "contract is near-identical every month and is perfectly "
+            "legitimate. Judge the PATTERN, using the dates and amounts: "
+            "one invoice a month at the same amount is a contract; two in "
+            "the same period for the same amount is a double billing. "
+            "Call this on invoices over a few thousand riyal, after "
+            "check_duplicate comes back clean."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "vendor_name": {
+                    "type": "string",
+                    "description": "The supplier name as printed on the "
+                                   "invoice.",
+                },
+            },
+            "required": ["vendor_name"],
+        },
+    },
+    {
+        "name": "find_similar_vendors",
+        "description": (
+            "Check whether a supplier name matches a company already on "
+            "file under a different spelling or a different trading name. "
+            "Returns the closest names with a similarity score. "
+            "Use this when search_vendor reports known=false, before "
+            "treating a supplier as new. Exact matching handles spelling "
+            "variants like مؤسسه/مؤسسة, but not length variants: "
+            "'مؤسسة النور' and 'مؤسسة النور للتوريدات' are one company and "
+            "do not match exactly. A score above about 0.85 is very likely "
+            "the same company; below 0.5 is a different one."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "vendor_name": {
+                    "type": "string",
+                    "description": "The supplier name as printed on the "
+                                   "invoice.",
+                },
+            },
+            "required": ["vendor_name"],
         },
     },
     {
@@ -396,6 +459,76 @@ def get_vendor_history(conn: sqlite3.Connection, vendor_name: str,
     }
 
 
+def find_similar_invoices(conn: sqlite3.Connection, vendor_name: str,
+                          current_image: str | None = None) -> dict:
+    """
+    Work described like this invoice's, in this supplier's own history.
+
+    Note what the model does NOT pass: the text to search with. The loop
+    supplies it, built from the invoice under review. Letting the model
+    choose the query text would let it search for something other than the
+    document in front of it, which is not a question anyone asked.
+
+    The supplier is resolved fuzzily first, then the search runs inside
+    that supplier's invoices only. Searching everything would work here --
+    48 documents -- and stop working at 10,000, where enough invoices
+    describe similar work that the top score always looks alarming.
+    """
+    import embed
+
+    row = conn.execute(
+        "SELECT line_items FROM invoices WHERE image = ?", (current_image,)
+    ).fetchone() if current_image else None
+
+    if row is None or not row["line_items"]:
+        return {"searched": False,
+                "note": "This invoice has no readable line items, so there "
+                        "is nothing to compare by description."}
+
+    items = json.loads(row["line_items"])
+    text = " | ".join(i["description"] for i in items
+                      if i.get("description"))
+    if not text:
+        return {"searched": False,
+                "note": "No item descriptions on this invoice."}
+
+    keys = embed.vendor_keys_for(vendor_name)
+    matches = embed.similar_invoices(text, n=5, exclude=current_image,
+                                     vendor_keys=keys)
+
+    if not matches:
+        return {"searched": True, "found": 0, "matches": [],
+                "searched_for": text,
+                "note": "No other invoices on file from this supplier."}
+
+    return {
+        "searched": True,
+        "found": len(matches),
+        "searched_for": text,
+        "matches": matches,
+        "note": "Scores compare the work described, not the amounts. "
+                "Recurring work scores high legitimately -- check the "
+                "dates and amounts for a pattern before concluding.",
+    }
+
+
+def find_similar_vendors(vendor_name: str) -> dict:
+    """Supplier names close to this one, for deciding if a vendor is new."""
+    import embed
+
+    matches = embed.similar_vendors(vendor_name, n=5)
+    if not matches:
+        return {"found": 0, "matches": [],
+                "note": "No supplier names on file."}
+    return {
+        "found": len(matches),
+        "searched_for": vendor_name,
+        "matches": matches,
+        "note": "Above ~0.85 is very likely the same company; below 0.5 is "
+                "a different one.",
+    }
+
+
 def approve(reason: str) -> dict:
     """Terminal. Returns the decision; storing it is the loop's job."""
     return {"decision": "approve", "reason": reason}
@@ -446,6 +579,17 @@ def run_tool(conn: sqlite3.Connection, name: str, args: dict,
                                  "invoice_number"}
             return check_duplicate(conn, args["vendor_name"],
                                    args["invoice_number"], current_image)
+
+        if name == "find_similar_invoices":
+            if not args.get("vendor_name"):
+                return {"error": "find_similar_invoices needs a vendor_name"}
+            return find_similar_invoices(conn, args["vendor_name"],
+                                         current_image)
+
+        if name == "find_similar_vendors":
+            if not args.get("vendor_name"):
+                return {"error": "find_similar_vendors needs a vendor_name"}
+            return find_similar_vendors(args["vendor_name"])
 
         if name == "get_vendor_history":
             if not args.get("vendor_name"):
@@ -504,6 +648,7 @@ def main() -> None:
         ("search_vendor",      {"vendor_name": real_name}, None),
         ("search_vendor",      {"vendor_name": "شركة لا توجد ابدا"}, None),
         ("get_vendor_history", {"vendor_name": real_name, "limit": 3}, None),
+        ("find_similar_vendors", {"vendor_name": "مؤسسة النور"}, None),
         ("approve",            {"reason": "checks passed, amount typical"}, None),
         ("escalate",           {"reason": "94,018 SAR vs 14,200 average"}, None),
         ("rescan",             {"reason": "VAT number unreadable"}, None),
@@ -512,6 +657,20 @@ def main() -> None:
         ("approve",            {"reason": "  "}, None),
         ("teleport",           {"to": "Riyadh"}, None),
     ]
+
+    # A semantic search needs a real image to build its query from.
+    with_items = conn.execute(
+        """
+        SELECT image, vendor_name FROM invoices
+        WHERE line_items IS NOT NULL AND line_items != '[]'
+          AND status != 'unusable'
+        ORDER BY image LIMIT 1
+        """
+    ).fetchone()
+    if with_items:
+        cases.append(("find_similar_invoices",
+                      {"vendor_name": with_items["vendor_name"]},
+                      with_items["image"]))
 
     if dup:
         # the real duplicate: searched from its second copy, so it finds the first

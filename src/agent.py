@@ -43,6 +43,7 @@ import anthropic
 import config
 import tools
 from database import connect
+from models import Invoice, Issue
 from pipeline import Result, find_image, process
 
 Decision = Literal["approve", "escalate", "rescan", "return_to_supplier"]
@@ -105,6 +106,11 @@ deserves a human's eyes.
 - A validation warning is a reason to look harder, not an automatic refusal.
 - Escalating costs a reviewer five minutes. A wrong approval costs money and \
 is hard to undo. When genuinely unsure, escalate.
+- A recurring billing pattern is established by at least THREE invoices at \
+a regular interval. Two invoices at the same amount a month apart are as \
+consistent with an unpaid invoice being re-sent as with a contract's second \
+instalment, so escalate and let a reviewer check the payment ledger. From \
+the third onward, a regular cadence is good evidence of a contract.
 
 What NOT to treat as findings, because they are artefacts of how documents \
 reach you rather than facts about this invoice:
@@ -390,16 +396,53 @@ def veto(decision: AgentDecision, result: Result) -> AgentDecision:
 
 
 # --------------------------------------------------------------------------
+def result_from_db(conn, image: str) -> Result | None:
+    """
+    Rebuild a Result from a stored row, for records that have no image.
+
+    The scenario fixtures are injected straight into the database to test
+    the agent's reasoning, so there is no file to re-process. Everything
+    the agent needs is in the row.
+
+    Only used by this file's command line -- review.py and batch.py always
+    work from real documents.
+    """
+    row = conn.execute(
+        "SELECT * FROM invoices WHERE image = ?", (image,)
+    ).fetchone()
+    if row is None:
+        return None
+
+    fields = {k: row[k] for k in row.keys()
+              if k in Invoice.model_fields and row[k] is not None}
+    fields["line_items"] = json.loads(row["line_items"] or "[]")
+    fields.setdefault("confidence", 0.95)
+
+    return Result(
+        image=row["image"],
+        status=row["status"],
+        invoice=Invoice(**fields),
+        issues=[Issue(**i) for i in json.loads(row["issues"] or "[]")],
+        raw_fields=json.loads(row["raw_fields"] or "{}"),
+        meta={"model": row["model"] or "stored"},
+    )
+
+
 def main() -> None:
     if len(sys.argv) < 2:
         raise SystemExit("usage: python src/agent.py <image name, e.g. dev_000>")
 
-    path = find_image(sys.argv[1])
-    result = process(path)
-
+    name = sys.argv[1]
     conn = connect()
+
+    # A record with no file behind it: the scenario fixtures.
+    result = result_from_db(conn, name)
+    if result is None:
+        result = process(find_image(name))
     d = run_agent(result, conn)
     conn.close()
+
+    print()
 
     print(f"\n{'=' * 60}")
     print(f"  {d.image}")

@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS invoices (
     vat_amount        REAL,
     total_amount      REAL,
     currency          TEXT,
+    line_items        TEXT,                    -- JSON list of rows
 
     confidence        REAL,
     issues            TEXT,                      -- JSON list
@@ -175,11 +176,12 @@ def save_result(conn: sqlite3.Connection, result: dict) -> None:
             buyer_name, buyer_vat_number,
             invoice_number, issue_date,
             subtotal, vat_rate, vat_amount, total_amount, currency,
+            line_items,
             confidence, issues, issue_count, error_count,
             raw_fields, fields_read,
             retried, recovered, first_status,
             model, prompt_version, processed_at
-        ) VALUES (?,?,?, ?,?,?, ?,?, ?,?, ?,?,?,?,?, ?,?,?,?, ?,?, ?,?,?, ?,?,?)
+        ) VALUES (?,?,?, ?,?,?, ?,?, ?,?, ?,?,?,?,?, ?, ?,?,?,?, ?,?, ?,?,?, ?,?,?)
         """,
         (
             result["image"], result["status"], result.get("error"),
@@ -189,6 +191,7 @@ def save_result(conn: sqlite3.Connection, result: dict) -> None:
             inv.get("invoice_number"), inv.get("issue_date"),
             inv.get("subtotal"), inv.get("vat_rate"),
             inv.get("vat_amount"), inv.get("total_amount"), inv.get("currency"),
+            json.dumps(inv.get("line_items") or [], ensure_ascii=False),
             # confidence comes from the model, so it survives rejection
             inv.get("confidence", raw.get("confidence")),
             json.dumps(issues, ensure_ascii=False),

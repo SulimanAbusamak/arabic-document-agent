@@ -32,6 +32,22 @@ import config
 # --------------------------------------------------------------------------
 # The record
 # --------------------------------------------------------------------------
+
+class LineItem(BaseModel):
+    """
+    One row of the items table.
+
+    Every field is optional on purpose. Line items are here for semantic
+    matching -- what was actually bought -- not for payment. A row whose
+    quantity was illegible must not reject the whole invoice, because the
+    totals are what gets paid and they are checked separately.
+    """
+    description: str | None = None
+    quantity: float | None = None
+    unit_price: float | None = None
+    line_total: float | None = None
+
+
 class Invoice(BaseModel):
     """
     A validated invoice. Building one of these either succeeds with usable
@@ -55,7 +71,7 @@ class Invoice(BaseModel):
     total_amount: float = Field(gt=0)         # gt = strictly greater than
 
     currency: str = Field(default="SAR", min_length=3, max_length=3)
-
+    line_items: list[LineItem] = Field(default_factory=list)
     confidence: float = Field(ge=0, le=1)
     unreadable_fields: list[str] = Field(default_factory=list)
 
@@ -136,7 +152,7 @@ def check_invoice(inv: Invoice) -> list[Issue]:
             detail=(f"rate {inv.vat_rate:.1%} is not a known rate "
                     f"({', '.join(f'{r:.0%}' for r in sorted(config.KNOWN_VAT_RATES))})"),
         ))
-        # --- VAT registration numbers must be the right shape ------------------
+    # --- VAT registration numbers must be the right shape ------------------
     for label, number in (("supplier", inv.vendor_vat_number),
                           ("buyer", inv.buyer_vat_number)):
         if number is None:
@@ -156,6 +172,7 @@ def check_invoice(inv: Invoice) -> list[Issue]:
                 detail=(f"{label} VAT number must start and end with 3: "
                         f"{number}"),
             ))
+
     # --- missing fields ---------------------------------------------------
     if inv.vendor_vat_number is None:
         issues.append(Issue(

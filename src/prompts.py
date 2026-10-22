@@ -6,12 +6,14 @@ often. PROMPT_VERSION is part of the cache key, so bumping it forces fresh
 API calls instead of silently reusing results from an older prompt.
 """
 
-PROMPT_VERSION = "v3"
+PROMPT_VERSION = "v4"
 # v2: added vat_rate, read off the invoice
-# v3: rule 6, on repeated adjacent Arabic-Indic digits. Measured on the dev
-#     set: vendor and buyer VAT numbers sat at 86.7%, and every single
-#     failure was the same thing -- a doubled ٣٣ transcribed as one ٣,
-#     giving 14 digits where there should be 15.
+# v3: rule 6 on doubled Arabic-Indic digits (measured: no change, kept for
+#     the no-fabrication constraint)
+# v4: line items. Needed for semantic duplicate detection -- comparing what
+#     was actually bought, not just the totals. Two invoices for the same
+#     job under different numbers have different totals lines and nearly
+#     identical item descriptions.
 
 EXTRACTION_PROMPT = """You are reading a Saudi Arabian tax invoice (فاتورة ضريبية).
 
@@ -29,6 +31,14 @@ Extract these fields and return ONLY a JSON object, with no other text:
   "vat_amount": "VAT amount, exactly as printed",
   "total_amount": "total including VAT, exactly as printed",
   "currency": "SAR",
+  "line_items": [
+    {
+      "description": "the item or service description, in Arabic, exactly as printed",
+      "quantity": "quantity, exactly as printed",
+      "unit_price": "unit price, exactly as printed",
+      "line_total": "line total, exactly as printed"
+    }
+  ],
   "confidence": 0.0 to 1.0,
   "unreadable_fields": ["list of field names you could not read"]
 }
@@ -64,5 +74,10 @@ Rules:
    Do NOT add a digit to make the count reach 15. If you look again and
    still read 14 digits, return the 14 you can actually see. A short number
    that is honest can be caught downstream; an invented digit cannot.
+   
+7. Transcribe every row of the items table into line_items, in the order
+   they appear. If the invoice has no itemised table, return an empty list.
+   Descriptions matter more than the numbers here: they are what identifies
+   the work that was billed.
 
 Return the JSON object and nothing else."""
