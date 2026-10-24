@@ -85,6 +85,22 @@ def test_date_arabic_month_name():
     assert parse_date("5 مارس 2026") == "2026-03-05"
     assert parse_date("25 سبتمبر 2026") == "2026-09-25"
 
+def test_date_english_month_name():
+    """
+    Found on a real bilingual Saudi invoice. The synthetic set only ever
+    printed Arabic month names, so this failed silently until then.
+    """
+    assert parse_date("12-Nov-2021") == "2021-11-12"
+    assert parse_date("12 November 2021") == "2021-11-12"
+    assert parse_date("2021-Nov-12") == "2021-11-12"
+    assert parse_date("5 Mar 2026") == "2026-03-05"
+
+
+def test_english_month_does_not_break_numeric_dates():
+    """The new branch must not fire on dates that have no month name."""
+    assert parse_date("2026-03-05") == "2026-03-05"
+    assert parse_date("25/09/2026") == "2026-09-25"
+    assert parse_date("16/9/1447 هـ") == "2026-03-05"
 
 def test_date_rejects_junk():
     assert parse_date("not a date") is None

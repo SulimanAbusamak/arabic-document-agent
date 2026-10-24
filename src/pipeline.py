@@ -228,12 +228,12 @@ def process(image_path: Path, model: str | None = None,
 
 # --------------------------------------------------------------------------
 def find_image(name: str) -> Path:
-    """Look for an image in dev, then test."""
-    for folder in (config.DEV_DIR, config.TEST_DIR):
+    """Look for an image in dev, then test, then real."""
+    for folder in (config.DEV_DIR, config.TEST_DIR, config.REAL_DIR):
         path = folder / name
         if path.exists():
             return path
-    raise SystemExit(f"{name} not found in {config.DEV_DIR} or {config.TEST_DIR}")
+    raise SystemExit(f"{name} not found in dev, test or real")
 
 
 def main() -> None:

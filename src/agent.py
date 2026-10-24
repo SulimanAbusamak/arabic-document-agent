@@ -41,6 +41,7 @@ from typing import Literal
 import anthropic
 
 import config
+import rules
 import tools
 from database import connect
 from models import Invoice, Issue
@@ -104,13 +105,25 @@ average before you judge.
 - A supplier we have never processed before, billing a substantial amount, \
 deserves a human's eyes.
 - A validation warning is a reason to look harder, not an automatic refusal.
-- Escalating costs a reviewer five minutes. A wrong approval costs money and \
-is hard to undo. When genuinely unsure, escalate.
 - A recurring billing pattern is established by at least THREE invoices at \
 a regular interval. Two invoices at the same amount a month apart are as \
 consistent with an unpaid invoice being re-sent as with a contract's second \
 instalment, so escalate and let a reviewer check the payment ledger. From \
 the third onward, a regular cadence is good evidence of a contract.
+
+- A standing rule from a reviewer means a human has already checked this \
+contract and recorded that invoices from this supplier at this amount are \
+expected. It REPLACES the three-invoice cadence requirement above: that \
+requirement exists to infer a contract from the billing pattern, and a rule \
+means you no longer have to infer it. An invoice matching a standing rule, \
+with no duplicate and no validation findings, should be approved even if \
+only one or two prior invoices exist.
+  What a rule does NOT cover is timing that contradicts it. A contract \
+billed monthly produces one invoice a month, so a second invoice at the \
+contract amount a few days after the last one is outside the rule and worth \
+escalating even though the amount matches.
+- Escalating costs a reviewer five minutes. A wrong approval costs money and \
+is hard to undo. When genuinely unsure, escalate.
 
 What NOT to treat as findings, because they are artefacts of how documents \
 reach you rather than facts about this invoice:
@@ -227,8 +240,29 @@ def policy_check(result: Result, conn) -> AgentDecision | None:
 
     total = inv.total_amount or 0
 
+    # A standing rule does NOT appear here, deliberately.
+    #
+    # The first version let a matching rule approve the invoice outright,
+    # and that was worse than having no rule at all. Approving in policy
+    # skips the agent -- so it also skips find_similar_invoices, and
+    # check_duplicate only matches exact invoice numbers. A supplier with a
+    # 'recurring 28,750' rule could send a second 28,750 invoice five days
+    # later under a new number and it would be approved automatically.
+    #
+    # A whitelist that bypasses the duplicate checks is how bills get paid
+    # twice. So the rule is passed to the AGENT as evidence instead (see
+    # describe()), to be weighed against the duplicate search, the
+    # similarity search and the dates. The genuine monthly invoice still
+    # gets approved without a human; a second one in the same month does
+    # not.
+
     # 3. Above the escalation limit, a human signs off. Always. No amount
     #    of looking clean gets an invoice this size paid automatically.
+    #
+    #    A rule does not lift this either. If a contract genuinely runs
+    #    above the limit, the agent sees the rule and can say so in its
+    #    reasoning -- but a 300,000 SAR payment still ends up in front of
+    #    a person, which is what the limit is for.
     if total > config.ESCALATION_LIMIT:
         return AgentDecision(
             image=result.image, decision="escalate", source="policy",
@@ -258,13 +292,14 @@ def policy_check(result: Result, conn) -> AgentDecision | None:
 # --------------------------------------------------------------------------
 # What the model is shown
 # --------------------------------------------------------------------------
-def describe(result: Result) -> str:
+def describe(result: Result, conn=None) -> str:
     """
     Turn a Result into the text the model reads.
 
-    Only the validated fields and the findings go in. Not the raw
-    extraction, not the confidence internals -- extra detail is extra
-    opportunity for the model to latch onto the wrong thing.
+    Only the validated fields, the findings, and any standing rule a human
+    has set for this supplier. Not the raw extraction, not the confidence
+    internals -- extra detail is extra opportunity for the model to latch
+    onto the wrong thing.
     """
     inv = result.invoice
     lines = [
@@ -284,6 +319,17 @@ def describe(result: Result) -> str:
         lines += [f"  [{i.severity}] {i.rule}: {i.detail}" for i in result.issues]
     else:
         lines.append("\nValidation findings: none")
+
+    # A human's earlier decision about this supplier, if there is one. It is
+    # evidence, not an instruction -- which is why it arrives here, in the
+    # material the agent weighs, rather than short-circuiting the checks.
+    if conn is not None:
+        rule = rules.applicable(conn, inv.vendor_name_key,
+                                inv.total_amount or 0)
+        if rule is not None:
+            lines.append(f"\nStanding rule from a reviewer:\n  "
+                         f"{rules.describe(rule)}")
+
     return "\n".join(lines)
 
 
@@ -303,7 +349,7 @@ def run_agent(result: Result, conn) -> AgentDecision:
         return forced
 
     client = anthropic.Anthropic(api_key=config.require_api_key())
-    messages = [{"role": "user", "content": describe(result)}]
+    messages = [{"role": "user", "content": describe(result, conn)}]
     out = AgentDecision(image=result.image, decision="escalate",
                         source="agent", reason="")
 
@@ -434,6 +480,7 @@ def main() -> None:
 
     name = sys.argv[1]
     conn = connect()
+    rules.init(conn)           # the table may not exist yet
 
     # A record with no file behind it: the scenario fixtures.
     result = result_from_db(conn, name)

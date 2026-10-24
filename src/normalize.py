@@ -194,7 +194,7 @@ def parse_rate(text) -> float | None:
 # Dates
 # --------------------------------------------------------------------------
 
-_ARABIC_MONTHS = {
+_MONTHS_AR = {
     "يناير": 1, "فبراير": 2, "مارس": 3, "ابريل": 4, "مايو": 5, "يونيو": 6,
     "يوليو": 7, "اغسطس": 8, "سبتمبر": 9, "اكتوبر": 10, "نوفمبر": 11,
     "ديسمبر": 12,
@@ -203,6 +203,27 @@ _ARABIC_MONTHS = {
     "حزيران": 6, "تموز": 7, "اب": 8, "ايلول": 9, "تشرين الاول": 10,
     "تشرين الثاني": 11, "كانون الاول": 12,
 }
+# Bilingual Saudi invoices often print the month in English. None of the
+# generated invoices did, so this was invisible until a real one arrived:
+# '12-Nov-2021' parsed to None and the date was lost entirely.
+#
+# Matched on the first three letters, so Nov / Nov. / November all work.
+_MONTHS_EN = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+
+
+def _day_and_year(nums: list[str]) -> tuple[int, int]:
+    """
+    Which number is the day and which is the year.
+
+        '12-Nov-2021' -> day 12, year 2021
+        '2021-Nov-12' -> day 12, year 2021   (four digits first = year first)
+    """
+    if len(nums[0]) == 4:
+        return int(nums[-1]), int(nums[0])
+    return int(nums[0]), int(nums[-1])
 
 # هـ / ه / هجري all mark a Hijri date
 _HIJRI_MARK = re.compile(r"\b(هـ|هجري|AH)\b|هـ")
@@ -238,13 +259,21 @@ def parse_date(text) -> str | None:
     raw = str(text).strip()
     s = to_western_digits(raw)
 
-    # --- named Arabic month: "5 مارس 2026" --------------------------------
+        # --- named month, Arabic or English ----------------------------------
     key = normalize_arabic(s)
-    for name, month in _ARABIC_MONTHS.items():
+    for name, month in _MONTHS_AR.items():
         if name in key:
             nums = re.findall(r"\d+", key)
             if len(nums) >= 2:
-                day, year = int(nums[0]), int(nums[-1])
+                day, year = _day_and_year(nums)
+                return _build(day, month, year, raw)
+
+    low = s.lower()
+    for name, month in _MONTHS_EN.items():
+        if name in low:
+            nums = re.findall(r"\d+", low)
+            if len(nums) >= 2:
+                day, year = _day_and_year(nums)
                 return _build(day, month, year, raw)
 
     # --- numeric: 2026-03-05, 05/03/2026, 16.9.1447 -----------------------

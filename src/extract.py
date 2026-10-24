@@ -57,10 +57,17 @@ def save_cached(key: str, payload: dict) -> None:
 # --------------------------------------------------------------------------
 # Extraction
 # --------------------------------------------------------------------------
-def encode_image(image_path: Path) -> str:
-    """Read an image file and base64-encode it for the API."""
-    return base64.b64encode(image_path.read_bytes()).decode("ascii")
+def encode_image(image_path: Path) -> tuple[str, str]:
+    """
+    Base64 the file, and work out what to tell the API it is.
 
+    The media type was hardcoded to image/png, which was fine while every
+    document came out of our own renderer. Real invoices arrive as whatever
+    the sender had -- a phone photo is a JPEG.
+    """
+    suffix = image_path.suffix.lower()
+    media_type = "image/jpeg" if suffix in {".jpg", ".jpeg"} else "image/png"
+    return base64.b64encode(image_path.read_bytes()).decode("ascii"), media_type
 
 def reply_text(response) -> str:
     """
@@ -113,6 +120,8 @@ def extract(image_path: Path, model: str | None = None,
 
     client = anthropic.Anthropic(api_key=config.require_api_key())
 
+    data, media_type = encode_image(image_path)
+
     response = client.messages.create(
         model=model,
         max_tokens=config.MAX_TOKENS,
@@ -124,8 +133,8 @@ def extract(image_path: Path, model: str | None = None,
                     "type": "image",
                     "source": {
                         "type": "base64",
-                        "media_type": "image/png",
-                        "data": encode_image(image_path),
+                        "media_type": media_type,
+                        "data": data,
                     },
                 },
                 {"type": "text", "text": prompts.EXTRACTION_PROMPT},

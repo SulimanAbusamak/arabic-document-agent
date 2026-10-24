@@ -33,11 +33,13 @@ def collect_images(which: str) -> list[Path]:
     """Every .png in the chosen split(s), sorted so runs are comparable."""
     folders = {"dev": [config.DEV_DIR],
                "test": [config.TEST_DIR],
+               "real": [config.REAL_DIR],
                "all": [config.DEV_DIR, config.TEST_DIR]}[which]
     images: list[Path] = []
     for folder in folders:
-        images.extend(sorted(folder.glob("*.png")))
-    return images
+        for pattern in ("*.png", "*.jpg", "*.jpeg"):
+            images.extend(folder.glob(pattern))
+    return sorted(images, key=lambda p: p.name)
 
 
 def result_to_dict(r: Result) -> dict:
@@ -60,6 +62,9 @@ def result_to_dict(r: Result) -> dict:
 def main() -> None:
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     which = args[0] if args else "all"
+
+    output = (config.DATA_DIR / "batch_results_real.json" if which == "real" else OUTPUT)
+
     use_cache = "--no-cache" not in sys.argv
     retry = "--no-retry" not in sys.argv
 
@@ -144,12 +149,12 @@ def main() -> None:
                 print(f"      [{i.severity}] {i.rule}: {i.detail}")
 
     # ---- save ------------------------------------------------------------
-    OUTPUT.write_text(
+    output.write_text(
         json.dumps([result_to_dict(r) for r in results],
                    ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    print(f"\nsaved -> {OUTPUT}")
+    print(f"\nsaved -> {output}")
 
 
 if __name__ == "__main__":

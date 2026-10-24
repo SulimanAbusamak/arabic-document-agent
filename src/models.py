@@ -99,6 +99,34 @@ class Invoice(BaseModel):
     def upper_currency(cls, v: str) -> str:
         return v.upper()
 
+    @property
+    def vat_convention(self) -> str:
+        """
+        'inclusive' if the printed prices already contain the VAT.
+
+        Saudi retail works this way: the shelf price is what you pay, and
+        the VAT is the portion already inside it. ZATCA calls these
+        documents simplified tax invoices (فاتورة ضريبية مبسطة), and they
+        are a whole legitimate invoice type -- every restaurant receipt an
+        employee submits for reimbursement is one.
+
+        None of the generated invoices used it, because generate.py always
+        builds subtotal -> add VAT -> total. So the convention was invisible
+        until a real receipt arrived, and the validation called it an
+        arithmetic error.
+
+        The signal: VAT is non-zero but the total equals the subtotal. Under
+        exclusive pricing that is a contradiction -- adding VAT has to make
+        the total bigger. Under inclusive pricing it is just how the
+        document is written.
+        """
+        if self.vat_rate <= 0:
+            return "exclusive"
+        tol = config.MONEY_TOLERANCE
+        if abs(self.total_amount - self.subtotal) <= tol and self.vat_amount > tol:
+            return "inclusive"
+        return "exclusive"
+
 
 # --------------------------------------------------------------------------
 # Business rules
@@ -124,25 +152,44 @@ def check_invoice(inv: Invoice) -> list[Issue]:
     issues: list[Issue] = []
     tol = config.MONEY_TOLERANCE
 
-    # --- the arithmetic must close ---------------------------------------
-    expected_total = round(inv.subtotal + inv.vat_amount, 2)
-    if abs(expected_total - inv.total_amount) > tol:
-        issues.append(Issue(
-            rule="total_equals_subtotal_plus_vat",
-            severity="error",
-            detail=(f"{inv.subtotal} + {inv.vat_amount} = {expected_total}, "
-                    f"but total says {inv.total_amount}"),
-        ))
+    # --- the money has to hang together ----------------------------------
+    # Which arithmetic applies depends on the invoice's pricing convention,
+    # and the document never says which one it uses. See Invoice.vat_convention.
+    if inv.vat_convention == "inclusive":
+        # The total is what was paid; the VAT is the slice already inside it.
+        #     net = total / 1.15        VAT = total - net
+        # "subtotal + VAT = total" is not checked here, because under this
+        # convention the subtotal IS the total -- that is what identified it.
+        net = round(inv.total_amount / (1 + inv.vat_rate), 2)
+        expected_vat = round(inv.total_amount - net, 2)
+        if abs(expected_vat - inv.vat_amount) > tol:
+            issues.append(Issue(
+                rule="vat_inside_total",
+                severity="error",
+                detail=(f"VAT-inclusive invoice: {inv.total_amount} contains "
+                        f"{expected_vat} of VAT at {inv.vat_rate:.0%}, "
+                        f"but the invoice says {inv.vat_amount}"),
+            ))
+    else:
+        # --- the arithmetic must close ------------------------------------
+        expected_total = round(inv.subtotal + inv.vat_amount, 2)
+        if abs(expected_total - inv.total_amount) > tol:
+            issues.append(Issue(
+                rule="total_equals_subtotal_plus_vat",
+                severity="error",
+                detail=(f"{inv.subtotal} + {inv.vat_amount} = {expected_total}, "
+                        f"but total says {inv.total_amount}"),
+            ))
 
-    # --- VAT must match the rate printed on the invoice -------------------
-    expected_vat = round(inv.subtotal * inv.vat_rate, 2)
-    if abs(expected_vat - inv.vat_amount) > tol:
-        issues.append(Issue(
-            rule="vat_matches_rate",
-            severity="error",
-            detail=(f"{inv.subtotal} x {inv.vat_rate:.0%} = {expected_vat}, "
-                    f"but VAT says {inv.vat_amount}"),
-        ))
+        # --- VAT must match the rate printed on the invoice ---------------
+        expected_vat = round(inv.subtotal * inv.vat_rate, 2)
+        if abs(expected_vat - inv.vat_amount) > tol:
+            issues.append(Issue(
+                rule="vat_matches_rate",
+                severity="error",
+                detail=(f"{inv.subtotal} x {inv.vat_rate:.0%} = {expected_vat}, "
+                        f"but VAT says {inv.vat_amount}"),
+            ))
 
     # --- the rate itself should be one we recognise -----------------------
     if inv.vat_rate not in config.KNOWN_VAT_RATES:
