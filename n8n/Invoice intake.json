@@ -1,0 +1,310 @@
+{
+  "name": "Invoice intake",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -320,
+        0
+      ],
+      "id": "a57d211b-1443-43a4-868d-82847267b292",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/data/inbox/*.png",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        80,
+        0
+      ],
+      "id": "6022db36-c044-4d0c-99c8-c5424f37f8a6",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/process",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"image\": \"/app/data/inbox/{{ $binary.data.fileName }}\"}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        448,
+        0
+      ],
+      "id": "87ccafe6-15f9-45ec-a0d9-811f3dbdbc66",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 4
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "approve",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "f834ea49-7276-4de8-b201-ad18efdae953"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "approve"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 4
+                },
+                "conditions": [
+                  {
+                    "id": "26be2512-6c8e-4ce5-b9fc-028f022080d0",
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "escalate",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "escalate"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 4
+                },
+                "conditions": [
+                  {
+                    "id": "955c8820-6c43-469f-bbe6-0b1f3f94a2da",
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "rescan",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "rescan"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.5,
+      "position": [
+        768,
+        -16
+      ],
+      "id": "7aae73cc-6cdc-44c5-849f-eccca3803cc7",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "email",
+        "options": {
+          "fileName": "={{ $json.filename }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1424,
+        0
+      ],
+      "id": "3466a751-ee70-476a-9af2-71b380990bb0",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = $json;\n\nconst money = (n) =>\n  Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: 2 });\n\nconst cur = d.currency || 'SAR';\nconst vendor = d.vendor_name || 'unknown supplier';\nconst trace = (d.trace || []).join(' -> ') || 'policy rules only';\n\nconst body = `To: accounts-payable@company.com\nSubject: [REVIEW] Invoice held — ${vendor} — ${money(d.total_amount)} ${cur}\n\nAn invoice has been held for review rather than paid.\n\n  Supplier        ${vendor}\n  Invoice number  ${d.invoice_number || '—'}\n  Date            ${d.issue_date || '—'}\n  Amount          ${money(d.total_amount)} ${cur}\n  Document        ${d.image}\n\nWHY IT WAS HELD\n\n${d.reason}\n\nHOW IT WAS DECIDED\n\n  Decided by      ${d.source}\n  Checks run      ${trace}\n\nThis invoice has NOT been paid. Please review the document and either\napprove it for payment or raise it with the supplier.\n\n--\nDrafted automatically. Nothing has been sent to the supplier.\n`;\n\nreturn { json: { email: body, filename: `${d.image}.eml` } };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        0
+      ],
+      "id": "0a434d94-d78f-4286-bd20-53b2d8c109f4",
+      "name": "Draft review email"
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = $json;\n\nconst body = `To: document-intake@company.com\nSubject: [RESCAN] Unreadable document — ${d.image}\n\nThis document could not be read reliably, so nothing was recorded from it\nand no payment has been scheduled.\n\n  Document        ${d.image}\n  Supplier        ${d.vendor_name || 'could not be read'}\n  Invoice number  ${d.invoice_number || 'could not be read'}\n\nWHAT WENT WRONG\n\n${d.reason}\n\nWHAT WE NEED\n\nA clearer copy of the same document: the whole page, straight on, evenly\nlit, no glare across the printed figures. A photo is fine if it is sharp.\n\nTwo different models were already tried on this image, so the problem is\nthe copy rather than the reading -- a better scan should go through\nwithout anyone having to type the figures in by hand.\n\n--\nDrafted automatically. Nothing has been sent to the supplier.\n`;\n\nreturn { json: { email: body, filename: `${d.image}.eml` } };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        160
+      ],
+      "id": "4c143f97-3dc2-4efa-a387-6405ea95cae0",
+      "name": "Draft rescan request"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/escalations/{{ $binary.data.fileName }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        1648,
+        0
+      ],
+      "id": "a1d95ddd-ea3d-4db9-b729-a41690fc4db0",
+      "name": "Save draft email"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Draft review email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Draft rescan request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Save draft email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft review email": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft rescan request": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save draft email": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "ada49fed-746a-46f7-b44f-49d970cf2e0a",
+  "meta": {
+    "instanceId": "bcfce2b30f0b2d4893426565d351e3e17f14c279d271a79fb26f7dbfaf72e83d"
+  },
+  "nodeGroups": [],
+  "id": "5XCWcsMeFxZkxBCa",
+  "tags": []
+}
