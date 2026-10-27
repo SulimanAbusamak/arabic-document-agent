@@ -6,7 +6,8 @@ often. PROMPT_VERSION is part of the cache key, so bumping it forces fresh
 API calls instead of silently reusing results from an older prompt.
 """
 
-PROMPT_VERSION = "v4"
+PROMPT_VERSION = "v5"
+
 # v2: added vat_rate, read off the invoice
 # v3: rule 6 on doubled Arabic-Indic digits (measured: no change, kept for
 #     the no-fabrication constraint)
@@ -14,8 +15,13 @@ PROMPT_VERSION = "v4"
 #     was actually bought, not just the totals. Two invoices for the same
 #     job under different numbers have different totals lines and nearly
 #     identical item descriptions.
+# v5: three gaps found on a real bilingual invoice from an Indian supplier:
+#     the currency was hardcoded to SAR in this prompt, so a dollar invoice
+#     came back as riyals; the document carried TWO tax rates (15% and 10%)
+#     and the model had one field for it; and it had a discount line with
+#     nowhere to go.
 
-EXTRACTION_PROMPT = """You are reading a Saudi Arabian tax invoice (فاتورة ضريبية).
+EXTRACTION_PROMPT = """You are reading an Arabic/English tax invoice (most likely a Saudi Arabian tax invoice) (فاتورة ضريبية).
 
 Extract these fields and return ONLY a JSON object, with no other text:
 
@@ -30,12 +36,15 @@ Extract these fields and return ONLY a JSON object, with no other text:
   "vat_rate": "the VAT percentage printed on the invoice, as a number (15 for 15%)",
   "vat_amount": "VAT amount, exactly as printed",
   "total_amount": "total including VAT, exactly as printed",
-  "currency": "SAR",
+  "discount": "any discount applied before tax, exactly as printed, or null",
+  "currency": "the currency code as printed: SAR, USD, AED, JOD...",
   "line_items": [
     {
-      "description": "the item or service description, in Arabic, exactly as printed",
+      "description": "the item or service description, exactly as printed",
       "quantity": "quantity, exactly as printed",
       "unit_price": "unit price, exactly as printed",
+      "tax_rate": "this row's tax percentage, as a number, or null",
+      "tax_amount": "this row's tax amount, exactly as printed, or null",
       "line_total": "line total, exactly as printed"
     }
   ],
@@ -79,5 +88,11 @@ Rules:
    they appear. If the invoice has no itemised table, return an empty list.
    Descriptions matter more than the numbers here: they are what identifies
    the work that was billed.
+
+8. An invoice may apply DIFFERENT tax rates to different rows -- 15% on one
+   item and 10% on another is normal on a mixed supply. Read each row's own
+   rate and tax amount into that row, and put the invoice's headline rate
+   in vat_rate as usual.
+
 
 Return the JSON object and nothing else."""

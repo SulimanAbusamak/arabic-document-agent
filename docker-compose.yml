@@ -1,0 +1,31 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./cache:/app/cache
+
+  api:
+    build: .
+    command: python src/server.py
+    expose:
+      - "8000"
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./cache:/app/cache
+
+  n8n:
+    image: n8nio/n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=Asia/Amman
+      - N8N_RESTRICT_FILE_ACCESS_TO=/data
+    volumes:
+      - ./data/n8n:/home/node/.n8n
+      - ./data/inbox:/data/inbox
+      - ./data/escalations:/data/escalations

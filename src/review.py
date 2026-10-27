@@ -21,6 +21,7 @@ import sys
 import time
 
 import config
+import rules
 from agent import AgentDecision, run_agent
 from batch import collect_images
 from database import connect, decided_images, save_decision
@@ -37,6 +38,7 @@ def main() -> None:
         raise SystemExit(f"no images found for '{which}'")
 
     conn = connect()
+    rules.init(conn)           
     already = set() if force else decided_images(conn)
     todo = [p for p in images if p.name not in already]
 

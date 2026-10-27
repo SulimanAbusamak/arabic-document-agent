@@ -306,7 +306,7 @@ def _build(day: int, month: int, year: int, raw: str) -> str | None:
 # Whole record
 # --------------------------------------------------------------------------
 
-_MONEY_FIELDS = ("subtotal", "vat_amount", "total_amount")
+_MONEY_FIELDS = ("subtotal", "vat_amount", "total_amount", "discount")
 _RATE_FIELDS = ("vat_rate",)
 _DATE_FIELDS = ("issue_date", "supply_date", "due_date")
 _TEXT_FIELDS = ("vendor_name", "buyer_name")
@@ -338,6 +338,11 @@ def normalize_line_items(items) -> list[dict]:
                             if item.get("description") else None),
             "quantity": parse_money(item.get("quantity")),
             "unit_price": parse_money(item.get("unit_price")),
+            # A row's own tax, for invoices that charge more than one rate.
+            # parse_rate, not parse_money -- '15%' and 15 both have to come
+            # out as 0.15, same as the invoice-level rate.
+            "tax_rate": parse_rate(item.get("tax_rate")),
+            "tax_amount": parse_money(item.get("tax_amount")),
             "line_total": parse_money(item.get("line_total")),
         }
         if any(v is not None for v in row.values()):
@@ -369,7 +374,7 @@ def normalize_record(fields: dict) -> dict:
         if f in out and out[f] is not None:
             # IDs are digits: westernise, then keep only digits and dashes
             s = to_western_digits(out[f])
-            s = re.sub(r"[^\w\-]", "", s).strip()
+            s = re.sub(r"[^\w\-/]", "", s).strip()
             # a reference read off an RTL page may have arrived backwards
             out[f] = fix_rtl_order(s)
 

@@ -26,6 +26,8 @@ DEV_DIR = INVOICES_DIR / "dev"
 TEST_DIR = INVOICES_DIR / "test"
 GROUND_TRUTH = DATA_DIR / "ground_truth.json"
 REAL_DIR = DATA_DIR / "real"
+UPLOAD_DIR = DATA_DIR / "uploads"
+
 
 CACHE_DIR = ROOT / "cache"
 CACHE_DIR.mkdir(exist_ok=True)

@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS invoices (
     vat_amount        REAL,
     total_amount      REAL,
     currency          TEXT,
+    discount          REAL,
     line_items        TEXT,                    -- JSON list of rows
 
     confidence        REAL,
@@ -120,15 +121,23 @@ CREATE TABLE IF NOT EXISTS vendors (
 """
 
 
-def connect() -> sqlite3.Connection:
+def connect(same_thread: bool = True) -> sqlite3.Connection:
     """
     Open the database.
 
     row_factory = sqlite3.Row makes rows behave like dicts, so you write
     row["vendor_name"] instead of row[4] and nothing breaks when a column
     is added in the middle.
+
+    same_thread=False is for Streamlit, which runs the script on a
+    different thread for every interaction. SQLite refuses a connection
+    used from a thread other than the one that opened it, which is a
+    sensible default -- concurrent writes from several threads corrupt
+    things. It is safe here because the UI serves one user and runs one
+    script at a time; it would not be safe in a web server handling
+    parallel requests.
     """
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, check_same_thread=same_thread)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     return conn
@@ -175,13 +184,13 @@ def save_result(conn: sqlite3.Connection, result: dict) -> None:
             vendor_name, vendor_name_key, vendor_vat_number,
             buyer_name, buyer_vat_number,
             invoice_number, issue_date,
-            subtotal, vat_rate, vat_amount, total_amount, currency,
+            subtotal, vat_rate, vat_amount, total_amount, currency, discount,
             line_items,
             confidence, issues, issue_count, error_count,
             raw_fields, fields_read,
             retried, recovered, first_status,
             model, prompt_version, processed_at
-        ) VALUES (?,?,?, ?,?,?, ?,?, ?,?, ?,?,?,?,?, ?, ?,?,?,?, ?,?, ?,?,?, ?,?,?)
+        ) VALUES (?,?,?, ?,?,?, ?,?, ?,?, ?,?,?,?,?,?, ?, ?,?,?,?, ?,?, ?,?,?, ?,?,?)
         """,
         (
             result["image"], result["status"], result.get("error"),
@@ -190,7 +199,8 @@ def save_result(conn: sqlite3.Connection, result: dict) -> None:
             inv.get("buyer_name"), inv.get("buyer_vat_number"),
             inv.get("invoice_number"), inv.get("issue_date"),
             inv.get("subtotal"), inv.get("vat_rate"),
-            inv.get("vat_amount"), inv.get("total_amount"), inv.get("currency"),
+            inv.get("vat_amount"), inv.get("total_amount"),
+            inv.get("currency"), inv.get("discount"),
             json.dumps(inv.get("line_items") or [], ensure_ascii=False),
             # confidence comes from the model, so it survives rejection
             inv.get("confidence", raw.get("confidence")),
@@ -250,7 +260,7 @@ def save_decision(conn: sqlite3.Connection, d) -> None:
             d.image, d.decision, d.reason, d.source, d.overridden,
             json.dumps(d.trace, ensure_ascii=False),
             d.turns, d.input_tokens, d.output_tokens,
-            config.MODEL,
+            config.MODEL if d.source != "human" else None,
             datetime.now(timezone.utc).isoformat(timespec="seconds"),
         ),
     )

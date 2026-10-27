@@ -45,6 +45,8 @@ class LineItem(BaseModel):
     description: str | None = None
     quantity: float | None = None
     unit_price: float | None = None
+    tax_rate: float | None = None
+    tax_amount: float | None = None
     line_total: float | None = None
 
 
@@ -53,6 +55,26 @@ class Invoice(BaseModel):
     A validated invoice. Building one of these either succeeds with usable
     data, or raises ValidationError explaining exactly which field is wrong.
     """
+
+    """
+    One row of the items table.
+
+    Every field is optional on purpose. Line items are here for semantic
+    matching -- what was actually bought -- not for payment. A row whose
+    quantity was illegible must not reject the whole invoice, because the
+    totals are what gets paid and they are checked separately.
+
+    tax_rate and tax_amount are per ROW because an invoice can charge
+    different rates on different lines. A real one did: 15% on one product
+    and 10% on another, which the single invoice-level vat_rate could not
+    represent, so validation called a correct document an arithmetic error.
+    """
+    description: str | None = None
+    quantity: float | None = None
+    unit_price: float | None = None
+    tax_rate: float | None = None
+    tax_amount: float | None = None
+    line_total: float | None = None
 
     vendor_name: str = Field(min_length=2)
     vendor_name_key: str | None = None        # normalised, for matching
@@ -71,6 +93,7 @@ class Invoice(BaseModel):
     total_amount: float = Field(gt=0)         # gt = strictly greater than
 
     currency: str = Field(default="SAR", min_length=3, max_length=3)
+    discount: float | None = None      # applied before tax, if any
     line_items: list[LineItem] = Field(default_factory=list)
     confidence: float = Field(ge=0, le=1)
     unreadable_fields: list[str] = Field(default_factory=list)
@@ -94,10 +117,25 @@ class Invoice(BaseModel):
             return None
         return re.sub(r"\D", "", v) or None
 
-    @field_validator("currency")
+    @field_validator("currency", mode="before")
     @classmethod
-    def upper_currency(cls, v: str) -> str:
-        return v.upper()
+    def default_currency(cls, v) -> str:
+        """
+        Fall back to SAR when the document does not print a currency.
+
+        Till receipts usually do not: 'Total Cash 128.00' and nothing else.
+        The v4 prompt hid this by telling the model to answer SAR; v5 asks
+        it to read what is printed, so an honest null now arrives here --
+        and a missing currency should not make an otherwise perfect receipt
+        unusable.
+
+        SAR is the right assumption for this system, and it is an
+        assumption: an invoice in dollars that omits the symbol would be
+        silently mislabelled.
+        """
+        if v is None or not str(v).strip():
+            return "SAR"
+        return str(v).upper()
 
     @property
     def vat_convention(self) -> str:
@@ -181,14 +219,32 @@ def check_invoice(inv: Invoice) -> list[Issue]:
                         f"but total says {inv.total_amount}"),
             ))
 
-        # --- VAT must match the rate printed on the invoice ---------------
-        expected_vat = round(inv.subtotal * inv.vat_rate, 2)
-        if abs(expected_vat - inv.vat_amount) > tol:
+        # --- VAT must match what the rows say, or the printed rate -------
+        # Per-row first, when every row carries its own tax amount: that is
+        # the only way to validate an invoice with more than one rate on it.
+        #
+        # All or nothing, deliberately. If three rows out of four have a tax
+        # amount, summing the three is wrong by whatever the fourth was --
+        # and filling the gap would mean guessing that row's rate. Partial
+        # data is exactly where not to improvise, so we fall back to the
+        # invoice totals, which are figures we definitely have.
+        row_tax = [i.tax_amount for i in inv.line_items
+                   if i.tax_amount is not None]
+        if inv.line_items and len(row_tax) == len(inv.line_items):
+            expected_vat = round(sum(row_tax), 2)
+            rule_name = "vat_matches_line_items"
+            how = f"the {len(row_tax)} line item tax amounts sum to"
+        else:
+            expected_vat = round(inv.subtotal * inv.vat_rate, 2)
+            rule_name = "vat_matches_rate"
+            how = f"{inv.subtotal} x {inv.vat_rate:.0%} ="
+
+        if abs(expected_vat - inv.vat_amount) > tol * max(1, len(row_tax)):
             issues.append(Issue(
-                rule="vat_matches_rate",
+                rule=rule_name,
                 severity="error",
-                detail=(f"{inv.subtotal} x {inv.vat_rate:.0%} = {expected_vat}, "
-                        f"but VAT says {inv.vat_amount}"),
+                detail=(f"{how} {expected_vat}, "
+                        f"but the invoice says {inv.vat_amount}"),
             ))
 
     # --- the rate itself should be one we recognise -----------------------

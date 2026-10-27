@@ -137,6 +137,16 @@ def test_rate():
     assert parse_rate(None) is None
 
 
+
+def test_invoice_number_keeps_slashes():
+    """
+    Found on a real invoice: 5410/21-008563P1 was stored as 541021-008563P1.
+    Slash-separated invoice numbers are common and the synthetic set had
+    none, so the normaliser quietly ate them.
+    """
+    out = normalize_record({"invoice_number": "5410/21-008563P1"})
+    assert out["invoice_number"] == "5410/21-008563P1"
+
 def test_rtl_reversed_reference():
     """
     An invoice number printed on an RTL page can be transcribed backwards.

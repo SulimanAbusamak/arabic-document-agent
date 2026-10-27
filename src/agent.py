@@ -427,7 +427,8 @@ def veto(decision: AgentDecision, result: Result) -> AgentDecision:
     approve something it should not is exactly the thing you want visible
     in the record rather than quietly discarded.
     """
-    if decision.decision == "approve" and result.issues:
+    errors = [i for i in result.issues if i.severity == "error"]
+    if decision.decision == "approve" and errors:
         found = "; ".join(f"{i.rule}" for i in result.issues)
         return AgentDecision(
             image=decision.image, decision="escalate", source="agent",
